@@ -1,25 +1,24 @@
-import fs from "fs";
 import http from "http";
-import path from "path";
-import { fileURLToPath } from 'url';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { servePublicFiles, serveStaticFile } from "./handlers.js";
 
-const port = 5050;
+const PORT = 5050;
 
-const basePath = __dirname;
+const routes = {
+  "/": (req, res) => {
+    serveStaticFile(res, "./public/index.html", "text/html")
+  }
+};
 
-http.createServer((req, res) => {
-  const stream = fs.createReadStream(path.join(`${basePath}/public/${req.url}`));
+const server = http.createServer((req, res) => {
+  const routeHandler = routes[req.url];
+  if (routeHandler) {
+    routeHandler(req, res);
+  } else {
+    servePublicFiles(req, res);
+  }
+});
 
-  stream.on("error", () => {
-    res.writeHead(404);
-    res.end();
-  });
-
-  stream.pipe(res);
-
-}).listen(port, () => {
-  console.log(`listening on port ${port}...`)
+server.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
 });

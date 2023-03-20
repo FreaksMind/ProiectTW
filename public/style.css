@@ -1,16 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,700;1,400&display=swap');
 
-*{
+/* todo: add color variables */
+:root {
+
+}
+
+* {
   margin: 0;
   padding: 0;
 }
 
 body {
   background: rgb(0,0,0);
-  background: linear-gradient(180deg, rgba(0,0,0,1) 14%, rgba(20,20,20,1) 100%);
-  font-family: 'Rubik', sans-serif;
+  background: linear-gradient(180deg, rgba(0,0,0,1) 14%, rgba(10,10,10,1) 100%);
+  /* todo: fix font */
+  font-family: Rubik, sans-serif;
 }
 
+/* todo: fix input scaling */
 #search-bar {
   box-sizing: border-box;
   max-width: 95%;
@@ -29,22 +36,24 @@ body {
   transition: 0.2s ease all;
 }
 
-#search-bar:focus{
+#search-bar::placeholder {
+  color: #999;
+}
 
+#search-bar:focus {
   background-color: #101010;
-
 }
 
-.wrapper{
-width: 100vw;
-height: 100vh;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.input-wrapper{
+.input-wrapper {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -52,7 +61,7 @@ align-items: center;
   align-items: center;
 }
 
-.search-icon{
+.search-icon {
   margin: -20px;
   width: 70px;
   height: auto;
@@ -60,8 +69,6 @@ align-items: center;
   cursor: pointer;
 }
 
-.search-icon:hover{
+.search-icon:hover {
   transform: scale(1.2) rotate(-15deg);
-
-
 }
