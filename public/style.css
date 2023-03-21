@@ -11,6 +11,7 @@
 }
 
 body {
+  overflow: hidden;
   background: rgb(0,0,0);
   background: linear-gradient(180deg, rgba(0,0,0,1) 14%, rgba(10,10,10,1) 100%);
   /* todo: fix font */
@@ -61,8 +62,14 @@ body {
   align-items: center;
 }
 
+.error{
+  font-size: 64px;
+  background: -webkit-linear-gradient(rgb(233, 176, 20), #333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .search-icon {
-  margin: -20px;
   width: 70px;
   height: auto;
   transition: 0.3s ease all;
@@ -71,4 +78,63 @@ body {
 
 .search-icon:hover {
   transform: scale(1.2) rotate(-15deg);
+}
+
+
+.text{
+  opacity: 0;
+  animation:appear 1s ease-in forwards;
+  animation-delay: 0.5s;
+}
+@keyframes appear {
+  from{
+      opacity: 0;
+  }
+  to{
+      opacity: 1;
+  }
+}
+
+h1{
+  font-size: 4.5rem;
+  background: -webkit-linear-gradient(rgb(233, 176, 20), #333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+#back{
+  font-size: 2.5rem;
+  text-decoration: none;
+  background: -webkit-linear-gradient(rgb(233, 176, 20), #333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+h2{
+  font-size: 2.5rem;
+  color: #E0E0E0;
+}
+h3{
+  font-size: 2.5rem;
+  color: #E0E0E0;
+}
+
+.errorbody{
+  text-align: center;
+}
+
+#bee{
+  transform: translateY(750px);
+   
+  animation: launch 0.9s ease-out forwards;
+  width: 300px;
+  height: auto;
+}
+@keyframes launch {
+  from {
+      transform: translateY(750px);
+  }
+  to{
+      perspective: 500px;
+      transform: translateY(0px); 
+  }
 }
