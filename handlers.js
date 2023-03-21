@@ -4,8 +4,7 @@ const serveStaticFile = (res, filePath, contentType) => {
   fs.readFile(filePath, (err, data) => {
     if (err) {
       res.writeHead(404);
-      serveStaticFile(res, './public/error.html', 'text/html');
-      //res.end('File not found');
+      serveStaticFile(res, './public/404.html', 'text/html');
       return;
     }
     res.writeHead(200, { 'Content-Type': contentType });
