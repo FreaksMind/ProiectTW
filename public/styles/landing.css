@@ -35,8 +35,6 @@
 }
 
 .input-wrapper {
-  width: 100vw;
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,4 +56,12 @@
 
 .search-icon:hover {
   transform: scale(1.2) rotate(-15deg);
+}
+.title{
+  color:white;
+  font-size: 5em;
+}
+.bee-text{
+  color:#FFC107;
+
 }
