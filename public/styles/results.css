@@ -35,18 +35,20 @@ body{
 }
 .container{
   display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 25px;
 }
 
 .box{
-  display: flex;
-  flex: auto;
-  height: 300px;
+  width:385px;
+  height:250px;
   border:2px solid #FFC107;
   background-color: #101010;
   margin: 25px 25px 25px 25px;
   border-radius: 15px;
   transition: 0.3s ease all;
-  padding: auto;
 }
 
 .container div:hover{
@@ -66,10 +68,15 @@ body{
 }
 .wrapper {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
 
+.input-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 ::-webkit-scrollbar {
