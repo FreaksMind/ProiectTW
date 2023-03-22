@@ -15,6 +15,6 @@ body {
   background: rgb(0,0,0);
   background: linear-gradient(180deg, rgba(0,0,0,1) 14%, rgba(10,10,10,1) 100%);
   /* todo: fix font */
-  font-family: Rubik, sans-serif;
+  font-family: 'Rubik', sans-serif;
 }
 
