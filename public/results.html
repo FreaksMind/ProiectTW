@@ -5,13 +5,14 @@
     <link href="./styles/style.css" rel="stylesheet" />
     <link href="./styles/results.css" rel="stylesheet" />
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Welcome to our movie website! We bring you the latest and greatest movies from the TMDB API, so you can stay up-to-date with all the hottest releases. Whether you're looking for action, drama, comedy, or romance, we've got you covered. Our user-friendly interface allows you to easily search and filter movies by genre, release year, rating, and more. Plus, you can read reviews and ratings from other users to help you decide what to watch next. So grab some popcorn and get ready for a movie night like no other!">
+    <meta name="keywords" content="TMDB, movie website, latest movies, new releases, action movies, drama movies, comedy movies, romance movies, user reviews, movie ratings, movie search, movie filters">
   </head>
   <body>
     <div class="wrapper">
       <div class="input-wrapper">
-        <div>
-          <input type="text" placeholder="fast and furious" id="search-bar" />
-        </div>
+        <input type="text" placeholder="fast and furious" id="search-bar" />
         <div>
           <a href="results.html">
             <img
@@ -23,18 +24,8 @@
         </div>
       </div>
     </div>
-    <div class="container">
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
+    <div class="container" id="results">
     </div>
+    <script src="./scripts/results.js"></script>
   </body>
 </html>

@@ -5,13 +5,13 @@
 
 #search-bar {
   box-sizing: border-box;
-  max-width: 95%;
-  width: 750px;
+  margin: 30px 20px;
+  width: 100%;
+  padding: 14px 20px 12px 20px;
   background-position: 10px 10px;
   background-repeat: no-repeat;
   background-image: url('./assets/beesearch.png');
   font-size: 1.2em;
-  padding: 14px 20px 12px 20px;
   border-bottom: 1px solid #ddd;
   background-color: black;
   border: 2px solid #FFC107;
@@ -21,39 +21,17 @@
   transition: 0.2s ease all;
 }
 
+.input-wrapper {
+  max-width: 800px;
+  width: 100%;
+}
+
 #search-bar::placeholder {
   color: #999;
 }
 
 #search-bar:focus {
   background-color: #101010;
-}
-
-body{
-  overflow: scroll;
-  overflow-x: hidden;
-}
-.container{
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  align-items: center;
-  margin: 25px;
-}
-
-.box{
-  width:385px;
-  height:250px;
-  border:2px solid #FFC107;
-  background-color: #101010;
-  margin: 25px 25px 25px 25px;
-  border-radius: 15px;
-  transition: 0.3s ease all;
-}
-
-.container div:hover{
-  background-color: #FFC107;
-  transform: scale(1.05);
 }
 
 .search-icon {
@@ -66,6 +44,7 @@ body{
 .search-icon:hover {
   transform: scale(1.2) rotate(-15deg);
 }
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -79,24 +58,42 @@ body{
   align-items: center;
 }
 
-::-webkit-scrollbar {
-  width: 20px;
-  background-color: black;
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%/2, max(160px, 100%/5)), 1fr));
+  column-gap: 40px;
+  justify-content: space-between;
 }
 
-/* Track */
-::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px black; 
-  border-radius: 10px;
-}
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #FFC107; 
-  border-radius: 10px;
+@media only screen and (max-width: 768px) {
+  .container {
+    column-gap: 20px;
+  }
 }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #94FFF9; 
+.box {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  margin: 0px auto;
+  margin-bottom: 40px;
+  font-size: 1rem;
+  color: white;
 }
+
+.result-img {
+  border-radius: 20px;
+}
+
+.event:hover img {
+  transform: scale(1);
+}
+
+.result-title {
+  margin: 10px 0px;
+}
+
