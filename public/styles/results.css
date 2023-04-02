@@ -21,11 +21,6 @@
   transition: 0.2s ease all;
 }
 
-.input-wrapper {
-  max-width: 800px;
-  width: 100%;
-}
-
 #search-bar::placeholder {
   color: #999;
 }
@@ -53,6 +48,8 @@
 }
 
 .input-wrapper {
+  max-width: 800px;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
