@@ -77,10 +77,10 @@ a{
   align-items: center;
 }
 .poster-img{
-  width: 400px;
-  max-width: 100%; 
-  max-height: 100%;
-  object-fit: contain;
+  width: 480px;
+  height: 680px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 .content
 {
@@ -98,8 +98,22 @@ a{
   align-items: center;
 }
 h1 {
-  font-size: 2rem;
+  font-size: 3rem;
   margin: 0;
+}
+
+.mini-stats {
+  margin: 10px 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+}
+
+.mini-stats li {
+  font-size: 16px;
+  color: #999;
+  margin-right: 10px;
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .rating{
@@ -117,6 +131,64 @@ h1 {
   width: 100%;
   height: auto;
   padding-bottom: 1rem;
+}
+
+.buttons{
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 2rem;
+}
+
+.buttons button{
+  background: none;
+  color: rgb(241, 241, 241);
+  border: 1px solid gray;
+  font-size: 24px;
+  padding: .5rem;
+}
+
+.buttons button:hover{
+  background-color: gray;
+}
+
+.description{
+  padding-top: 3rem;
+  font-size: 18px;
+  text-align: justify;
+  max-width: 1110px;
+}
+
+.related-movies{
+  display: flex;
+  flex-direction: row;
+}
+
+.related-img{
+  height: 200px;
+  width: 250px;
+  padding: 2rem;
+  padding-left: 0px;
+  padding-top: 1rem;
+  border-radius: 10px;
+}
+
+.short-details{
+  padding: 1rem;
+  padding-left: 0px;
+  display: flex;
+  flex-direction: row;
+}
+.template{
+  color: rgb(82, 82, 82);
+}
+
+.short-details div{
+  padding: .5rem;
+  padding-left: 0px;
+}
+
+.short-details span{
+  text-align: right;
 }
 
 @media screen and (max-width: 768px) {

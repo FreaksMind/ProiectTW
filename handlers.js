@@ -16,6 +16,7 @@ const servePublicFiles = (req, res) => {
   const filePath = `./public${req.url}`;
   const extension = req.url.split('.').pop();
   const contentType = {
+    svg: 'image/svg+xml',
     css: 'text/css',
     js: 'text/javascript',
     png: 'image/png',
