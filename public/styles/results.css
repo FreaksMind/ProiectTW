@@ -3,6 +3,10 @@
   box-sizing: border-box;
 }
 
+body{
+  overflow-x: hidden;
+}
+
 #search-bar {
   box-sizing: border-box;
   margin: 30px 20px;
@@ -84,6 +88,11 @@
 
 .result-img {
   border-radius: 20px;
+  transition: 0.2s ease-in-out;
+}
+
+.result-img:hover{
+  transform: scale(1.02);
 }
 
 .event:hover img {
@@ -94,3 +103,24 @@
   margin: 10px 0px;
 }
 
+::-webkit-scrollbar {
+  width: 20px;
+  background-color: black;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px black; 
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #FFC107; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #94FFF9; 
+}

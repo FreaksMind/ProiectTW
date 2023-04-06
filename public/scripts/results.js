@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const { poster_path, original_title, overview } = data.results[i];
 
     const el = `
-      <div class="box">
+      <div onclick="location.href='movie.html';" style="cursor: pointer;" class="box">
         <img class="result-img" src=${"https://image.tmdb.org/t/p/w300" + poster_path} alt="result"/>
         <h3 class="result-title">${original_title}</h3>
         <p class="result-desc">${overview}</p>

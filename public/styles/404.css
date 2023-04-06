@@ -59,3 +59,31 @@
   height: auto;
 }
 
+@media only screen and (max-width: 740px) {
+  .content{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .content a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .content h3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .title{
+    font-size: 52px;
+  }
+}
+
+@media only screen and (max-width: 630px) {
+  .content {
+    font-size: 1.4rem;
+  }
+}
