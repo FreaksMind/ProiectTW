@@ -112,10 +112,20 @@ body {
   opacity: 0;
   transition: 0.3s ease all;
   backdrop-filter: blur(3px) brightness(0.6);
+  overflow: hidden;
 }
 
 .movie-desc:hover {
   opacity: 1;
+}
+
+.result-title {
+  transform: translateY(100%);
+  transition: 0.2s ease all;
+}
+
+.movie-desc:hover .result-title {
+  transform: translateY(0%);
 }
 
 .result-img {
