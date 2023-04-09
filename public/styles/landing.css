@@ -141,3 +141,7 @@ input {
   width: 200px;
   height: auto;
 }
+
+body{
+  overflow: hidden;
+}
