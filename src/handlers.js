@@ -4,7 +4,7 @@ const serveStaticFile = (res, filePath, contentType) => {
   fs.readFile(filePath, (err, data) => {
     if (err) {
       res.writeHead(404);
-      serveStaticFile(res, './public/404.html', 'text/html');
+      serveStaticFile(res, './views/404.html', 'text/html');
       return;
     }
     res.writeHead(200, { 'Content-Type': contentType });
@@ -13,7 +13,7 @@ const serveStaticFile = (res, filePath, contentType) => {
 };
 
 const servePublicFiles = (req, res) => {
-  const filePath = `./public${req.url}`;
+  const filePath = `./views${req.url}`;
   const extension = req.url.split('.').pop();
   const contentType = {
     svg: 'image/svg+xml',
@@ -22,7 +22,7 @@ const servePublicFiles = (req, res) => {
     png: 'image/png',
     jpg: 'image/jpeg',
     jpeg: 'image/jpeg',
-    html: "text/html"
+    html: 'text/html'
   }[extension] || 'text/plain';
   serveStaticFile(res, filePath, contentType);
 };

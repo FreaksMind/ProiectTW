@@ -6,7 +6,7 @@ const PORT = 5050;
 
 const routes = {
   "/": (req, res) => {
-    serveStaticFile(res, "./public/index.html", "text/html")
+    serveStaticFile(res, "./views/index.html", "text/html")
   }
 };
 
