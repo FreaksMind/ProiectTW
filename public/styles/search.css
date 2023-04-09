@@ -103,7 +103,7 @@ body{
 
 :root {
   --no-of-slides: 20;
-  --slides-in-view: calc(min(900px, 100vw) / 130px);
+  --slides-in-view: calc((min(900px, 100vw) / 130));
   --slide-width: 180px;
   --slide-height: 250px;
   --iteration-time: 80s;
