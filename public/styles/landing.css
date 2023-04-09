@@ -67,8 +67,7 @@ input {
   z-index: 1;
   transition: 0.2s;
   padding: 9px;
-  cursor: pointer
-
+  cursor: pointer;
 }
 
 .login-btn:hover {
@@ -113,7 +112,6 @@ input {
   right: 20px;
   top: 20px;
   color: white;
-<<<<<<< HEAD
   background-color: transparent;
   font-size: 1rem;
   border: none;
@@ -121,16 +119,12 @@ input {
   font-family: var(--rubik);
   transition: 0.2s ease all;
   border-bottom: 1px solid black;
-=======
-  font-size: 5rem;
->>>>>>> 73a86aa315cb5366e3a07467e508862344e50c8b
 }
 
 .register-btn:hover {
   color: var(--accent-color);
-  border-color: var(--accent-color)
+  border-color: var(--accent-color);
 }
-<<<<<<< HEAD
 
 #bg-wrapper {
   position: fixed;
@@ -146,10 +140,4 @@ input {
   border-radius: 20px;
   width: 200px;
   height: auto;
-=======
-@media only screen and (max-width: 630px) {
-  .title {
-    font-size: 3.5rem;
-  }
->>>>>>> 73a86aa315cb5366e3a07467e508862344e50c8b
 }
