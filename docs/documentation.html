@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="subject" content="DrinkingBee">
+    <meta name="description" content="DrinkingBee wher you can organiz your drinks">
+    <meta name="author" content="Berea Manuela-Mihaela, Dogaru Roxana-Simona">
+    <title>Scholarly HTML Documentation</title>
+    <!-- <link rel="stylesheet" href="style_scholarly.css"> -->
+  
+</head>
+
+<body prefix="schema: http://schema.org" itemscope="" itemtype="http://schema.org/WebPage">
+    <h1 itemprop="name">Stabeestics (MoX - Movies and TV Shows Explorer)</h1>
+    <ol>
+        <li>
+            <a href="#authors">Autori</a>
+        </li>
+        <li>
+            <a href="#introduction">Introducere</a>
+            <ol>
+                <li><a href="#purpose">Scopul documentului</a></li>
+                <li><a href="#conventions">Conventiile documentului</a></li>
+                <li><a href="#audience">Audienta Tinta si sugestii</a></li>
+                <li><a href="#productScope"> Scopul produsului</a></li>
+                <li><a href="#references">Referinte</a></li>
+            </ol>
+        </li>
+        <li>
+            <a href="#overallDescription"> Descriere generala</a>
+            <ol>
+                <li><a href="#productPerspective">Descrierea produsului</a></li>
+                <li><a href="#productFunctions"> Functionalitatile produsului</a></li>
+                <li><a href="#userClasses"> Categorii de utilizatori</a></li>
+                <li><a href="#operatingEnvironment"> Mediu de operare</a></li>
+                <li><a href="#designConstraints"> Design si constrangeri de implementare</a></li>
+                <li><a href="#dependencies"> Dependente</a></li>
+            </ol>
+        </li>
+        <li>
+            <a href="#externalRequirements"> Cerintele interfetei</a>
+            <ol>
+                <li><a href="#userInterface"> Interfete utilizator</a></li>
+                <li><a href="#hardwareInterface"> Interfete hardware</a></li>
+                <li><a href="#softwareInterface"> Interfete software</a></li>
+                <li><a href="#communicationInterface"> Interfete de comunicare</a></li>
+            </ol>
+        </li>
+        <li>
+            <a href="#systemFeatures">Caracteristicile sistemului</a>
+            <ol>
+                <li><a href="#homePage">Home page</a></li>
+                <li><a href="#signUpPage">SignUp page</a></li>
+                <li><a href="#loginPage">Login page</a></li>
+                <li><a href="#searchPage"> Search page</a></li> 
+                <li><a href="#resultsPage"> Results page</a></li>  
+                <li><a href="#moviePage"> Movie statistics page</a></li>  
+                <li><a href="errorPage"> Error page</a></li>
+                        
+            </ol>
+        </li>
+        <li>
+            <a href="#nonfunctionalRequirements">Alte cerinte nonfunctionale</a>
+            <ol>
+                <li><a href="#safety">Cerinte de siguranta</a></li>
+                <li><a href="#security">Cerinte de securitate</a></li>
+            </ol>
+        </li>
+    </ol>
+
+
+    <article id = "article" typeof = "schema:ScholarlyArticle" resource = "#"> 
+        <section id="authors"  typeof="sa:AuthorsList"> 
+                <h2><span>1. </span>Autori</h2>
+                <ol> 
+                    <li property = "schema:author" typeof="sa:ContributorRole"> 
+                        <a property = "schema:author" href="#" typeof="schema:Person"> 
+                                <span property= "schema:giveName" > Maroan</span>
+                                <span property= "schema:familyName" >Al shrafat</span>
+                        </a>
+                    </li>
+
+                    <li property = "schema:author" typeof="sa:ContributorRole"> 
+                        <a property = "schema:author" href="#" typeof="schema:Person"> 
+                                <span property= "schema:giveName" >Constantin-Robert</span>
+                                <span property= "schema:familyName" >Aron</span>
+                        </a>
+                    </li>
+                    <li property = "schema:author" typeof="sa:ContributorRole"> 
+                      <a property = "schema:author" href="#" typeof="schema:Person"> 
+                              <span property= "schema:giveName" > Mihai</span>
+                              <span property= "schema:familyName" >Solomon</span>
+                      </a>
+                  </li>
+                </ol>
+        </section>
+
+
+        <section typeof="sa:ScholarlyArticle" role="doc-introduction" >
+                <h2 id="introduction"> <span>2. </span>Introducere</h2>
+                <p> 
+                </p>
+                
+                <h3 id="purpose"><span>2.1 </span> Scopul documentului</h3>
+                <p>  
+                   Scopul acestui document este de a oferi o descriere detaliata a interfetei si a functionalitatii puse la dispozitie in aplicatia web numita Stabeestics, bazata pe cerintele proiectului MoX (Movies and TV Shows Explorer).
+                </p>
+                
+                <h3 id="conventions"><span>2.2 </span>Conventiile documentului</h3>
+                <p>
+                    Acest document a fost create pe baza modelului IEEE System Requirement Specification Documents.
+                </p>
+
+                <h3 id="audience"><span>2.3 </span> Audienta tinta</h3>
+                <p>
+                  Orice persoană(persoane obișnuite, pasionații de filme) care dorește să exploreze și să descopere informații despre filme poate fi o audiență potențială pentru un astfel de site. 
+                </p>
+                <h3 id="productScope"><span>2.4 </span> Scopul Produsului</h3>           
+                <p>
+                  Stabeestics este o aplicație web care permite utilizatorilor să caute și să exploreze filme și emisiuni TV după diferite categorii, cum ar fi gen, an, rating etc. În plus, utilizatorii pot folosi cuvinte cheie în căutarea acestora.
+                </p>
+                <h3 id="references"><span>2.5 </span> Referinte</h3> 
+                    <ol>
+                        <li><a href="https://developers.themoviedb.org/3/getting-started/introduction">TMDB - API<a></li>
+                        <li><a href="https://www.w3schools.com/css/">https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css<a></li>
+                        <li><a href="https://github.com/rick4470/IEEE-SRS-Tempate">IEEE Template for System Requirements Specification Documents<a></li>
+                    </ol>    
+        </section>
+
+        <section  typeof="sa:MaterialsAndMethods" role="doc-chapter" >
+            <h2 id="overallDescription"> <span>3. </span>Descriere generală</h2>
+
+            <h3 id= "productPerspective"> <span>3.1 </span>Descrierea produsului</h3>
+            <p>
+              Stabeestics este o aplicație web care preia statistici despre filme și emisiuni TV de la diferite servicii de streaming. Utilizatorii pot căuta și filtra căutările pentru a găsi informația dorită în funcție de preferințe.
+        
+              Aplicația poate fi accesată de pe mai multe platforme, cum ar fi desktop, tabletă sau smartphone, asigurând astfel o experiență coerentă utilizatorilor pe orice dispozitiv.
+            </p> 
+
+            <h3 id= "productFunctions"> <span>3.2 </span>Funcționalitățile produsului</h3>
+            <p>  
+               Aplicatia permite utilizatorilor website-ului sa caute filme sau emisiuni TV, sa vizualize diferite informații și statistici despre acestea sau sa se inregistreze/logheze. Pentru a putea folosi aplicația utilizatorii trebuie să fie înregistrați. Statisticile generate vor fi exportate in formatele CSV, WebP si SVG.
+
+               <h4>Home Page</h4>
+               <ul>
+                    <li>Log in form: formular pentru autentificarea utilizatorilor, care mai apoi vor fi redirectionati catre pagina de cautare.</li>
+               </ul>
+                <h4>SignUp page</h4>
+               <ul>
+                    <li>Create account: utilizatorul isi creeaza un cont nou folosind date valide, iar apoi este redirectionat catre pagina de cautare.</li>
+                    <li>Already registered: daca utilizatorul detine un cont, acesta va fi redirectionat catre pagina de log in.</li>
+               </ul>
+                <h4>Log in page</h4>
+               <ul>
+                    <li>Log in form: formular pentru autentificarea utilizatorilor, care mai apoi vor fi redirectionati catre pagina de cautare.</li>
+                    <li>Create new account: utilizatorul este redirectionat catre pagina de SignUp.</li>
+                    <li>Forgot password: utilizatorul este redirectionat catre pagina de resetare a parolei prin email.</li>
+               </ul>
+                <h4>Forgot password page</h4>
+               <ul>
+                    <li>Forgot password form: utilizatorul isi va introduce email-ul pentru recuperarea parolei</li>
+                    
+               </ul>
+                <h4>Movie info page</h4>
+               <ul>
+                    <li>Movie details: utilizatorul va putea vizualiza detalii despre filmul sau emisiunea dorita.</li>
+                    <li>Related movies: utilizatorul va primi sugestii de filme bazate pe genul celui cautat.</li>
+               </ul>
+               <h4>Results page</h4>
+               <ul>
+                    <li>Search results: utilizatorul va beneficia de rezultatele cautarii in functie de filtrele alese.</li>
+               </ul>
+               <h4>Search page</h4>
+               <ul>
+                    <li>Search movies: utilizatorul va introduce in bara de cautare filmul pe care intentioneaza sa il vizualizeze. Acesta poate filtra cautarea dupa gen, an si rating.</li>
+               </ul>
+                <h4>Statistics page:</h4>
+               <ul>
+                    <li>Most popular movies: utilizatorul va putea vedea care sunt cele mai vizualizate filme la momentul actual.</li>
+                    <li>Best rated movies: utilizatorul va putea vedea care sunt cele mai bine cotate filme la momentul actual.</li>
+                    <li>Most recent movies: utilizatorul va putea vedea care sunt cele mai recente filme la momentul actual.</li>
+               </ul>
+
+
+            </p>
+
+            <h3 id= "userClasses"> <span>3.3 </span>Categorii de utilizatori</h3>
+            <p>
+                <ul>
+                    <li>Utilizator: persoane care au un cont creat ce poate accesa toate serviciile oferite de aplicatia web.</li>
+               </ul>
+            </p>
+         
+            <h3 id= "operatingEnvironment"> <span>3.4</span> Mediu de operare </h3>
+            <p>              
+               Stabeestics este o aplicatie web, ceea ce inseamna ca fiecare utiliztor o poate accesa de pe orice browser, indiferent de sistemul de operare al device-ului utilizat.
+            </p>
+
+            <h3 id= "designConstraints"> <span>3.5</span> Design și constrângeri de implementare </h3>
+            <p>      
+                Pentru implementare s-a apelat la tehnologii precum HTML, CSS, JavaScript si NodeJS, iar pentru baza de date s-a utilizat SQL.
+            </p>
+            <h3 id="dependencies"><span>3.6</span> Dependente</h3>
+            <p>
+                Aplicatia este depedenta de datele furnizate de Disney+, Netflix si TMDB.
+            </p>
+            
+        </section>
+
+        <section  typeof="sa:MaterialsAndMethods" role="doc-chapter">    
+
+            <h2 id="externalRequirements"><span>4. </span> Cerinte externe</h2>
+
+            <h3 id="userInterface"><span>4.1</span> Interfata utilizator</h3>
+
+                <h4>Home page</h4>
+                <h4>SignUp page</h4>
+                <h4>Log in page</h4>
+                <h4>Forgot password page</h4>
+                <h4>Search page</h4>
+                <h4>Results page</h4>
+                <h4>Movie info page</h4>
+                <h4>Statistics page</h4>
+
+            <h3 id="softwareInterface"><span>4.2 </span>Interfata software</h3>
+            <p>
+               Pentru a putea accesa aplicatia web, utilizatorii trebuie sa aiba o conexiune stabila la internet si un browser, iar pentru functiile de inregistrare si conectare aplicatia este conectata la o baza de date.
+            </p>
+            
+            <h3 id="communicationInterface"><span>4.3 </span>Interfață de comunicare</h3>
+            <p>
+                Comunicarea dintre clienti si server se face pe baza protocolului HTTPS.
+            </p>     
+        </section>
+        
+    </article>
+</body>
+</html>

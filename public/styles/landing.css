@@ -61,9 +61,13 @@
 }
 .title {
   color: white;
-  font-size: 5em;
+  font-size: 5rem;
 }
 .bee-text {
   color: #ffc107;
 }
-
+@media only screen and (max-width: 630px) {
+  .title {
+    font-size: 3.5rem;
+  }
+}
