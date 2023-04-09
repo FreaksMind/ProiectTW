@@ -8,8 +8,8 @@ Componenta echipa:
     
 <h1>Instalare</h1>
 
-git clone https://github.com/FreaksMind/ProiectTW.git
-In src: nodemon server
+git clone https://github.com/FreaksMind/ProiectTW.git <br>
+In src: nodemon server <br>
 In browser: localhost:5050
 
 Requirements: node js & nodemon
