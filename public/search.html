@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>stabeestics</title>
     <link href="./styles/style.css" rel="stylesheet" />
-    <link href="./styles/landing.css" rel="stylesheet" />
+    <link href="./styles/search.css" rel="stylesheet" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>stabeestics</title>
     <meta
       name="description"
       content="Welcome to our movie website! We bring you the latest and greatest movies from the TMDB API, so you can stay up-to-date with all the hottest releases. Whether you're looking for action, drama, comedy, or romance, we've got you covered. Our user-friendly interface allows you to easily search and filter movies by genre, release year, rating, and more. Plus, you can read reviews and ratings from other users to help you decide what to watch next. So grab some popcorn and get ready for a movie night like no other!"
@@ -16,30 +16,18 @@
     />
   </head>
   <body>
-    <div id="bg-wrapper"></div>
     <div class="wrapper">
-      <button class="register-btn">register</button>
       <div>
         <h1 class="title">sta<span class="bee-text">bee</span>stics</h1>
       </div>
-      <div class="login-wrapper">
-        <input placeholder="email" />
-        <input placeholder="password" />
-        <button class="login-btn">login <span></span><span></span><span></span><span></span></button>
+      <div class="input-wrapper">
+        <input type="text" placeholder="fast and furious" id="search-bar" />
+        <div>
+          <a href="results.html">
+            <img src="./assets/beesearch.png" alt="search-icon" class="search-icon" />
+          </a>
+        </div>
       </div>
     </div>
-    <div class="wave">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 220">
-        <path
-          fill="none"
-          stroke="#ffc107"
-          stroke-width="3px"
-          fill-opacity="1"
-          d="M0,96L60,96C120,96,240,96,360,112C480,128,600,160,720,176C840,192,960,192,1080,176C1200,160,1320,128,1380,112L1440,96L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
-        ></path>
-      </svg>
-    </div>
-
-    <script src="./scripts/landing.js"></script>
   </body>
 </html>

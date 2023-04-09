@@ -1,22 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,700;1,400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;600&display=swap");
 
 /* todo: add color variables */
 :root {
-
+  --accent-color: #ffc107;
+  --inter: "Inter", sans-serif;
+  --rubik: "Rubik", sans-serif;
 }
 
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  background: rgb(0,0,0);
+  background: rgb(0, 0, 0);
   /* background: linear-gradient(180deg, rgba(0,0,0,1) 14%, rgba(10,10,10,1) 100%); */
   /* todo: fix font */
-  font-family: 'Rubik', sans-serif;
+  font-family: var(--inter);
   height: 100vh;
   width: 100vw;
   overflow: scroll;
 }
-
