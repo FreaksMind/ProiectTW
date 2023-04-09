@@ -1,3 +1,7 @@
+body{
+  overflow: hidden;
+}
+
 .content-container {
   margin: 0px auto;
   max-width: 1100px;
@@ -11,6 +15,10 @@
   .content-container {
     flex-direction: column;
     padding: 30px;
+  }
+  body{
+    overflow: visible;
+    overflow-x: hidden;
   }
 }
 

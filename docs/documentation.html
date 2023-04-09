@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +7,6 @@
     <meta name="description" content="We bring you the latest and greatest movies from the TMDB API, so you can stay up-to-date with all the hottest releases. Whether you're looking for action, drama, comedy, or romance, we've got you covered. Our user-friendly interface allows you to easily search and filter movies by genre, release year, rating, and more. Plus, you can read reviews and ratings from other users to help you decide what to watch next. So grab some popcorn and get ready for a movie night like no other!">
     <meta name="author" content="Al shrafat Maroan, Aron Constantin-Robert, Solomon Mihai">
     <title>Stabeestics documentation</title>
-  
 </head>
 
 <body prefix="schema: http://schema.org" itemscope="" itemtype="http://schema.org/WebPage">
@@ -51,11 +49,13 @@
             <a href="#systemFeatures">Caracteristicile sistemului</a>
             <ol>
                 <li><a href="#homePage">Home page</a></li>
-                <li><a href="#signUpPage">SignUp page</a></li>
+                <li><a href="#signUpPage">Sign up page</a></li>
                 <li><a href="#loginPage">Login page</a></li>
+                <li><a href="#forgotPage">Forgot Password page</a></li>
                 <li><a href="#searchPage"> Search page</a></li> 
                 <li><a href="#resultsPage"> Results page</a></li>  
-                <li><a href="#moviePage"> Movie statistics page</a></li>  
+                <li><a href="#moviePage"> Movie page</a></li>  
+                <li><a href="#statisticsPage"> Statistics page</a></li>  
                 <li><a href="errorPage"> Error page</a></li>
                         
             </ol>
@@ -99,8 +99,6 @@
 
         <section typeof="sa:ScholarlyArticle" role="doc-introduction" >
                 <h2 id="introduction"> <span>2. </span>Introducere</h2>
-                <p> 
-                </p>
                 
                 <h3 id="purpose"><span>2.1 </span> Scopul documentului</h3>
                 <p>  
@@ -109,7 +107,7 @@
                 
                 <h3 id="conventions"><span>2.2 </span>Conventiile documentului</h3>
                 <p>
-                    Acest document a fost create pe baza modelului IEEE System Requirement Specification Documents.
+                    Documentatia a fost creata utilizand informatiile din modelul IEEE System Requirement Specification Documents, cu ajutorul ScholarlyHTML.
                 </p>
 
                 <h3 id="audience"><span>2.3 </span> Audienta tinta</h3>
@@ -123,8 +121,11 @@
                 <h3 id="references"><span>2.5 </span> Referinte</h3> 
                     <ol>
                         <li><a href="https://developers.themoviedb.org/3/getting-started/introduction">TMDB - API<a></li>
-                        <li><a href="https://www.w3schools.com/css/">https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css<a></li>
                         <li><a href="https://github.com/rick4470/IEEE-SRS-Tempate">IEEE Template for System Requirements Specification Documents<a></li>
+                        <li><a href="https://w3c.github.io/scholarly-html/">Scholarly HTML<a></li>
+                        <li><a href="https://www.freeformatter.com/html-validator.html">Validator HTML<a></li>
+                        <li><a href="https://www.cssportal.com/css-validator/">Validator CSS<a></li>
+
                     </ol>    
         </section>
 
@@ -146,7 +147,7 @@
                <ul>
                     <li>Log in form: formular pentru autentificarea utilizatorilor, care mai apoi vor fi redirectionati catre pagina de cautare.</li>
                </ul>
-                <h4>SignUp page</h4>
+                <h4>Sign up page</h4>
                <ul>
                     <li>Create account: utilizatorul isi creeaza un cont nou folosind date valide, iar apoi este redirectionat catre pagina de cautare.</li>
                     <li>Already registered: daca utilizatorul detine un cont, acesta va fi redirectionat catre pagina de log in.</li>
@@ -215,7 +216,7 @@
             <h3 id="userInterface"><span>4.1</span> Interfata utilizator</h3>
 
                 <h4>Home page</h4>
-                <h4>SignUp page</h4>
+                <h4>Sign up page</h4>
                 <h4>Log in page</h4>
                 <h4>Forgot password page</h4>
                 <h4>Search page</h4>
@@ -228,50 +229,73 @@
                Pentru a putea accesa aplicatia web, utilizatorii trebuie sa aiba o conexiune stabila la internet si un browser, iar pentru functiile de inregistrare si conectare aplicatia este conectata la o baza de date.
             </p>
             
-            <h3 id="communicationInterface"><span>4.3 </span>Interfață de comunicare</h3>
+            <h3 id="communicationInterface"><span>4.3 </span>Interfata de comunicare</h3>
             <p>
                 Comunicarea dintre clienti si server se face pe baza protocolului HTTPS.
             </p>     
         </section>
         <section  typeof="sa:MaterialsAndMethods" role="doc-chapter">   
 
-            <h2 id="systemFeatures"><span>5. </span>Cerințe funcționale</h2>
+            <h2 id="systemFeatures"><span>5. </span>Cerinte functionale</h2>
 
-            <h3 id="home-page"><span>5.1 </span>  Home page</h3>
+            <h3 id="homePage"><span>5.1 </span>  Home page</h3>
             <p>
                 Utilizatorul are la dispozitie un formular unde se poate loga in cazul in care acesta detine un cont. In caz contrar, in coltul din dreapta-sus al paginii este un buton care il va redirectiona
                 spre pagina de register. Inregistrarea/Logarea sunt operatii necesare pentru a accesa serviciile aplicatiei web.
             </p>
             
-            <h3  typeof="sa:MaterialsAndMethods" role="doc-chapter" id="uploadrecipe"><span>5.2 </span> Signup page</h3>
+            <h3  typeof="sa:MaterialsAndMethods" role="doc-chapter" id="signUpPage"><span>5.2 </span> Sign up page</h3>
             <p>
                In aceasta pagina, utilizatorul are la dispozitie un formular unde poate introduce datele pentru crearea unui nou cont. Dupa ce acesta isi face un cont, va fi redirectionat pe pagina de Search.
             </p>
 
-            <h3 id="searchrecipe"><span>5.3 </span>Login page</h3>
+            <h3 id="loginPage"><span>5.3 </span>Login page</h3>
             <p>
                 Daca utilizatorul detine un cont, acesta poate folosi formularul disponibil pe aceasta pagina pentru a intra in cont si a accesa serviciile aplicatiei.
             </p>
 
-            <h3 id="adminrecipe"><span>5.4 <span>Forgot password page</h3>
+            <h3 id="forgotPage"><span>5.4 <span>Forgot password page</h3>
             <p>
                 Aceasta pagina este destinata utilizatorului care a uitat parola contului si vrea sa o schimbe. Aceasta operatie se poate face prin introducerea adresei de email a contului pe care vrea sa il recupereze.
             </p>
-            <h3 id="adminrecipe"><span>5.5 <span>Search page</h3>
+            <h3 id="searchPage"><span>5.5 <span>Search page</h3>
             <p>
                 In aceasta pagina, utilizatorul, poate folosi bara de cautare pentru a cauta detalii despre un film/emisiune TV anume. De asemenea sub aceasta bara, acesta poate vizualiza cele mai populare filme la momentul respectiv. 
             </p>
-            <h3 id="adminrecipe"><span>5.6 <span>Results page</h3>
+            <h3 id="resultsPage"><span>5.6 <span>Results page</h3>
             <p>
-                Utilizator
+                Utilizator poate vizualiza rezultatele cautarii din pagina de Search. De pe aceasta pagina poate apasa pe filmul dorit pentru a vedea informatii despre acesta.
             </p>
-            <h3 id="adminrecipe"><span>5.7 <span>Movie page</h3>
+            <h3 id="moviePage"><span>5.7 <span>Movie page</h3>
             <p>
+               In aceasta pagina sunt afisate detalii precum titlul, actorii, rating-ul, descrierea despre un anumit film.
             </p>
-            <h3 id="adminrecipe"><span>5.8 <span>Statistics page:</h3>
+            <h3 id="statisticsPage"><span>5.8 <span>Statistics page:</h3>
             <p>
+               Utilizatorul poate vizualiza statistici precum cele mai populare filme, cele mai bine cotate filme sau cele mai noi filme. De asemenea aceste statistici pot fi descarcate si in format CSV, SVG sau WebP.
+            </p>
+            <h3 id="errorPage"><span>5.9 <span>Error page:</h3>
+            <p>
+               Aceasta pagina este folosita pentru a atentiona utilizatorul ca a avut loc o eroare.
             </p>
             
+        </section>
+        <section  typeof="sa:MaterialsAndMethods" role="doc-chapter">   
+
+            <h2 id="nonfunctionalRequirements"><span>6. </span>Cerinte nonfunctionale</h3> 
+            <h3 id = "safety"> <span>6.1</span> Cerinte de siguranta</h3>
+            <p>
+                Aplicatia web asigura confidentialitatea si siguranta datelor ale conturilor utilizatorilor.
+            </p> 
+
+            <h3 id = "security"><span>6.2</span> Cerinte de securitate </h3>
+            <p>
+                Aplicatia web foloseste tehnici de hashing pentru stocarea parolelor si au fost luate masuri de protectie impotriva atacurilor precum SQL-Injection.
+            </p> 
+             <h3 id = "qualities"><span>6.3</span> Calitati software </h3>
+             <p> 
+                Aplicatia prezinta cateva calitati importante precum performanta, eficienta, portabilitate, fiabilitate si securitate.
+             </p>
         </section>
 
     </article>

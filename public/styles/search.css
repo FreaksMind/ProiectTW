@@ -1,3 +1,7 @@
+body{
+  overflow: hidden;
+}
+
 /* todo: fix input scaling */
 #search-bar {
   box-sizing: border-box;
