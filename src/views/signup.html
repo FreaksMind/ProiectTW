@@ -1,63 +1,63 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>stabeestics | login</title>
-    <link rel="stylesheet" href="./styles/signup.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Righteous&display=swap"
-      rel="stylesheet"
-    />
-    <meta charset="UTF-8" />
-  </head>
+<html lang="en">
+<head>
 
-  <body>
-    <div class="background"></div>
-    <div class="wrapper">
-      <div class="login-box">
-        <h1>Sign up</h1>
-        <div>
-          <form class="info" action="submit">
-            <label>Username</label>
-            <input
-              type="text"
-              name="user"
-              id="user"
-              placeholder="Type your username"
-            />
-            <label>Email</label>
-            <input
-              type="text"
-              name="email"
-              id="email"
-              placeholder="Type your email"
-            />
-            <label>Password</label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Type your password"
-            />
-            <label>Confirm password</label>
-            <input
-              type="password"
-              name="cpassword"
-              id="cpassword"
-              placeholder="Type your password"
-            />
-            <button
-              type="button"
-              id="login-button"
-              onclick="location.href='search.html';"
-            >
-              SIGN UP
-            </button>
-          </form>
-        </div>
-        <a id="sign-up" href="login.html">Already have an account? Log in</a>
-      </div>
+  <link rel="stylesheet" href="./styles/signup.css">
+  <title>stabeestics | sign up</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Welcome to our movie website! We bring you the latest and greatest movies from the TMDB API, so you can stay up-to-date with all the hottest releases. Whether you're looking for action, drama, comedy, or romance, we've got you covered. Our user-friendly interface allows you to easily search and filter movies by genre, release year, rating, and more. Plus, you can read reviews and ratings from other users to help you decide what to watch next. So grab some popcorn and get ready for a movie night like no other!"
+  />
+  <meta
+    name="keywords"
+    content="TMDB, movie website, latest movies, new releases, action movies, drama movies, comedy movies, romance movies, user reviews, movie ratings, movie search, movie filters"
+  />
+  <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap"
+  rel="stylesheet"/>
+
+</head>
+<body class="wrapper">
+
+  <div class="grid i">
+    <div>
+      <h1 class="title">sta<span class="bee-text">bee</span>stics</h1>
     </div>
-  </body>
+    <div class="signup">
+
+
+      <h2>Sign up</h2>
+
+      <form method="post" class="form">
+
+        <div class="signup-input">
+          <input type="email" placeholder="Enter your email">
+        </div>
+        
+        <div class="signup-input">
+          <input type="text" placeholder="Enter your username">
+        </div>
+
+        <div class="signup-input">
+          <input type="password" placeholder="Enter your password">
+        </div>
+
+        <div class="signup-input">
+          <input type="password" placeholder="Confirm your password">
+        </div>
+
+        <div class="signup-input">
+          <button type="button" onclick="location.href = 'search.html';">sign up</button>
+        </div>
+
+      </form>
+
+      <p>Already have an account? <a href="login.html">Login</a></p>
+
+    </div>
+
+  </div>
+
+</body>
 </html>
