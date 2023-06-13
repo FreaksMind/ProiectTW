@@ -1,105 +1,147 @@
-* {
-  box-sizing: border-box;
-}
-html {
+.wrapper {
   height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 10%;
+  backdrop-filter: blur(4px) brightness(0.6);
 }
 
 .title {
-  color: #ffc107;
+  color: var(--accent-color);
+  font-family: var(--rubik);
   font-size: 4rem;
-  display:flex;
-  justify-content: center;
 }
 
 .bee-text {
   color: white;
 }
 
-body {
-  background-color: #1b1b1b;
-  color: #eaecf0;
-  font-family: 'Righteous', cursive;
-  margin: 0;
-  min-height: 100%;
-}
-.wrapper {
-  align-items: center;
+.signup-wrapper {
+  margin-top: 10px;
   display: flex;
-  flex-direction: row;
-}
-.i--start {
-  align-self: flex-start;
-}
-.i--end {
-  align-self: flex-end;
-}
-input {
-  border: 0;
-  font: inherit;
-}
-input::placeholder {
-  color: #d3d1d1;
-}
-.signup-input {
-  margin-bottom: 1rem;
-}
-.form input {
-  outline: 0;
-  padding: 0.5rem 1rem;
-}
-.form input[type="email"], .form input[type="password"], .form input[type="text"] {
-  width: 100%;
-  color: white;
-}
-.grid {
-  margin: 0 auto;
-  max-width: 25rem;
-  width: 100%;
-}
-h2 {
-  font-size: 2.75rem;
-  font-weight: 100;
-  margin: 0 0 1rem;
-  text-transform: uppercase;
-}
-a {
-  color: #e4e4e4;
-}
-.signup {
-  box-shadow: 0 0 250px #000;
-  text-align: center;
-  padding: 4rem 2rem;
-  background-color: rgb(51, 51, 51);
-  border-radius: 12px;
-}
-.signup input {
-  border: 1px solid #111111;
-  border-radius: 999px;
-  background-color: transparent;
-  text-align: center;
-}
-.signup input[type="email"], .signup input[type="password"], .signup input[type="text"] {
-  background-repeat: no-repeat;
-  background-size: 1.5rem;
-  background-position: 1rem 50%;
-}
-.signup button {
-  background-color: black;
-  font-size: 20px;
-  color: #fff;
-  margin-top: 1.6rem;
-  margin-bottom: 6rem;
-  width: 100%;
-  height: 40px;
-  border: 1px solid #111111;
-  border-radius: 999px;
-  background-color: transparent;
-  text-align: center;
-  transition: 0.3s;
+  flex-direction: column;
+  gap: 10px;
+  width: 250px;
 }
 
-.signup button:hover{
-  color:black;
-  background-color: gray;
+input {
+  outline: none;
+  border: 1px solid #303030;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  background-color: #101010;
+  font-size: 0.9rem;
+}
+
+.wave {
+  position: fixed;
+  overflow: hidden;
+  min-height: 100px;
+  width: 110%;
+  left: -10px;
+  bottom: -20px;
+}
+
+@media only screen and (max-height: 550px) {
+  .wave {
+    display: none;
+  }
+}
+
+.signup-btn {
+  --c: var(--accent-color);
+  background-color: black;
+  color: var(--c);
+  font-size: 0.9rem;
+  border: 1px solid var(--c);
+  border-radius: 10px;
+  font-family: var(--rubik);
+  letter-spacing: 0.1em;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: 0.2s;
+  padding: 9px;
+  cursor: pointer;
+}
+
+.signup-btn:hover {
+  color: black;
+}
+
+.signup-btn span {
+  position: absolute;
+  width: 25%;
+  height: 100%;
+  background-color: var(--c);
+  transform: translateY(150%);
+  border-radius: 50%;
+  left: calc((var(--n) - 1) * 25%);
+  transition: 0.4s;
+  transition-delay: calc((var(--n) - 1) * 0.1s);
+  z-index: -1;
+}
+
+.signup-btn:hover span {
+  transform: translateY(0) scale(2);
+}
+
+.signup-btn span:nth-child(1) {
+  --n: 1;
+}
+
+.signup-btn span:nth-child(2) {
+  --n: 2;
+}
+
+.signup-btn span:nth-child(3) {
+  --n: 3;
+}
+
+.signup-btn span:nth-child(4) {
+  --n: 4;
+}
+
+.login-btn {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  color: white;
+  background-color: transparent;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  font-family: var(--rubik);
+  transition: 0.2s ease all;
+  border-bottom: 1px solid black;
+}
+
+.login-btn:hover {
+  color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+#bg-wrapper {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: -999;
+  width: 100vw;
+  height: 100vh;
+}
+
+.bg-img {
+  position: absolute;
+  border-radius: 20px;
+  width: 200px;
+  height: auto;
+}
+
+body{
+  overflow: hidden;
 }

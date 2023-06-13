@@ -1,63 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-
-  <link rel="stylesheet" href="./styles/signup.css">
-  <title>stabeestics | sign up</title>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta
-    name="description"
-    content="Welcome to our movie website! We bring you the latest and greatest movies from the TMDB API, so you can stay up-to-date with all the hottest releases. Whether you're looking for action, drama, comedy, or romance, we've got you covered. Our user-friendly interface allows you to easily search and filter movies by genre, release year, rating, and more. Plus, you can read reviews and ratings from other users to help you decide what to watch next. So grab some popcorn and get ready for a movie night like no other!"
-  />
-  <meta
-    name="keywords"
-    content="TMDB, movie website, latest movies, new releases, action movies, drama movies, comedy movies, romance movies, user reviews, movie ratings, movie search, movie filters"
-  />
-  <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap"
-  rel="stylesheet"/>
-
-</head>
-<body class="wrapper">
-
-  <div class="grid i">
-    <div>
-      <h1 class="title">sta<span class="bee-text">bee</span>stics</h1>
+<html>
+  <head>
+    <link href="./styles/style.css" rel="stylesheet" />
+    <link href="./styles/signup.css" rel="stylesheet" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>stabeestics | sign up</title>
+    <meta
+      name="description"
+      content="Welcome to our movie website! We bring you the latest and greatest movies from the TMDB API, so you can stay up-to-date with all the hottest releases. Whether you're looking for action, drama, comedy, or romance, we've got you covered. Our user-friendly interface allows you to easily search and filter movies by genre, release year, rating, and more. Plus, you can read reviews and ratings from other users to help you decide what to watch next. So grab some popcorn and get ready for a movie night like no other!"
+    />
+    <meta
+      name="keywords"
+      content="TMDB, movie website, latest movies, new releases, action movies, drama movies, comedy movies, romance movies, user reviews, movie ratings, movie search, movie filters"
+    />
+  </head>
+  <body>
+    <div id="bg-wrapper"></div>
+    <div class="wrapper">
+      <button class="login-btn" onclick="location.href = '/';">login</button>
+      <div>
+        <h1 class="title">sign up</h1>
+      </div>
+      <div class="signup-wrapper">
+        <input placeholder="username" />
+        <input placeholder="email" />
+        <input placeholder="password" />
+        <input placeholder="confirm password" />
+        <button class="signup-btn" onclick="location.href = 'search.html';">sign up <span></span><span></span><span></span><span></span></button>
+      </div>
     </div>
-    <div class="signup">
-
-
-      <h2>Sign up</h2>
-
-      <form method="post" class="form">
-
-        <div class="signup-input">
-          <input type="email" placeholder="Enter your email">
-        </div>
-        
-        <div class="signup-input">
-          <input type="text" placeholder="Enter your username">
-        </div>
-
-        <div class="signup-input">
-          <input type="password" placeholder="Enter your password">
-        </div>
-
-        <div class="signup-input">
-          <input type="password" placeholder="Confirm your password">
-        </div>
-
-        <div class="signup-input">
-          <button type="button" onclick="location.href = 'search.html';">sign up</button>
-        </div>
-
-      </form>
-
-      <p>Already have an account? <a href="login.html">Login</a></p>
-
+    <div class="wave">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 220">
+        <path
+          fill="black"
+          stroke="#ffc107"
+          stroke-width="3px"
+          fill-opacity="1"
+          d="M0,96L60,96C120,96,240,96,360,112C480,128,600,160,720,176C840,192,960,192,1080,176C1200,160,1320,128,1380,112L1440,96L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
+        ></path>
+      </svg>
     </div>
 
-  </div>
-
-</body>
+    <script src="./scripts/landing.js"></script>
+  </body>
 </html>
