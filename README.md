@@ -9,7 +9,5 @@ Componenta echipa:
 <h1>Instalare</h1>
 
 git clone https://github.com/FreaksMind/ProiectTW.git <br>
-In src: nodemon server <br>
+In src: `node server` <br>
 In browser: localhost:5050
-
-Requirements: node js & nodemon
