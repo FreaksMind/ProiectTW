@@ -2,44 +2,62 @@ import http from "http";
 import mongoose from "mongoose";
 
 import { servePublicFiles, serveStaticFile } from "./handlers.js";
-import { register, login } from "./api/auth.js";
+import apiRouter from "./api/router.js";
+
+import dotenv from "dotenv";
+dotenv.config();
 
 const PORT = 5050;
 
 const routes = {
-  "/api/login": (req, res) => {
-    login(req, res);
-  },
-  "/api/register": (req, res) => {
-    register(req, res);
-  },
   "/": (req, res) => {
     serveStaticFile(res, "./views/index.html", "text/html");
   },
   "/login": (req, res) => {
     serveStaticFile(res, "./views/login.html", "text/html");
   },
+  ...apiRouter,
 };
 
 const server = http.createServer((req, res) => {
   const routeHandler = routes[req.url];
+
   if (routeHandler) {
-    routeHandler(req, res);
+    res.send = (statusCode, data = {}) => {
+      res.writeHead(statusCode, { "Content-Type": "application/json" });
+      res.end(JSON.stringify(data));
+    };
+
+    if (req.method === "POST") {
+      let body = "";
+      req.on("data", (chunk) => {
+        body += chunk;
+      });
+      req.on("end", () => {
+        // TODO: handle parse errors
+        const data = JSON.parse(body);
+        req.body = data;
+
+        routeHandler(req, res);
+      });
+    } else {
+      routeHandler(req, res);
+    }
   } else {
     servePublicFiles(req, res);
   }
 });
 
 mongoose
-  .connect("mongodb+srv://freaks:freaks@cluster0.hcbachu.mongodb.net/", {
+  .connect(process.env.DB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then((res) => {
+  .then(() => {
     server.listen(PORT, () => {
-      console.log(`Server listening on port ${PORT}`);
+      console.log(`listening on ${PORT} ...`);
     });
   })
   .catch((err) => {
-    console.log("server error", err);
+    console.log("error connecting to mongo db", err);
   });

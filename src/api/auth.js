@@ -1,65 +1,95 @@
-import mongoose from "mongoose";
 import User from "../models/userSchema.js";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
-mongoose
-  .connect("mongodb+srv://freaks:freaks@cluster0.hcbachu.mongodb.net/", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("Connected to MongoDB");
-  })
-  .catch((error) => {
-    console.error("Error connecting to MongoDB:", error);
-  });
-
-export async function register(req, res) {
-  if (req.method === "POST") {
-    let data = "";
-
-    req.on("data", (chunk) => {
-      data += chunk;
-    });
-
-    req.on("end", async () => {
-      const { username, email, password } = JSON.parse(data);
-      console.log(username);
-    });
+export async function login(req, res) {
+  if (req.method != "POST") {
+    return res.send(400);
   }
-  try {
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      res.statusCode = 400;
-      res.setHeader("Content-Type", "application/json");
-      res.end(JSON.stringify("email exists"));
+
+  const { username, password } = req.body;
+
+  User.findOne({ username }).then((user) => {
+    if (!user) {
+      return res.send(400, { message: "username not found" });
     }
 
-    const newUser = new User({ username, email, password });
+    bcrypt.compare(password, user.password).then((match) => {
+      if (!match) {
+        return res.send(400, { message: "incorrect password" });
+      }
 
-    await newUser.save();
+      const payload = {
+        id: user._id,
+        username: user.username,
+      };
+      jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 86400 }, (err, token) => {
+        if (err) {
+          return res.send(400, { message: "erorr generating jwt" });
+        }
+        return res.send(200, {
+          message: "success",
+          token: "Bearer " + token,
+        });
+      });
+    });
+  });
+}
 
-    res.statusCode = 200;
-    res.setHeader("Content-Type", "application/json");
-    res.end(JSON.stringify("eccount created"));
-  } catch (error) {
-    res.statusCode = 400;
-    res.setHeader("Content-Type", "application/json");
-    res.end(JSON.stringify("error acreating account"));
+export async function register(req, res) {
+  if (req.method != "POST") {
+    return res.send(400);
+  }
+
+  const { username, password } = req.body;
+
+  const usernameTaken = await User.findOne({ username });
+
+  if (usernameTaken) {
+    return res.send({ message: "username taken" });
+  }
+
+  // TODO: validate password
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  const newUser = new User({
+    username,
+    password: hashedPassword,
+  });
+
+  newUser.save();
+
+  return res.send(200);
+}
+
+function verifyJWT(req) {
+  const token = req.headers["authorization"]?.split(" ")[1];
+
+  if (!token) {
+    throw new Error("Invalid token");
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = {
+      id: decoded.id,
+      username: decoded.username,
+    };
+  } catch (err) {
+    throw new Error("Failed to authenticate");
   }
 }
 
-export async function login(email, password) {
-  try {
-    const user = await User.findOne({ email });
-    if (!user) {
-      return { error: "Invalid email or password" };
+export function authenticatedRoute(handler) {
+  return (req, res) => {
+    try {
+      verifyJWT(req);
+      handler(req, res);
+    } catch (error) {
+      return res.send({
+        message: "you are not authenticated",
+      });
     }
-    if (!password === user.password) {
-      return { error: "Invalid email or password" };
-    }
-
-    return { message: "Login successful" };
-  } catch (error) {
-    return { error: "Internal server error" };
-  }
+  };
 }
