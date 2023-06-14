@@ -2,16 +2,23 @@ import http from "http";
 import mongoose from "mongoose";
 
 import { servePublicFiles, serveStaticFile } from "./handlers.js";
+import { register, login } from "./api/auth.js";
 
 const PORT = 5050;
 
 const routes = {
+  "/api/login": (req, res) => {
+    login(req, res);
+  },
+  "/api/register": (req, res) => {
+    register(req, res);
+  },
   "/": (req, res) => {
-    serveStaticFile(res, "./views/index.html", "text/html")
+    serveStaticFile(res, "./views/index.html", "text/html");
   },
   "/login": (req, res) => {
-    serveStaticFile(res, "./views/login.html", "text/html")
-  }
+    serveStaticFile(res, "./views/login.html", "text/html");
+  },
 };
 
 const server = http.createServer((req, res) => {
@@ -24,7 +31,10 @@ const server = http.createServer((req, res) => {
 });
 
 mongoose
-  .connect("mongodb+srv://freaks:freaks@cluster0.hcbachu.mongodb.net/", { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect("mongodb+srv://freaks:freaks@cluster0.hcbachu.mongodb.net/", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then((res) => {
     server.listen(PORT, () => {
       console.log(`Server listening on port ${PORT}`);
@@ -33,4 +43,3 @@ mongoose
   .catch((err) => {
     console.log("server error", err);
   });
-
