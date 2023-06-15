@@ -14,6 +14,8 @@ export default function checkAuth() {
     return false;
   }
 
+  // TODO: validate token
+
   const logout = () => {
     window.location.href = "/";
     localStorage.removeItem("token");

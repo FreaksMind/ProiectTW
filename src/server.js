@@ -1,7 +1,7 @@
 import http from "http";
 import mongoose from "mongoose";
 
-import { servePublicFiles, serveStaticFile } from "./handlers.js";
+import { getRouteHandler, getPathParams, servePublicFiles, serveStaticFile } from "./utils.js";
 import apiRouter from "./api/router.js";
 
 import dotenv from "dotenv";
@@ -20,7 +20,7 @@ const routes = {
 };
 
 const server = http.createServer((req, res) => {
-  const routeHandler = routes[req.url];
+  const routeHandler = getRouteHandler(routes, req);
 
   if (routeHandler) {
     res.send = (statusCode, data = {}) => {
@@ -41,6 +41,7 @@ const server = http.createServer((req, res) => {
         routeHandler(req, res);
       });
     } else {
+      req.params = getPathParams(routes, req);
       routeHandler(req, res);
     }
   } else {

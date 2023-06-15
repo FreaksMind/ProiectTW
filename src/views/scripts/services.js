@@ -1,7 +1,7 @@
-export async function login(data) {
+async function api(url, method, data) {
   try {
-    const res = await fetch("/api/auth/login", {
-      method: "POST",
+    const res = await fetch(url, {
+      method,
       headers: {
         "Content-Type": "application/json",
       },
@@ -11,25 +11,19 @@ export async function login(data) {
     const json = await res.json();
     return json;
   } catch (err) {
-    console.log("error logging in", err);
+    console.log(`Error ${method.toUpperCase()} ${url}`, err);
     throw err;
   }
 }
 
-export async function register(data) {
-  try {
-    const res = await fetch("/api/auth/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+export async function login(data) {
+  return api("/api/auth/login", "POST", data);
+}
 
-    const json = await res.json();
-    return json;
-  } catch (err) {
-    console.log("error registering", err);
-    throw err;
-  }
+export async function register(data) {
+  return api("/api/auth/register", "POST", data);
+}
+
+export async function getTrendingMovies() {
+  return api("/api/movies/trending", "GET");
 }
