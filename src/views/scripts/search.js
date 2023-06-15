@@ -1,4 +1,12 @@
-document.addEventListener("DOMContentLoaded", async () => {
+import checkAuth from "./auth.js";
+
+const { user, logout } = checkAuth();
+
+if (!user) {
+  window.location.href = "/";
+}
+
+async function carouselEffect() {
   const items = 20;
 
   const container = document.getElementById("trending-wrapper");
@@ -19,4 +27,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     container.appendChild(el);
   }
-});
+}
+
+document.addEventListener("DOMContentLoaded", carouselEffect);

@@ -23,12 +23,10 @@
         <h1 class="title">sign up</h1>
       </div>
       <div class="signup-wrapper">
-        <input placeholder="username" />
-        <input placeholder="password" />
-        <input placeholder="confirm password" />
-        <button class="signup-btn" onclick="location.href = 'search.html';">
-          sign up <span></span><span></span><span></span><span></span>
-        </button>
+        <input placeholder="username" id="username-input" />
+        <input type="password" placeholder="password" id="password-input" />
+        <input type="password" placeholder="confirm password" id="confirm-password-input" />
+        <button class="signup-btn" id="signup-btn">sign up <span></span><span></span><span></span><span></span></button>
       </div>
     </div>
     <div class="wave">
@@ -43,6 +41,6 @@
       </svg>
     </div>
 
-    <script src="./scripts/landing.js"></script>
+    <script src="./scripts/signup.js" type="module"></script>
   </body>
 </html>

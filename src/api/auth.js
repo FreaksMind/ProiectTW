@@ -2,8 +2,20 @@ import User from "../models/userSchema.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+function generateJWT(payload) {
+  return new Promise((resolve, reject) => {
+    jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 86400 }, (err, token) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(token);
+      }
+    });
+  });
+}
+
 export async function login(req, res) {
-  if (req.method != "POST") {
+  if (req.method !== "POST") {
     return res.send(400);
   }
 
@@ -23,19 +35,20 @@ export async function login(req, res) {
         id: user._id,
         username: user.username,
       };
-      jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 86400 }, (err, token) => {
-        if (err) {
-          return res.send(400, { message: "erorr generating jwt" });
-        }
-        return res.send(200, {
-          message: "success",
-          token: "Bearer " + token,
+
+      generateJWT(payload)
+        .then((token) => {
+          return res.send(200, {
+            message: "success",
+            token: "Bearer " + token,
+          });
+        })
+        .catch((err) => {
+          return res.send(400, { message: "error generating jwt " + err });
         });
-      });
     });
   });
 }
-
 export async function register(req, res) {
   if (req.method != "POST") {
     return res.send(400);
@@ -60,7 +73,21 @@ export async function register(req, res) {
 
   newUser.save();
 
-  return res.send(200);
+  const payload = {
+    id: newUser._id,
+    username: newUser.username,
+  };
+
+  generateJWT(payload)
+    .then((token) => {
+      return res.send(200, {
+        message: "success",
+        token: "Bearer " + token,
+      });
+    })
+    .catch((err) => {
+      return res.send(400, { message: "error generating jwt " + err });
+    });
 }
 
 function verifyJWT(req) {
@@ -81,7 +108,7 @@ function verifyJWT(req) {
   }
 }
 
-export function authenticatedRoute(handler) {
+export function protectedRoute(handler) {
   return (req, res) => {
     try {
       verifyJWT(req);

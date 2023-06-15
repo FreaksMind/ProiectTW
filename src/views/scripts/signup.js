@@ -1,6 +1,6 @@
 import bgEffect from "./bgEffect.js";
-import { login } from "./services.js";
 import checkAuth from "./auth.js";
+import { register } from "./services.js";
 
 const { user } = checkAuth();
 
@@ -10,11 +10,17 @@ if (user) {
 
 document.addEventListener("DOMContentLoaded", bgEffect);
 
-function submitLogin() {
+function submitRegister() {
   const username = document.getElementById("username-input").value;
   const password = document.getElementById("password-input").value;
+  const confirmPassword = document.getElementById("confirm-password-input").value;
 
-  login({ username, password }).then(({ token }) => {
+  if (password != confirmPassword) {
+    // TODO: show erro
+    return;
+  }
+
+  register({ username, password }).then(({ token }) => {
     if (!token) {
       // TODO: show error
       return;
@@ -25,4 +31,4 @@ function submitLogin() {
   });
 }
 
-document.getElementById("login-btn").addEventListener("click", submitLogin);
+document.getElementById("signup-btn").addEventListener("click", submitRegister);
