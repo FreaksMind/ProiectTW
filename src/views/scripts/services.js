@@ -38,3 +38,7 @@ export async function searchMovies(title) {
 export async function searchSuggestions(title) {
   return api(`/api/movies/suggestions/${title}`);
 }
+
+export async function getMovieById(id) {
+  return api(`/api/movies/${id}`, "GET");
+}

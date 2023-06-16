@@ -6,24 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="./styles/style.css" rel="stylesheet" />
     <link href="./styles/movie.css" rel="stylesheet" />
-    <title>Movie Statistics</title>
+    <title id="movie-title"></title>
   </head>
   <body>
     <div class="content-container">
       <div class="poster">
-        <img
-          src="https://m.media-amazon.com/images/M/MV5BNzZmOTU1ZTEtYzVhNi00NzQxLWI5ZjAtNWNhNjEwY2E3YmZjXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_FMjpg_UX1000_.jpg"
-          alt="poster-img"
-          class="poster-img"
-        />
+        <img id="poster" alt="poster-img" class="poster-img" />
       </div>
       <div class="content">
         <div class="title-rating">
           <div class="title-container">
             <div class="title">
-              <h1>Fast and Furious 10</h1>
+              <h1 id="movie-name"></h1>
               <div class="rating">
-                <b class="rating-text">9.0</b
+                <b id="movie-rating" class="rating-text"></b
                 ><img
                   src="./assets/honey.png"
                   alt="star-icon"
@@ -32,23 +28,15 @@
               </div>
             </div>
             <ul class="mini-stats">
-              <li>2023</li>
+              <li id="movie-release"></li>
               <li>|</li>
-              <li>2h 23m</li>
+              <li id="movie-runtime"></li>
               <li>|</li>
-              <li>16+</li>
+              <li id="movie-restriction"></li>
             </ul>
           </div>
         </div>
-        <div class="description">
-          After dominating the boxing world, Adonis Creed has been thriving in
-          both his career and family life. When a childhood friend and former
-          boxing prodigy, Damien Anderson, resurfaces after serving a long
-          sentence in prison, he is eager to prove that he deserves his shot in
-          the ring. The face-off between former friends is more than just a
-          fight. To settle the score, Adonis must put his future on the line to
-          battle Damien — a fighter who has nothing to lose.
-        </div>
+        <div id="overview" class="description"></div>
         <div class="short-details">
           <div class="template">
             <div class="starring">Starring</div>
@@ -60,7 +48,7 @@
               Vin Diesel, Tyrese Gibson, John Cena, Jason Statham
             </div>
             <div class="created-by-info">Louis Leterrier</div>
-            <div class="genre-info">Crime, Sci-Fi & Fantasy</div>
+            <div id="genres" class="genre-info"></div>
           </div>
         </div>
         <h3>Related Movies</h3>
@@ -89,5 +77,6 @@
         </div>
       </div>
     </div>
+    <script src="./scripts/movie.js" type="module"></script>
   </body>
 </html>

@@ -1,5 +1,10 @@
 import { protectedRoute, login, register } from "./auth.js";
-import { getTrendingMovies, searchMovies, searchSuggestions } from "./movies.js";
+import {
+  getTrendingMovies,
+  searchMovies,
+  searchSuggestions,
+  getMovieById,
+} from "./movies.js";
 
 const router = {
   "/api/auth/login": login,
@@ -11,9 +16,7 @@ const router = {
   "/api/movies/trending": getTrendingMovies,
   "/api/movies/search/:title": protectedRoute(searchMovies),
   "/api/movies/suggestions/:title": protectedRoute(searchSuggestions),
-  "/api/movies/:id": (req, res) => {
-    res.send(200, { id: req.params.id, hello: req.params.hello });
-  },
+  "/api/movies/:id": getMovieById,
 };
 
 export default router;

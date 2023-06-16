@@ -48,10 +48,29 @@ export async function searchSuggestions(req, res) {
   try {
     const data = await fetchTmdb(`/search/movie?query=${title}`);
 
-    const result = data.results.slice(0, 7).map(({ title, release_date }) => `${title} ${release_date.split("-")[0]}`);
+    const result = data.results
+      .slice(0, 7)
+      .map(
+        ({ title, release_date }) => `${title} ${release_date.split("-")[0]}`
+      );
 
     res.send(200, result);
   } catch (err) {
     res.send(400, { error: "error searching movies: " + err });
+  }
+}
+
+export async function getMovieById(req, res) {
+  if (req.method != "GET") {
+    return res.send(400);
+  }
+
+  try {
+    const data = await fetchTmdb(
+      `/movie/385687?api_key=${process.env.TMDB_API_KEY}`
+    );
+    res.send(200, data);
+  } catch (err) {
+    res.send(400, { error: "error fetching movie: " + err });
   }
 }
