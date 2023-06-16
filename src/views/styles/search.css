@@ -1,4 +1,4 @@
-body{
+body {
   overflow: hidden;
 }
 
@@ -38,11 +38,16 @@ body{
 }
 
 .input-wrapper {
+  max-width: 95%;
+  width: 750px;
+}
+
+.search-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 95%;
-  width: 750px;
+  width: 100%;
+  position: relative;
 }
 
 .search-icon {
@@ -56,6 +61,36 @@ body{
 
 .search-icon:hover {
   transform: scale(1.3) rotate(-25deg);
+}
+
+#search-suggestions {
+  position: fixed;
+  z-index: 12;
+  max-width: calc(95% - 60px);
+  width: 680px;
+  padding: 10px 10px;
+
+  color: rgb(190, 190, 190);
+
+  background-color: black;
+  border: 2px solid #303030;
+  border-radius: 14px;
+
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.suggestion {
+  cursor: pointer;
+  padding: 5px;
+  transition: 0.15s ease all;
+  border-radius: 6px;
+}
+
+.suggestion:not(.no-hover):hover {
+  background-color: rgb(10, 10, 10);
+  color: white;
 }
 
 .title {
@@ -149,3 +184,4 @@ body{
   color: var(--accent-color);
   border-color: var(--accent-color);
 }
+

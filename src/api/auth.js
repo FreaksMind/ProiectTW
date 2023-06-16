@@ -114,7 +114,7 @@ export function protectedRoute(handler) {
       verifyJWT(req);
       handler(req, res);
     } catch (error) {
-      return res.send({
+      return res.send(400, {
         message: "you are not authenticated",
       });
     }

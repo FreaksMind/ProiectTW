@@ -17,22 +17,19 @@
   </head>
   <body>
     <div class="wrapper">
-      <button id="logout-btn" class="logout-button" onclick="logout();">
-        logout
-      </button>
+      <button id="logout-btn" class="logout-button">logout</button>
       <div>
         <h1 class="title">sta<span class="bee-text">bee</span>stics</h1>
       </div>
       <div class="input-wrapper">
-        <input type="text" placeholder="fast and furious" id="search-bar" />
-        <div>
-          <a href="results.html">
-            <img
-              src="./assets/beesearch.png"
-              alt="search-icon"
-              class="search-icon"
-            />
-          </a>
+        <div class="search-wrapper">
+          <input type="text" placeholder="fast and furious" id="search-bar" />
+          <div id="search-btn">
+            <img src="./assets/beesearch.png" alt="search-icon" class="search-icon" />
+          </div>
+        </div>
+
+        <div id="search-suggestions">
         </div>
       </div>
 

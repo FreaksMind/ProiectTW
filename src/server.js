@@ -16,6 +16,18 @@ const routes = {
   "/login": (req, res) => {
     serveStaticFile(res, "./views/login.html", "text/html");
   },
+  "/signup": (req, res) => {
+    serveStaticFile(res, "./views/signup.html", "text/html");
+  },
+  "/search": (req, res) => {
+    serveStaticFile(res, "./views/search.html", "text/html");
+  },
+  "/results": (req, res) => {
+    serveStaticFile(res, "./views/results.html", "text/html");
+  },
+  "/movie": (req, res) => {
+    serveStaticFile(res, "./views/movie.html", "text/html");
+  },
   ...apiRouter,
 };
 

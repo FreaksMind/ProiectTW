@@ -1,9 +1,12 @@
-async function api(url, method, data) {
+async function api(url, method = "GET", data) {
+  const token = localStorage.getItem("token");
+
   try {
     const res = await fetch(url, {
       method,
       headers: {
         "Content-Type": "application/json",
+        authorization: token,
       },
       body: JSON.stringify(data),
     });
@@ -25,5 +28,13 @@ export async function register(data) {
 }
 
 export async function getTrendingMovies() {
-  return api("/api/movies/trending", "GET");
+  return api("/api/movies/trending");
+}
+
+export async function searchMovies(title) {
+  return api(`/api/movies/search/${title}`);
+}
+
+export async function searchSuggestions(title) {
+  return api(`/api/movies/suggestions/${title}`);
 }
