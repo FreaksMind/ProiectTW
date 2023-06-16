@@ -1,5 +1,5 @@
 import checkAuth from "./auth.js";
-import { getTrendingMovies, searchMovies, searchSuggestions } from "./services.js";
+import { getTrendingMovies, searchSuggestions } from "./services.js";
 import { debounce } from "./utils.js";
 
 const { user, logout } = checkAuth();
@@ -11,6 +11,7 @@ if (!user) {
 document.getElementById("logout-btn").addEventListener("click", logout);
 
 // TODO: fix carousel end
+// TODO: make carousel smaller
 
 async function carouselEffect() {
   const items = 20;
