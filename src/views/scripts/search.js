@@ -77,10 +77,11 @@ function onSearchBarLostFocus() {
 
 async function submitSearch() {
   const title = searchBar.value;
-  const data = await searchMovies(title);
 
-  // TODO: go to search page
-  // TODO: search page: show search results based on the url parameter
+  // const data = await searchMovies(title); <- asta trb sa fie results page
+
+  // TODO: go to results page with this title as a query ex: /search?query=${title}
+  // TODO: results page: show search results based on the url parameter
   // if url is /search?query=green
   // show all movies returned by green search
 
