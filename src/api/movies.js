@@ -3,11 +3,11 @@ export async function getTrendingMovies(req, res) {
     return res.send(400);
   }
 
-  const api_key = process.env.TMDB_API_KEY;
-  const response = await fetch(
-    `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.TMDB_API_KEY}`
-  );
-  const trendingMovies = await response.json();
-
-  res.send(200, trendingMovies);
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.TMDB_API_KEY}`);
+    const trendingMovies = await response.json();
+    res.send(200, trendingMovies);
+  } catch (err) {
+    res.send(400, { error: "error fetching movies: " + err });
+  }
 }
