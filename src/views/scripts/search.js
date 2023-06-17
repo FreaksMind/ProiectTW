@@ -21,10 +21,13 @@ async function carouselEffect() {
   const data = await getTrendingMovies();
 
   for (let i = 0; i < items; i++) {
-    const { poster_path } = data.results[i];
+    const { id, poster_path } = data.results[i];
 
     const el = document.createElement("img");
     el.classList.add("recommendation");
+    el.onclick = () => {
+      location.href = `movie?id=${id}`;
+    };
 
     el.src = `https://image.tmdb.org/t/p/w300${poster_path}`;
 
@@ -56,14 +59,14 @@ async function fetchSearchSuggestions() {
     return;
   }
 
-  for (const {id, title, release_date} of data) {
+  for (const { id, title, release_date } of data) {
     const el = document.createElement("div");
-    el.addEventListener('click', () => {
-      const url = `/movie?id=${(id)}`;
+    el.addEventListener("click", () => {
+      const url = `/movie?id=${id}`;
       window.location.href = url;
     });
-    el.className = "suggestion"; 
-    el.innerText =`${title} (${release_date.split("-")[0]})`;
+    el.className = "suggestion";
+    el.innerText = `${title} (${release_date.split("-")[0]})`;
     searchSuggestionsEl.appendChild(el);
   }
 }
@@ -73,19 +76,19 @@ const debouncedSearch = debounce(fetchSearchSuggestions, 500);
 async function onSearchBarFocus() {
   const data = await getTrendingMovies();
   const result = data.results
-  .slice(0, 7)
-  .map(
-    ({ title, release_date }) => `${title} (${release_date.split("-")[0]})`
-  );
+    .slice(0, 7)
+    .map(
+      ({ title, release_date }) => `${title} (${release_date.split("-")[0]})`
+    );
 
   searchSuggestionsEl.innerHTML = "";
   searchSuggestionsEl.style.display = "flex";
 
-  for (const {id, title, release_date} of data) {
+  for (const { id, title, release_date } of data) {
     console.log(movie);
     const el = document.createElement("div");
-    el.addEventListener('click', () => {
-      const url = `/movie?id=${(movie.id)}`;
+    el.addEventListener("click", () => {
+      const url = `/movie?id=${movie.id}`;
       window.location.href = url;
     });
     el.className = "suggestion";
@@ -95,7 +98,9 @@ async function onSearchBarFocus() {
 }
 
 function onSearchBarLostFocus(event) {
-  if(event.explicitOriginalTarget.parentElement.classList.contains("suggestion"))
+  if (
+    event.explicitOriginalTarget.parentElement.classList.contains("suggestion")
+  )
     return;
   searchSuggestionsEl.style.display = "none";
 }

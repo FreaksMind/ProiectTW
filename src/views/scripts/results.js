@@ -8,11 +8,10 @@ if (!user) {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-
   const currentUrl = window.location.href;
   const page_url = new URL(currentUrl);
   const params = new URLSearchParams(page_url.search);
-  const query = params.get('query');
+  const query = params.get("query");
 
   console.log(query);
 
@@ -21,9 +20,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   const container = document.getElementById("results");
 
   const data = await searchMovies(query);
-  console.log(data)
-  
-//TODO FOREACH
+  console.log(data);
+
+  //TODO FOREACH
   for (let i = 0; i < items; i++) {
     const { id, poster_path, original_title } = data[i];
 
@@ -31,7 +30,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     el.classList.add("box");
     el.onclick = () => {
       location.href = `movie?id=${id}`;
-    }
+    };
 
     el.innerHTML = `
       <img class="bg-img" src="https://image.tmdb.org/t/p/w300${poster_path}"/>

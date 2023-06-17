@@ -10,16 +10,13 @@ if (!user) {
 const currentUrl = window.location.href;
 const page_url = new URL(currentUrl);
 const params = new URLSearchParams(page_url.search);
-const id = params.get('id');
-
+const id = params.get("id");
 
 async function updateMovieDetails() {
   const movieDetails = await getMovieById(id);
-  console.log(movieDetails);
   if (!movieDetails) {
     console.log("Movie not found or error occurred.");
   } else {
-    console.log(movieDetails.poster_path);
     document.getElementById("movie-title").textContent =
       movieDetails.original_title;
     document.getElementById(
@@ -39,11 +36,32 @@ async function updateMovieDetails() {
       movieDetails.adult ? "16+" : "8+";
     document.getElementById("overview").textContent = movieDetails.overview;
 
-    let genresString = "";
-    movieDetails.genres.forEach((genre) => {
-      genresString += genre.name + ", ";
+    const genres = movieDetails.genres.map((genre) => genre.name).join(", ");
+    document.getElementById("genres").textContent = genres;
+    document.getElementById("actors").textContent = movieDetails.actors;
+    document.getElementById("director").textContent = movieDetails.director;
+    const productionCompanies = movieDetails.production_companies
+      .map((company) => company.name)
+      .join(", ");
+    document.getElementById("production").textContent = productionCompanies;
+
+    const container = document.getElementById("related-movies");
+
+    movieDetails.relatedMovies.forEach((movie) => {
+      const { id, title, poster_path } = movie;
+
+      if (poster_path != null) {
+        const el = document.createElement("div");
+        el.classList.add("related-movie");
+        el.onclick = () => {
+          location.href = `movie?id=${id}`;
+        };
+
+        el.innerHTML = `<img class="related-img" src="https://image.tmdb.org/t/p/w300${poster_path}"/>`;
+
+        container.appendChild(el);
+      }
     });
-    document.getElementById("genres").textContent = genresString;
   }
 }
 

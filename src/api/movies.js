@@ -50,9 +50,7 @@ export async function searchSuggestions(req, res) {
 
     const result = data.results
       .slice(0, 7)
-      .map(
-        ({ id, title, release_date }) => ({id, title, release_date })
-      );
+      .map(({ id, title, release_date }) => ({ id, title, release_date }));
 
     res.send(200, result);
   } catch (err) {
@@ -69,6 +67,34 @@ export async function getMovieById(req, res) {
     const data = await fetchTmdb(
       `/movie/${req.params.id}?api_key=${process.env.TMDB_API_KEY}`
     );
+
+    const creditsData = await fetchTmdb(
+      `/movie/${req.params.id}/credits?api_key=${process.env.TMDB_API_KEY}`
+    );
+
+    const actors = creditsData.cast
+      .sort((a, b) => b.popularity - a.popularity)
+      .slice(0, 5)
+      .map((actor) => actor.name);
+    data.actors = actors;
+
+    const director = creditsData.crew.find(
+      (crewMember) => crewMember.job == "Director"
+    ).name;
+    data.director = director;
+
+    const relatedMoviesData = await fetchTmdb(
+      `/movie/${req.params.id}/similar?api_key=${process.env.TMDB_API_KEY}`
+    );
+    const relatedMovies = relatedMoviesData.results.map((movie) => {
+      return {
+        id: movie.id,
+        name: movie.title,
+        poster_path: movie.poster_path,
+      };
+    });
+    data.relatedMovies = relatedMovies;
+
     res.send(200, data);
   } catch (err) {
     res.send(400, { error: "error fetching movie: " + err });
