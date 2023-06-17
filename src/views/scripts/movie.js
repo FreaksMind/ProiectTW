@@ -1,7 +1,20 @@
 import { getMovieById } from "./services.js";
+import checkAuth from "./auth.js";
+
+const { user } = checkAuth();
+
+if (!user) {
+  window.location.href = "/";
+}
+
+const currentUrl = window.location.href;
+const page_url = new URL(currentUrl);
+const params = new URLSearchParams(page_url.search);
+const id = params.get('id');
+
 
 async function updateMovieDetails() {
-  const movieDetails = await getMovieById("385687");
+  const movieDetails = await getMovieById(id);
   console.log(movieDetails);
   if (!movieDetails) {
     console.log("Movie not found or error occurred.");

@@ -50,35 +50,60 @@ async function fetchSearchSuggestions() {
 
   if (data.length == 0) {
     const el = document.createElement("div");
-    // TODO: fix no hover
     el.className = "suggestion no-hover";
     el.innerText = "no movies found";
     searchSuggestionsEl.appendChild(el);
     return;
   }
 
-  for (const movie of data) {
-    // TODO: add link to go to movie page
+  for (const {id, title, release_date} of data) {
     const el = document.createElement("div");
-    el.className = "suggestion";
-    el.innerText = movie;
+    el.addEventListener('click', () => {
+      const url = `/movie?id=${(id)}`;
+      window.location.href = url;
+    });
+    el.className = "suggestion"; 
+    el.innerText =`${title} (${release_date.split("-")[0]})`;
     searchSuggestionsEl.appendChild(el);
   }
 }
 
-const debouncedSearch = debounce(fetchSearchSuggestions, 1000);
+const debouncedSearch = debounce(fetchSearchSuggestions, 500);
 
-function onSearchBarFocus() {
-  // TODO: show trending movies as suggestions
+async function onSearchBarFocus() {
+  const data = await getTrendingMovies();
+  const result = data.results
+  .slice(0, 7)
+  .map(
+    ({ title, release_date }) => `${title} (${release_date.split("-")[0]})`
+  );
+
+  searchSuggestionsEl.innerHTML = "";
+  searchSuggestionsEl.style.display = "flex";
+
+  for (const {id, title, release_date} of data) {
+    console.log(movie);
+    const el = document.createElement("div");
+    el.addEventListener('click', () => {
+      const url = `/movie?id=${(movie.id)}`;
+      window.location.href = url;
+    });
+    el.className = "suggestion";
+    el.innerText = `${title} (${release_date.split("-")[0]})`;
+    searchSuggestionsEl.appendChild(el);
+  }
 }
 
-function onSearchBarLostFocus() {
+function onSearchBarLostFocus(event) {
+  if(event.explicitOriginalTarget.parentElement.classList.contains("suggestion"))
+    return;
   searchSuggestionsEl.style.display = "none";
 }
 
 async function submitSearch() {
   const title = searchBar.value;
-
+  const route = `/results?query=${encodeURIComponent(title)}`;
+  window.location.href = route;
   // const data = await searchMovies(title); <- asta trb sa fie results page
 
   // TODO: go to results page with this title as a query ex: /search?query=${title}

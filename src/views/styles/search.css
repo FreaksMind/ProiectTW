@@ -82,13 +82,13 @@ body {
 }
 
 .suggestion {
-  cursor: pointer;
   padding: 5px;
   transition: 0.15s ease all;
   border-radius: 6px;
 }
 
 .suggestion:not(.no-hover):hover {
+  cursor: pointer;
   background-color: rgb(10, 10, 10);
   color: white;
 }

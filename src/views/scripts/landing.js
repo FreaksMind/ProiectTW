@@ -5,7 +5,7 @@ import checkAuth from "./auth.js";
 const { user } = checkAuth();
 
 if (user) {
-  window.location.href = "/search.html";
+  window.location.href = "/search";
 }
 
 document.addEventListener("DOMContentLoaded", bgEffect);
@@ -21,7 +21,7 @@ function submitLogin() {
     }
 
     localStorage.setItem("token", token);
-    window.location.href = "/search.html";
+    window.location.href = "/search";
   });
 }
 

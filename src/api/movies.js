@@ -51,7 +51,7 @@ export async function searchSuggestions(req, res) {
     const result = data.results
       .slice(0, 7)
       .map(
-        ({ title, release_date }) => `${title} ${release_date.split("-")[0]}`
+        ({ id, title, release_date }) => ({id, title, release_date })
       );
 
     res.send(200, result);
@@ -67,7 +67,7 @@ export async function getMovieById(req, res) {
 
   try {
     const data = await fetchTmdb(
-      `/movie/385687?api_key=${process.env.TMDB_API_KEY}`
+      `/movie/${req.params.id}?api_key=${process.env.TMDB_API_KEY}`
     );
     res.send(200, data);
   } catch (err) {

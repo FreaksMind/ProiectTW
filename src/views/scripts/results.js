@@ -1,21 +1,36 @@
+import { searchMovies } from "./services.js";
+import checkAuth from "./auth.js";
+
+const { user } = checkAuth();
+
+if (!user) {
+  window.location.href = "/";
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
+
+  const currentUrl = window.location.href;
+  const page_url = new URL(currentUrl);
+  const params = new URLSearchParams(page_url.search);
+  const query = params.get('query');
+
+  console.log(query);
+
   const items = 20;
 
   const container = document.getElementById("results");
 
-  const url =
-    "https://api.themoviedb.org/3/discover/movie?api_key=81a9dfa33886cd2fd7f3d3dd2e1302db&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&vote_count.gte=50";
-
-  const response = await fetch(url);
-  const data = await response.json();
-
+  const data = await searchMovies(query);
+  console.log(data)
+  
+//TODO FOREACH
   for (let i = 0; i < items; i++) {
-    const { poster_path, original_title } = data.results[i];
+    const { id, poster_path, original_title } = data[i];
 
     const el = document.createElement("div");
     el.classList.add("box");
     el.onclick = () => {
-      location.href = "movie.html"
+      location.href = `movie?id=${id}`;
     }
 
     el.innerHTML = `
