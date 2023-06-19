@@ -38,17 +38,38 @@ async function updateMovieDetails() {
 
     const genres = movieDetails.genres.map((genre) => genre.name).join(", ");
     document.getElementById("genres").textContent = genres;
-    document.getElementById("actors").textContent = movieDetails.actors;
-    document.getElementById("director").textContent = movieDetails.director;
-    const productionCompanies = movieDetails.production_companies
-      .map((company) => company.name)
+    document.getElementById("actors").textContent = movieDetails.credits.cast
+      .sort((a, b) => b.popularity - a.popularity)
+      .slice(0, 5)
+      .map((actor) => actor.name)
       .join(", ");
-    document.getElementById("production").textContent = productionCompanies;
+    document.getElementById("director").textContent =
+      movieDetails.credits.crew.find(
+        (crewMember) => crewMember.job == "Director"
+      ).name;
+    document.getElementById("production").textContent =
+      movieDetails.production_companies
+        .map((company) => company.name)
+        .join(", ");
 
-    const container = document.getElementById("related-movies");
+    const trailerContainer = document.getElementById("trailer-container");
 
-    movieDetails.relatedMovies.forEach((movie) => {
-      const { id, title, poster_path } = movie;
+    const trailerKey = movieDetails.videos.results.find(
+      (video) => video.name == "Official Trailer"
+    ).key;
+    trailerContainer.innerHTML = `
+      <iframe
+        class = "trailer-frame"
+        src="https://www.youtube.com/embed/${trailerKey}"
+        title="Official trailer"
+        frameborder="0"
+        allowfullscreen
+      ></iframe>`;
+
+    const moviesContainer = document.getElementById("related-movies");
+
+    movieDetails.similar.results.forEach((movie) => {
+      const { id, poster_path } = movie;
 
       if (poster_path != null) {
         const el = document.createElement("div");
@@ -59,7 +80,7 @@ async function updateMovieDetails() {
 
         el.innerHTML = `<img class="related-img" src="https://image.tmdb.org/t/p/w300${poster_path}"/>`;
 
-        container.appendChild(el);
+        moviesContainer.appendChild(el);
       }
     });
   }

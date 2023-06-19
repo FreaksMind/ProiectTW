@@ -1,71 +1,72 @@
 body{
-  overflow: hidden;
-  margin: 0;
-  padding: 20px;
-  line-height: 1.5;
+  line-height: 1.2;
   font-family: var(--rubik);
+  overflow-x: hidden;
 }
 
 .content-container {
   margin: 0px auto;
-  max-width: 90%;
   margin-top: 40px;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   gap: 30px;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1052px) {
   .content-container {
     flex-direction: column;
     padding: 30px;
   }
-  body{
-    overflow: visible;
+  .poster{
+    justify-content:start ;
+  }
+  .body{
     overflow-x: hidden;
   }
 }
 
 .poster {
   box-sizing: border-box;
-  width:100%;
-  max-width: 500px;
   height: auto;
   display: flex;
   flex-direction: row;
-  justify-content:flex-end;
-  align-items:self-start;
 }
 
 .poster img {
   margin-top: 10px;
-  width: 40%;
+  width: 100%;
+  max-width: 300px;
   height: auto;
+  max-height: 300px;
   border-radius: 10px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); 
+  object-fit: contain;
 }
 
 .content {
-  width: 50%;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 800px;
   color: white;
 }
 
-.title {
-  width: 100%;
+.header-container {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-}
-
-.title-container {
-  width: 100%;
 }
 
 .title-rating {
+  width: 100%;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
+}
+
+.movie-info{
+  display: flex;
+  justify-content: flex-start;
 }
 
 h1 {
@@ -117,16 +118,14 @@ h1 {
 .related-movies {
   display: flex;
   flex-direction: row;
-  width: 100%;
-  overflow-x: visible scroll;
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .related-img {
-  height: 200px;
-  width: auto;
-  padding: 2rem;
-  padding-left: 0px;
-  padding-top: 1rem;
+  max-width: 200px;
+  padding: 1rem;
   border-radius: 20px;
 }
 
@@ -149,25 +148,46 @@ h1 {
   text-align: right;
 }
 
-.scroll-movies{
-  width: 80%;
-  overflow-x: auto;
-  overflow-y: hidden;
+.trailer-container{
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
 }
 
-.scroll-movies::-webkit-scrollbar {
+.trailer-frame{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+h3{
+  padding: 1rem;
+}
+
+.related-movies::-webkit-scrollbar {
   width: 10%;
 }
-
-.scroll-movies::-webkit-scrollbar-track {
+.related-movies::-webkit-scrollbar-track {
   background-color: black;
 }
-
-.scroll-movies::-webkit-scrollbar-thumb {
+.related-movies::-webkit-scrollbar-thumb {
   background-color: #ffc107;
   border-radius: 4px;
 }
-
-.scroll-movies::-webkit-scrollbar-thumb:hover {
+.related-movies::-webkit-scrollbar-thumb:hover {
   background-color: #ae8406;
+}
+
+::-webkit-scrollbar {
+  width: 20px;
+  background-color: black;
+}
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px black;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #ffc107;
+  border-radius: 10px;
 }
