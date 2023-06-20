@@ -7,20 +7,20 @@ if (!user) {
   window.location.href = "/";
 }
 
+const searchBar = document.getElementById("search-bar");
+const searchBtn = document.getElementById("search-btn");
+
 document.addEventListener("DOMContentLoaded", async () => {
   const currentUrl = window.location.href;
   const page_url = new URL(currentUrl);
   const params = new URLSearchParams(page_url.search);
   const query = params.get("query");
 
-  console.log(query);
-
   const items = 20;
 
   const container = document.getElementById("results");
 
   const data = await searchMovies(query);
-  console.log(data);
 
   //TODO FOREACH
   for (let i = 0; i < items; i++) {
@@ -42,3 +42,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     container.appendChild(el);
   }
 });
+
+async function submitSearch() {
+  const title = searchBar.value;
+  if(title === ''){
+    return;
+  }
+  const route = `/results?query=${encodeURIComponent(title)}`;
+  window.location.href = route;
+}
+
+
+searchBtn.addEventListener('click', submitSearch);

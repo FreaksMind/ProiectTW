@@ -13,10 +13,10 @@ const router = {
     res.send(200, { message: "bravo frt" });
   }),
   // TODO: make this route protected
-  "/api/movies/trending": getTrendingMovies,
+  "/api/movies/trending": protectedRoute(getTrendingMovies),
   "/api/movies/search/:title": protectedRoute(searchMovies),
   "/api/movies/suggestions/:title": protectedRoute(searchSuggestions),
-  "/api/movies/:id": getMovieById,
+  "/api/movies/:id": protectedRoute(getMovieById),
 };
 
 export default router;
