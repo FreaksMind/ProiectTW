@@ -7,3 +7,10 @@ export const debounce = (func, delay) => {
     }, delay);
   };
 };
+
+export const getUrlParams = () => {
+  const currentUrl = window.location.href;
+  const page_url = new URL(currentUrl);
+  const params = new URLSearchParams(page_url.search);
+  return params;
+};

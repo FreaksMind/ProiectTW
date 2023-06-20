@@ -7,43 +7,6 @@ body {
   overflow-x: hidden;
 }
 
-#search-bar {
-  box-sizing: border-box;
-  margin: 30px 20px;
-  width: 100%;
-  padding: 14px 20px 12px 20px;
-  background-position: 10px 10px;
-  background-repeat: no-repeat;
-  background-image: url("./assets/beesearch.png");
-  font-size: 1.2em;
-  border-bottom: 1px solid #ddd;
-  background-color: black;
-  border: 2px solid #ffc107;
-  border-radius: 10px;
-  outline: none;
-  color: #ffc107;
-  transition: 0.2s ease all;
-}
-
-#search-bar::placeholder {
-  color: #999;
-}
-
-#search-bar:focus {
-  background-color: #101010;
-}
-
-.search-icon {
-  width: 70px;
-  height: auto;
-  transition: 0.3s ease all;
-  cursor: pointer;
-}
-
-.search-icon:hover {
-  transform: scale(1.2) rotate(-15deg);
-}
-
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -51,18 +14,11 @@ body {
   align-items: center;
 }
 
-.input-wrapper {
-  max-width: 800px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .container {
+  margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
-  max-width: 1200px;
+  max-width: 1000px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%/2, max(160px, 100%/5)), 1fr));
   gap: 40px;
@@ -102,12 +58,11 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
-  padding-left: 30px;
+  padding-left: 15px;
   padding-right: 10px;
-  padding-bottom: 30px;
+  padding-bottom: 15px;
   width: 100%;
   height: 100%;
-  font-size: 1.3rem;
   opacity: 0;
   transition: 0.3s ease all;
   backdrop-filter: blur(3px) brightness(0.6);
@@ -159,4 +114,3 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #94fff9;
 }
-

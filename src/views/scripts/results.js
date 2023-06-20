@@ -1,20 +1,11 @@
 import { searchMovies } from "./services.js";
-import checkAuth from "./auth.js";
+import { getUrlParams } from "./utils.js";
 
-const { user } = checkAuth();
-
-if (!user) {
-  window.location.href = "/";
-}
-
-const searchBar = document.getElementById("search-bar");
-const searchBtn = document.getElementById("search-btn");
+import "./components/NavBar.js";
+import "./components/SearchBar.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
-  const currentUrl = window.location.href;
-  const page_url = new URL(currentUrl);
-  const params = new URLSearchParams(page_url.search);
-  const query = params.get("query");
+  const query = getUrlParams().get("query");
 
   const items = 20;
 
@@ -43,14 +34,3 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-async function submitSearch() {
-  const title = searchBar.value;
-  if(title === ''){
-    return;
-  }
-  const route = `/results?query=${encodeURIComponent(title)}`;
-  window.location.href = route;
-}
-
-
-searchBtn.addEventListener('click', submitSearch);
