@@ -1,29 +1,22 @@
-import User from "../models/userSchema.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+import User from "../models/userSchema.js";
+import { route } from "../utils.js";
+
 function generateJWT(payload) {
   return new Promise((resolve, reject) => {
-    jwt.sign(
-      payload,
-      process.env.JWT_SECRET,
-      { expiresIn: 86400 },
-      (err, token) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(token);
-        }
+    jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 86400 }, (err, token) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(token);
       }
-    );
+    });
   });
 }
 
-export async function login(req, res) {
-  if (req.method !== "POST") {
-    return res.send(400);
-  }
-
+export const login = route({ method: "post" }, async (req, res) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
@@ -56,12 +49,9 @@ export async function login(req, res) {
         });
     });
   });
-}
-export async function register(req, res) {
-  if (req.method != "POST") {
-    return res.send(400);
-  }
+});
 
+export const register = route({ method: "post" }, async (req, res) => {
   const { username, password } = req.body;
 
   const usernameTaken = await User.findOne({ username });
@@ -100,7 +90,7 @@ export async function register(req, res) {
     .catch((err) => {
       return res.send(400, { message: "error generating jwt " + err });
     });
-}
+});
 
 function verifyJWT(req) {
   const token = req.headers["authorization"]?.split(" ")[1];
@@ -120,7 +110,7 @@ function verifyJWT(req) {
   }
 }
 
-export function protectedRoute(handler) {
+export function useAuth(handler) {
   return (req, res) => {
     try {
       verifyJWT(req);

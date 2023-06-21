@@ -1,3 +1,5 @@
+import { route } from "../utils.js";
+
 async function fetchTmdb(query) {
   const tmdbUrl = "https://api.themoviedb.org/3";
   const apiKey = process.env.TMDB_API_KEY;
@@ -10,24 +12,16 @@ async function fetchTmdb(query) {
   return data;
 }
 
-export async function getTrendingMovies(req, res) {
-  if (req.method != "GET") {
-    return res.send(400);
-  }
-
+export const getTrendingMovies = route({ method: "get", auth: true }, async (req, res) => {
   try {
     const data = await fetchTmdb(`/discover/movie`);
     res.send(200, data);
   } catch (err) {
     res.send(400, { error: "error fetching movies: " + err });
   }
-}
+});
 
-export async function searchMovies(req, res) {
-  if (req.method != "GET") {
-    return res.send(400);
-  }
-
+export const searchMovies = route({ method: "get", auth: true }, async (req, res) => {
   const { title } = req.params;
 
   try {
@@ -37,13 +31,9 @@ export async function searchMovies(req, res) {
   } catch (err) {
     res.send(400, { error: "error searching movies: " + err });
   }
-}
+});
 
-export async function searchSuggestions(req, res) {
-  if (req.method != "GET") {
-    return res.send(400);
-  }
-
+export const searchSuggestions = route({ method: "get", auth: true }, async (req, res) => {
   const { title } = req.params;
 
   try {
@@ -55,13 +45,9 @@ export async function searchSuggestions(req, res) {
   } catch (err) {
     res.send(400, { error: "error searching movies: " + err });
   }
-}
+});
 
-export async function getMovieById(req, res) {
-  if (req.method != "GET") {
-    return res.send(400);
-  }
-
+export const getMovieById = route({ method: "get", auth: true }, async (req, res) => {
   try {
     const data = await fetchTmdb(
       `/movie/${req.params.id}?api_key=${process.env.TMDB_API_KEY}&append_to_response=credits,similar,videos`
@@ -71,4 +57,4 @@ export async function getMovieById(req, res) {
   } catch (err) {
     res.send(400, { error: "error fetching movie: " + err });
   }
-}
+});

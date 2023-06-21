@@ -1,6 +1,8 @@
 import fs from "fs";
 import url from "url";
 
+import { useAuth } from "./api/auth.js";
+
 export function serveStaticFile(res, filePath, contentType) {
   fs.readFile(filePath, (err, data) => {
     if (err) {
@@ -85,4 +87,16 @@ export function getPathParams(routes, req) {
   }
 
   return pathParams;
+}
+
+export function route({ method, auth }, handler) {
+  return (req, res) => {
+    if (req.method != method.toUpperCase()) {
+      return res.send(400, `method ${method} not allowed`);
+    }
+    if (auth) {
+      useAuth(handler)(req, res);
+    }
+    handler(req, res);
+  };
 }

@@ -1,9 +1,7 @@
 import List from "../models/listSchema.js";
-export async function createNewList(req, res) {
-  if (req.method != "POST") {
-    return res.send(400);
-  }
+import { route } from "../utils.js";
 
+export const createNewList = route({ method: "post", auth: true }, async (req, res) => {
   const { name } = req.body;
 
   const newList = new List({
@@ -13,13 +11,9 @@ export async function createNewList(req, res) {
   });
   newList.save();
   return res.send(200, newList);
-}
+});
 
-export async function addMovieToList(req, res) {
-  if (req.method != "POST") {
-    return res.send(400);
-  }
-
+export const addMovieToList = route({ method: "post", auth: true }, async (req, res) => {
   const { listId, movieId } = req.body;
 
   const list = await List.findByIdAndUpdate(
@@ -31,9 +25,9 @@ export async function addMovieToList(req, res) {
   );
 
   res.send(200, list);
-}
+});
 
-export async function deleteMovieFromList(req, res) {
+export const deleteMovieFromList = route({ method: "post", auth: true }, async (req, res) => {
   if (req.method != "POST") {
     return res.send(400);
   }
@@ -49,33 +43,23 @@ export async function deleteMovieFromList(req, res) {
   );
 
   res.send(200, list);
-}
+});
 
-export async function deleteList(req, res) {
-  if (req.method != "POST") {
-    return res.send(400);
-  }
+// TODO: handle errors
 
+export const deleteList = route({ method: "post", auth: true }, async (req, res) => {
   const { listId } = req.body;
   await List.findByIdAndDelete(listId);
 
   return res.send(200);
-}
+});
 
-export async function getUserLists(req, res) {
-  if (req.method != "GET") {
-    return res.send(400);
-  }
-
+export const getUserLists = route({ method: "get", auth: true }, async (req, res) => {
   const lists = await List.find({ userId: req.user.id });
   return res.send(200, lists);
-}
+});
 
-export async function getList(req, res) {
-  if (req.method != "GET") {
-    return res.send(400);
-  }
-
+export const getList = route({ method: "get", auth: true }, async (req, res) => {
   const list = await List.findById(req.params.id);
   return res.send(200, list);
-}
+});
