@@ -42,3 +42,15 @@ export async function searchSuggestions(title) {
 export async function getMovieById(id) {
   return api(`/api/movies/${id}`, "GET");
 }
+
+export async function createNewList(name) {
+  return api(`/api/lists/create/${name}`);
+}
+
+export async function addMovieToList(name, movieId) {
+  return api(`/api/lists/add/${name}/${movieId}`);
+}
+
+export async function deleteMovieFromList(name, movieId) {
+  return api(`/api/lists/delete/${name}/${movieId}`);
+}
