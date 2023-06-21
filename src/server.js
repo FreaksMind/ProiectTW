@@ -9,25 +9,19 @@ dotenv.config();
 
 const PORT = 5050;
 
+function serveHtml(file) {
+  return (req, res) => {
+    serveStaticFile(res, `./views/${file}`, "text/html");
+  };
+}
+
 const routes = {
-  "/": (req, res) => {
-    serveStaticFile(res, "./views/index.html", "text/html");
-  },
-  "/login": (req, res) => {
-    serveStaticFile(res, "./views/login.html", "text/html");
-  },
-  "/signup": (req, res) => {
-    serveStaticFile(res, "./views/signup.html", "text/html");
-  },
-  "/search": (req, res) => {
-    serveStaticFile(res, "./views/search.html", "text/html");
-  },
-  "/results": (req, res) => {
-    serveStaticFile(res, "./views/results.html", "text/html");
-  },
-  "/movie": (req, res) => {
-    serveStaticFile(res, "./views/movie.html", "text/html");
-  },
+  "/": serveHtml("index.html"),
+  "/login": serveHtml("login.html"),
+  "/signup": serveHtml("signup.html"),
+  "/search": serveHtml("search.html"),
+  "/results": serveHtml("results.html"),
+  "/movie": serveHtml("movie.html"),
   ...apiRouter,
 };
 
