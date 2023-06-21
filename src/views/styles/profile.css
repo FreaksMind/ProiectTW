@@ -1,0 +1,36 @@
+body{
+  overflow: auto;
+}
+
+.main-container{
+  display: flex;
+  flex-direction: column;
+  font-family: var(--rubik);
+  color: aliceblue;
+}
+
+.username{
+  display: flex;
+  padding-left: 1rem;
+  padding-top: 1rem;
+  font-size: 20px;
+}
+
+.title{
+  display: flex;
+  justify-content: center;
+  padding-top: 3rem;
+}
+
+.lists {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: 2rem;
+  padding-top: 5rem;
+  gap: 40px;
+}
+
+.list-container{
+  display: flex;
+  justify-content: center;
+}

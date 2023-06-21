@@ -44,13 +44,25 @@ export async function getMovieById(id) {
 }
 
 export async function createNewList(name) {
-  return api(`/api/lists/create/${name}`);
+  return api(`/api/lists/new`, "POST", { name });
 }
 
-export async function addMovieToList(name, movieId) {
-  return api(`/api/lists/add/${name}/${movieId}`);
+export async function addMovieToList(listId, movieId) {
+  return api(`/api/lists/movie/add`, "POST", { listId, movieId });
 }
 
-export async function deleteMovieFromList(name, movieId) {
-  return api(`/api/lists/delete/${name}/${movieId}`);
+export async function deleteMovieFromList(listId, movieId) {
+  return api(`/api/lists/movie/delete`, "POST", { listId, movieId });
+}
+
+export async function deleteList(listId) {
+  return api("/api/lists/delete", "POST", { listId });
+}
+
+export async function getUserLists() {
+  return api("/api/lists/get", "GET");
+}
+
+export async function getList(id) {
+  return api(`/api/lists/get/${id}`, "GET");
 }

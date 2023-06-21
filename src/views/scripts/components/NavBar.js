@@ -21,7 +21,7 @@ template.innerHTML = `
 </style>
 
 <button id="logout-btn" class="logout-button">logout</button>
-}
+
 `;
 
 class NavBar extends HTMLElement {
@@ -35,7 +35,9 @@ class NavBar extends HTMLElement {
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
 
-    this.shadowRoot.getElementById("logout-btn").addEventListener("click", logout);
+    this.shadowRoot
+      .getElementById("logout-btn")
+      .addEventListener("click", logout);
   }
 }
 
