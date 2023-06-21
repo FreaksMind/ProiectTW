@@ -4,13 +4,18 @@ import jwt from "jsonwebtoken";
 
 function generateJWT(payload) {
   return new Promise((resolve, reject) => {
-    jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 86400 }, (err, token) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(token);
+    jwt.sign(
+      payload,
+      process.env.JWT_SECRET,
+      { expiresIn: 86400 },
+      (err, token) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(token);
+        }
       }
-    });
+    );
   });
 }
 
@@ -21,6 +26,9 @@ export async function login(req, res) {
 
   const { username, password } = req.body;
 
+  if (!username || !password) {
+    return res.send(400, { message: "fill up all fields" });
+  }
   User.findOne({ username }).then((user) => {
     if (!user) {
       return res.send(400, { message: "username not found" });
@@ -59,10 +67,14 @@ export async function register(req, res) {
   const usernameTaken = await User.findOne({ username });
 
   if (usernameTaken) {
-    return res.send({ message: "username taken" });
+    return res.send(400, { message: "username taken" });
   }
 
-  // TODO: validate password
+  if (!validatePassword(password)) {
+    return res.send(400, {
+      message: "password must have between 8 and 16 characters",
+    });
+  }
 
   const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -119,4 +131,12 @@ export function protectedRoute(handler) {
       });
     }
   };
+}
+
+function validatePassword(password) {
+  if (password.length > 16 || password.length < 8) {
+    return false;
+  } else {
+    return true;
+  }
 }

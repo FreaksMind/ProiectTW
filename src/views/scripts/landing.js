@@ -14,9 +14,9 @@ function submitLogin() {
   const username = document.getElementById("username-input").value;
   const password = document.getElementById("password-input").value;
 
-  login({ username, password }).then(({ token }) => {
+  login({ username, password }).then(({ token, message }) => {
     if (!token) {
-      // TODO: show error
+      alert(message);
       return;
     }
 

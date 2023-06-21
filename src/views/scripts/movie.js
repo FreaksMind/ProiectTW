@@ -24,8 +24,12 @@ async function updateMovieDetails() {
     ).src = `https://image.tmdb.org/t/p/w185${movieDetails.poster_path}`;
     document.getElementById("movie-name").textContent =
       movieDetails.original_title;
-    document.getElementById("movie-rating").textContent =
-      movieDetails.vote_average.toFixed(1);
+    if (movieDetails.vote_average) {
+      document.getElementById("movie-rating").textContent =
+        movieDetails.vote_average.toFixed(1);
+    } else {
+      document.getElementById("movie-rating").textContent = "-";
+    }
     document.getElementById("movie-release").textContent =
       movieDetails.release_date;
     document.getElementById(
@@ -34,30 +38,95 @@ async function updateMovieDetails() {
 
     document.getElementById("movie-restriction").textContent =
       movieDetails.adult ? "16+" : "8+";
-    document.getElementById("overview").textContent = movieDetails.overview;
+    if (movieDetails.overview) {
+      document.getElementById("overview").textContent = movieDetails.overview;
+    } else {
+      document.getElementById("overview").style.display = "none";
+    }
 
-    const genres = movieDetails.genres.map((genre) => genre.name).join(", ");
-    document.getElementById("genres").textContent = genres;
-    document.getElementById("actors").textContent = movieDetails.credits.cast
+    const genresContainer = document.getElementById("genres");
+    const genres = movieDetails.genres.map((genre) => genre.name);
+    if (genres.length == 0) {
+      const blankDiv = document.createElement("div");
+      blankDiv.classList.add("info-text");
+      blankDiv.textContent = "-";
+      genresContainer.appendChild(blankDiv);
+    } else {
+      genres.forEach((genre) => {
+        const genreDiv = document.createElement("div");
+        genreDiv.classList.add("info-text");
+        genreDiv.textContent = genre;
+        genresContainer.appendChild(genreDiv);
+      });
+    }
+
+    const actors = movieDetails.credits.cast
       .sort((a, b) => b.popularity - a.popularity)
       .slice(0, 5)
-      .map((actor) => actor.name)
-      .join(", ");
-    document.getElementById("director").textContent =
-      movieDetails.credits.crew.find(
-        (crewMember) => crewMember.job == "Director"
-      ).name;
-    document.getElementById("production").textContent =
-      movieDetails.production_companies
-        .map((company) => company.name)
-        .join(", ");
+      .map((actor) => actor.name);
+    const actorsContainer = document.getElementById("actors");
+    if (actors.length == 0) {
+      const blankDiv = document.createElement("div");
+      blankDiv.classList.add("info-text");
+      blankDiv.textContent = "-";
+      actorsContainer.appendChild(blankDiv);
+    } else {
+      actors.forEach((actor) => {
+        const actorDiv = document.createElement("div");
+        actorDiv.classList.add("info-text");
+        actorDiv.textContent = actor;
+        actorsContainer.appendChild(actorDiv);
+      });
+    }
 
-    const trailerContainer = document.getElementById("trailer-container");
+    const director = movieDetails.credits.crew.find(
+      (crewMember) => crewMember.job == "Director"
+    );
+    const directorContainer = document.getElementById("director");
+    if (director) {
+      const directorDiv = document.createElement("div");
+      directorDiv.classList.add("info-text");
+      directorDiv.textContent = director.name;
+      directorContainer.appendChild(directorDiv);
+    } else {
+      const blankDiv = document.createElement("div");
+      blankDiv.classList.add("info-text");
+      blankDiv.textContent = "-";
+      directorContainer.appendChild(blankDiv);
+    }
 
-    const trailerKey = movieDetails.videos.results.find(
+    const productionContainer = document.getElementById("production");
+    const productions = movieDetails.production_companies.map(
+      (production) => production.name
+    );
+    if (productions.length == 0) {
+      const blankDiv = document.createElement("div");
+      blankDiv.classList.add("info-text");
+      blankDiv.textContent = "-";
+      productionContainer.appendChild(blankDiv);
+    } else {
+      productions.forEach((production) => {
+        const prodDiv = document.createElement("div");
+        prodDiv.classList.add("info-text");
+        prodDiv.textContent = production;
+        productionContainer.appendChild(prodDiv);
+      });
+    }
+
+    const trailerVideo = movieDetails.videos.results.find(
       (video) => video.name == "Official Trailer"
-    ).key;
-    trailerContainer.innerHTML = `
+    );
+    const trailerDiv = document.getElementById("trailer");
+    if (trailerVideo) {
+      const trailerKey = trailerVideo.key;
+
+      const h3 = document.createElement("h3");
+      h3.textContent = "Official Trailer";
+      trailerDiv.appendChild(h3);
+
+      const trailerContainer = document.createElement("div");
+      trailerContainer.classList.add("trailer-container");
+      trailerContainer.innerHTML = `
       <iframe
         class = "trailer-frame"
         src="https://www.youtube.com/embed/${trailerKey}"
@@ -66,23 +135,38 @@ async function updateMovieDetails() {
         allowfullscreen
       ></iframe>`;
 
-    const moviesContainer = document.getElementById("related-movies");
+      trailerDiv.appendChild(trailerContainer);
+    } else {
+      trailerDiv.style.display = "none";
+    }
 
-    movieDetails.similar.results.forEach((movie) => {
-      const { id, poster_path } = movie;
+    const relatedMovies = document.getElementById("related-movies");
+    if (movieDetails.similar.results) {
+      const h3 = document.createElement("h3");
+      h3.textContent = "Related Movies";
+      relatedMovies.appendChild(h3);
 
-      if (poster_path != null) {
-        const el = document.createElement("div");
-        el.classList.add("related-movie");
-        el.onclick = () => {
-          location.href = `movie?id=${id}`;
-        };
+      const moviesContainer = document.createElement("div");
+      moviesContainer.classList.add("related-movies-gallery");
+      movieDetails.similar.results.forEach((movie) => {
+        const { id, poster_path } = movie;
 
-        el.innerHTML = `<img class="related-img" src="https://image.tmdb.org/t/p/w300${poster_path}"/>`;
+        if (poster_path != null) {
+          const el = document.createElement("div");
+          el.classList.add("related-movie");
+          el.onclick = () => {
+            location.href = `movie?id=${id}`;
+          };
 
-        moviesContainer.appendChild(el);
-      }
-    });
+          el.innerHTML = `<img class="related-movies-poster" src="https://image.tmdb.org/t/p/w300${poster_path}"/>`;
+
+          moviesContainer.appendChild(el);
+        }
+      });
+      relatedMovies.appendChild(moviesContainer);
+    } else {
+      relatedMovies.style.display = "none";
+    }
   }
 }
 

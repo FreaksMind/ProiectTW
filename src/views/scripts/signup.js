@@ -13,16 +13,18 @@ document.addEventListener("DOMContentLoaded", bgEffect);
 function submitRegister() {
   const username = document.getElementById("username-input").value;
   const password = document.getElementById("password-input").value;
-  const confirmPassword = document.getElementById("confirm-password-input").value;
+  const confirmPassword = document.getElementById(
+    "confirm-password-input"
+  ).value;
 
   if (password != confirmPassword) {
-    // TODO: show erro
+    alert("Password and Confirm password don't match");
     return;
   }
 
-  register({ username, password }).then(({ token }) => {
+  register({ username, password }).then(({ token, message }) => {
     if (!token) {
-      // TODO: show error
+      alert(message);
       return;
     }
 
