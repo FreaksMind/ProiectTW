@@ -9,17 +9,15 @@ template.innerHTML = `
     top: 20px;
     color: white;
     background-color: transparent;
-    font-size: 1rem;
     border: none;
+    font-size: 1rem;
     cursor: pointer;
     font-family: var(--rubik);
-    transition: 0.2s ease all;
-    border-bottom: 1px solid black;
   }
 
   .logout-button:hover {
     color: var(--accent-color);
-    border-color: var(--accent-color);
+    text-decoration: underline;
 </style>
 
 <button id="logout-btn" class="logout-button">logout</button>

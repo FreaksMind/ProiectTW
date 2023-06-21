@@ -1,22 +1,29 @@
 import { searchMovies } from "./services.js";
 import { getUrlParams } from "./utils.js";
 
+import "./components/Spinner.js";
 import "./components/NavBar.js";
 import "./components/SearchBar.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   const query = getUrlParams().get("query");
 
-  const items = 20;
+  if (!query) {
+    window.location.href = "/search";
+    return;
+  }
 
   const container = document.getElementById("results");
 
+  const spinner = document.createElement("my-spinner");
+
+  container.appendChild(spinner);
+
   const data = await searchMovies(query);
 
-  //TODO FOREACH
-  for (let i = 0; i < items; i++) {
-    const { id, poster_path, original_title } = data[i];
+  spinner.remove();
 
+  for (const { id, poster_path, original_title } of data) {
     const el = document.createElement("div");
     el.classList.add("box");
     el.onclick = () => {

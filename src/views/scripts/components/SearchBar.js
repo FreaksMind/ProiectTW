@@ -104,6 +104,10 @@ class SearchBar extends HTMLElement {
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
 
+    getTrendingMovies().then((data) => {
+      this.trendingMovies = data.results.slice(0, 7);
+    });
+
     const searchBar = this.shadowRoot.getElementById("search-bar");
     const searchBtn = this.shadowRoot.getElementById("search-btn");
     const searchSuggestionsEl = this.shadowRoot.getElementById("search-suggestions");
@@ -112,8 +116,9 @@ class SearchBar extends HTMLElement {
 
     if (pathname.includes("results")) {
       const query = getUrlParams().get("query");
-      console.log(query);
-      searchBar.value = decodeURIComponent(query);
+      if (query) {
+        searchBar.value = decodeURIComponent(query);
+      }
     }
 
     function addSuggestion({ id, title, release_date }) {
@@ -158,12 +163,12 @@ class SearchBar extends HTMLElement {
     const debouncedSearch = debounce(fetchSearchSuggestions, 500);
 
     async function onSearchBarFocus() {
-      const data = await getTrendingMovies();
-      const result = data.results.slice(0, 7);
-
+      if (!this.trendingMovies) {
+        return;
+      }
       searchSuggestionsEl.innerHTML = "";
       searchSuggestionsEl.style.display = "flex";
-      for (const movie of result) {
+      for (const movie of this.trendingMovies) {
         addSuggestion(movie);
       }
     }

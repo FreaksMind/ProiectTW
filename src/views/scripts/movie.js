@@ -1,11 +1,7 @@
 import { getMovieById } from "./services.js";
-import checkAuth from "./auth.js";
 
-const { user } = checkAuth();
-
-if (!user) {
-  window.location.href = "/";
-}
+import "./components/Spinner.js";
+import "./components/NavBar.js";
 
 const currentUrl = window.location.href;
 const page_url = new URL(currentUrl);
@@ -13,36 +9,29 @@ const params = new URLSearchParams(page_url.search);
 const id = params.get("id");
 
 async function updateMovieDetails() {
+  const spinner = document.createElement("my-spinner");
+
+  document.querySelector(".content-container").appendChild(spinner);
+  document.getElementById("container").style.display = "none";
+
   const movieDetails = await getMovieById(id);
+  spinner.remove();
+  document.getElementById("container").style.display = "block";
+
+  spinner.remove();
+
   if (!movieDetails) {
     console.log("Movie not found or error occurred.");
   } else {
-    document.getElementById("movie-title").textContent =
-      movieDetails.original_title;
-    document.getElementById(
-      "poster"
-    ).src = `https://image.tmdb.org/t/p/w185${movieDetails.poster_path}`;
-    document.getElementById("movie-name").textContent =
-      movieDetails.original_title;
-    if (movieDetails.vote_average) {
-      document.getElementById("movie-rating").textContent =
-        movieDetails.vote_average.toFixed(1);
-    } else {
-      document.getElementById("movie-rating").textContent = "-";
-    }
-    document.getElementById("movie-release").textContent =
-      movieDetails.release_date;
-    document.getElementById(
-      "movie-runtime"
-    ).textContent = `${movieDetails.runtime} mins`;
+    document.getElementById("movie-title").textContent = movieDetails.original_title;
+    document.getElementById("poster").src = `https://image.tmdb.org/t/p/w185${movieDetails.poster_path}`;
+    document.getElementById("movie-name").textContent = movieDetails.original_title;
+    document.getElementById("movie-rating").textContent = movieDetails.vote_average.toFixed(1);
+    document.getElementById("movie-release").textContent = movieDetails.release_date;
+    document.getElementById("movie-runtime").textContent = `${movieDetails.runtime} mins`;
 
-    document.getElementById("movie-restriction").textContent =
-      movieDetails.adult ? "16+" : "8+";
-    if (movieDetails.overview) {
-      document.getElementById("overview").textContent = movieDetails.overview;
-    } else {
-      document.getElementById("overview").style.display = "none";
-    }
+    document.getElementById("movie-restriction").textContent = movieDetails.adult ? "16+" : "8+";
+    document.getElementById("overview").textContent = movieDetails.overview;
 
     const genresContainer = document.getElementById("genres");
     const genres = movieDetails.genres.map((genre) => genre.name);
