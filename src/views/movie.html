@@ -9,52 +9,51 @@
     <title id="movie-title"></title>
   </head>
   <body>
+    <nav-bar></nav-bar>
     <div class="content-container">
-      <div class="poster">
-        <img id="poster" alt="poster-img" class="poster-img" />
-      </div>
-      <div class="content">
-        <div class="header-container">
-          <div class="title-rating">
-            <h1 id="movie-name"></h1>
-            <div class="rating">
-              <b id="movie-rating" class="rating-text"></b
-              ><img
-                src="./assets/honey.png"
-                alt="star-icon"
-                class="star-icon"
-              />
+      <div id="container">
+        <div class="poster">
+          <img id="poster" alt="poster-img" class="poster-img" />
+        </div>
+        <div class="content">
+          <div class="header-container">
+            <div class="title-rating">
+              <h1 id="movie-name"></h1>
+              <div class="rating">
+                <b id="movie-rating" class="rating-text"></b
+                ><img src="./assets/honey.png" alt="star-icon" class="star-icon" />
+              </div>
+            </div>
+            <div class="movie-info">
+              <ul class="mini-stats">
+                <li id="movie-release"></li>
+                <li>|</li>
+                <li id="movie-runtime"></li>
+                <li>|</li>
+                <li id="movie-restriction"></li>
+              </ul>
             </div>
           </div>
-          <div class="movie-info">
-            <ul class="mini-stats">
-              <li id="movie-release"></li>
-              <li>|</li>
-              <li id="movie-runtime"></li>
-              <li>|</li>
-              <li id="movie-restriction"></li>
-            </ul>
+          <div id="overview" class="description"></div>
+          <div class="short-details">
+            <div class="template">
+              <div class="genre">Genre</div>
+              <div class="starring">Starring</div>
+              <div class="director">Director</div>
+              <div class="production">Production</div>
+            </div>
+            <div class="info">
+              <div id="genres" class="genre-info"></div>
+              <div id="actors" class="starring-info"></div>
+              <div id="director" class="created-by-info"></div>
+              <div id="production" class="production-info"></div>
+            </div>
           </div>
+          <h3>Official Trailer</h3>
+          <div id="trailer-container" class="trailer-container"></div>
+          <h3>Related Movies</h3>
+          <div id="related-movies" class="related-movies"></div>
         </div>
-        <div id="overview" class="description"></div>
-        <div class="short-details">
-          <div class="template">
-            <div class="genre">Genre</div>
-            <div class="starring">Starring</div>
-            <div class="director">Director</div>
-            <div class="production">Production</div>
-          </div>
-          <div class="info">
-            <div id="genres" class="genre-info"></div>
-            <div id="actors" class="starring-info"></div>
-            <div id="director" class="created-by-info"></div>
-            <div id="production" class="production-info"></div>
-          </div>
-        </div>
-        <h3>Official Trailer</h3>
-        <div id="trailer-container" class="trailer-container"></div>
-        <h3>Related Movies</h3>
-        <div id="related-movies" class="related-movies"></div>
       </div>
     </div>
     <script src="./scripts/movie.js" type="module"></script>

@@ -32,6 +32,7 @@ export async function searchMovies(req, res) {
 
   try {
     const data = await fetchTmdb(`/search/movie?query=${title}`);
+    console.log(data);
     res.send(200, data.results);
   } catch (err) {
     res.send(400, { error: "error searching movies: " + err });
@@ -48,9 +49,7 @@ export async function searchSuggestions(req, res) {
   try {
     const data = await fetchTmdb(`/search/movie?query=${title}`);
 
-    const result = data.results
-      .slice(0, 7)
-      .map(({ id, title, release_date }) => ({ id, title, release_date }));
+    const result = data.results.slice(0, 7).map(({ id, title, release_date }) => ({ id, title, release_date }));
 
     res.send(200, result);
   } catch (err) {

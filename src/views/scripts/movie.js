@@ -1,11 +1,7 @@
 import { getMovieById } from "./services.js";
-import checkAuth from "./auth.js";
 
-const { user } = checkAuth();
-
-if (!user) {
-  window.location.href = "/";
-}
+import "./components/Spinner.js";
+import "./components/NavBar.js";
 
 const currentUrl = window.location.href;
 const page_url = new URL(currentUrl);
@@ -13,27 +9,28 @@ const params = new URLSearchParams(page_url.search);
 const id = params.get("id");
 
 async function updateMovieDetails() {
+  const spinner = document.createElement("my-spinner");
+
+  document.querySelector(".content-container").appendChild(spinner);
+  document.getElementById("container").style.display = "none";
+
   const movieDetails = await getMovieById(id);
+  spinner.remove();
+  document.getElementById("container").style.display = "block";
+
+  spinner.remove();
+
   if (!movieDetails) {
     console.log("Movie not found or error occurred.");
   } else {
-    document.getElementById("movie-title").textContent =
-      movieDetails.original_title;
-    document.getElementById(
-      "poster"
-    ).src = `https://image.tmdb.org/t/p/w185${movieDetails.poster_path}`;
-    document.getElementById("movie-name").textContent =
-      movieDetails.original_title;
-    document.getElementById("movie-rating").textContent =
-      movieDetails.vote_average.toFixed(1);
-    document.getElementById("movie-release").textContent =
-      movieDetails.release_date;
-    document.getElementById(
-      "movie-runtime"
-    ).textContent = `${movieDetails.runtime} mins`;
+    document.getElementById("movie-title").textContent = movieDetails.original_title;
+    document.getElementById("poster").src = `https://image.tmdb.org/t/p/w185${movieDetails.poster_path}`;
+    document.getElementById("movie-name").textContent = movieDetails.original_title;
+    document.getElementById("movie-rating").textContent = movieDetails.vote_average.toFixed(1);
+    document.getElementById("movie-release").textContent = movieDetails.release_date;
+    document.getElementById("movie-runtime").textContent = `${movieDetails.runtime} mins`;
 
-    document.getElementById("movie-restriction").textContent =
-      movieDetails.adult ? "16+" : "8+";
+    document.getElementById("movie-restriction").textContent = movieDetails.adult ? "16+" : "8+";
     document.getElementById("overview").textContent = movieDetails.overview;
 
     const genres = movieDetails.genres.map((genre) => genre.name).join(", ");
@@ -43,20 +40,16 @@ async function updateMovieDetails() {
       .slice(0, 5)
       .map((actor) => actor.name)
       .join(", ");
-    document.getElementById("director").textContent =
-      movieDetails.credits.crew.find(
-        (crewMember) => crewMember.job == "Director"
-      ).name;
-    document.getElementById("production").textContent =
-      movieDetails.production_companies
-        .map((company) => company.name)
-        .join(", ");
+    document.getElementById("director").textContent = movieDetails.credits.crew.find(
+      (crewMember) => crewMember.job == "Director"
+    ).name;
+    document.getElementById("production").textContent = movieDetails.production_companies
+      .map((company) => company.name)
+      .join(", ");
 
     const trailerContainer = document.getElementById("trailer-container");
 
-    const trailerKey = movieDetails.videos.results.find(
-      (video) => video.name == "Official Trailer"
-    ).key;
+    const trailerKey = movieDetails.videos.results.find((video) => video.name == "Official Trailer").key;
     trailerContainer.innerHTML = `
       <iframe
         class = "trailer-frame"
