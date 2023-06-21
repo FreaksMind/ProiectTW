@@ -96,6 +96,7 @@ export function route({ method, auth }, handler) {
     }
     if (auth) {
       useAuth(handler)(req, res);
+      return;
     }
     handler(req, res);
   };
