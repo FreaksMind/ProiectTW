@@ -30,11 +30,20 @@ async function setMovieDetails() {
     document.getElementById("movie-title").textContent = movieDetails.original_title;
     document.getElementById("poster").src = `https://image.tmdb.org/t/p/w185${movieDetails.poster_path}`;
     document.getElementById("movie-name").textContent = movieDetails.original_title;
+
     document.getElementById("movie-rating").textContent = movieDetails.vote_average.toFixed(1);
-    document.getElementById("movie-release").textContent = movieDetails.release_date;
     document.getElementById("movie-runtime").textContent = `${movieDetails.runtime} mins`;
 
-    document.getElementById("movie-restriction").textContent = movieDetails.adult ? "16+" : "8+";
+    document.getElementById("movie-release").innerHTML = `<div class="info-text">${
+      movieDetails.release_date.split("-")[0]
+    }</div>`;
+    document.getElementById("movie-runtime").innerHTML = `<div class="info-text">${movieDetails.runtime} minutes</div>`;
+
+    document.getElementById("movie-restriction").innerHTML = `<div class="info-text">${
+      movieDetails.adult ? "16+" : "8+"
+    }</div>`;
+
+    document.getElementById("tagline").textContent = movieDetails.tagline;
     document.getElementById("overview").textContent = movieDetails.overview;
 
     const genresContainer = document.getElementById("genres");
