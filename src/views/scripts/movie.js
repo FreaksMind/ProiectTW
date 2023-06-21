@@ -1,21 +1,23 @@
-import { getMovieById } from "./services.js";
+import { addMovieToList, getListPosterPreview, getMovieById, getUserLists } from "./services.js";
 
 import "./components/Spinner.js";
-import "./components/Button.js";
+import "./components/BeeButton.js";
 import "./components/NavBar.js";
+import "./components/Modal.js";
+import "./components/MovieList.js";
 
 const currentUrl = window.location.href;
 const page_url = new URL(currentUrl);
 const params = new URLSearchParams(page_url.search);
-const id = params.get("id");
+const movieId = params.get("id");
 
-async function updateMovieDetails() {
+async function setMovieDetails() {
   const spinner = document.createElement("my-spinner");
 
   document.querySelector(".content-container").display = "none";
   document.body.appendChild(spinner);
 
-  const movieDetails = await getMovieById(id);
+  const movieDetails = await getMovieById(movieId);
   spinner.remove();
 
   document.querySelector(".content-container").display = "block";
@@ -155,9 +157,9 @@ async function updateMovieDetails() {
   }
 }
 
-document.querySelector(".export").addEventListener("click", async () => {
+document.querySelector("#export-btn").addEventListener("click", async () => {
   //TODO: reuse data movie
-  let movieDetailsExport = await getMovieById(id);
+  let movieDetailsExport = await getMovieById(movieId);
   let export_data = document.createElement("a");
   export_data.style.display = "none";
   export_data.href = `data:application/json,${encodeURIComponent(JSON.stringify(movieDetailsExport))}`;
@@ -167,4 +169,46 @@ document.querySelector(".export").addEventListener("click", async () => {
   document.body.removeChild(export_data);
 });
 
-document.addEventListener("DOMContentLoaded", updateMovieDetails);
+async function setMovieLists() {
+  const listsContainer = document.getElementById("movie-lists");
+
+  const spinner = document.createElement("my-spinner");
+  listsContainer.appendChild(spinner);
+
+  const lists = await getUserLists();
+
+  spinner.remove();
+
+  for (const list of lists) {
+    const el = document.createElement("movie-list");
+    el.listName = list.name;
+    el.listId = list._id;
+
+    el.addEventListener("click", async () => {
+      addMovieToList(list._id, movieId)
+        .then(() => {
+          document.getElementById("list-modal").visible = false;
+
+          // update list fetch
+        })
+        .catch((err) => {
+          // TODO: show error
+        });
+    });
+
+    listsContainer.appendChild(el);
+  }
+}
+
+document.getElementById("list-add-btn").addEventListener("click", () => {
+  document.getElementById("list-modal").visible = true;
+});
+
+document.getElementById("list-cancel-btn").addEventListener("click", () => {
+  document.getElementById("list-modal").visible = false;
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  setMovieDetails();
+  setMovieLists();
+});

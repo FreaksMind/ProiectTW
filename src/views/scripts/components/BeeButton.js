@@ -13,23 +13,23 @@ template.innerHTML = `
   text-align: center;
   position: relative;
   overflow: hidden;
-  z-index: 1;
   padding: 9px;
   cursor: pointer;
+  width: 100%;
 }
 </style>
 
-<button id="btn" class="btn"></button>
+<button id="btn" class="btn"><slot></slot></button>
 `;
 
-class Button extends HTMLElement {
+class BeeButton extends HTMLElement {
   connectedCallback() {
-
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
-    this.shadowRoot.getElementById("btn").innerText = this.getAttribute("text");
 
+    // const button = this.shadowRoot.getElementById("btn");
+    // Array.from(this.children).forEach((child) => button.appendChild(child.cloneNode(true)));
   }
 }
 
-customElements.define("bee-button", Button);
+customElements.define("bee-button", BeeButton);

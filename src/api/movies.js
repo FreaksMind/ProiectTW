@@ -1,6 +1,6 @@
 import { route } from "../utils.js";
 
-async function fetchTmdb(query) {
+export async function fetchTmdb(query) {
   const tmdbUrl = "https://api.themoviedb.org/3";
   const apiKey = process.env.TMDB_API_KEY;
 
@@ -26,7 +26,6 @@ export const searchMovies = route({ method: "get", auth: true }, async (req, res
 
   try {
     const data = await fetchTmdb(`/search/movie?query=${title}`);
-    console.log(data);
     res.send(200, data.results);
   } catch (err) {
     res.send(400, { error: "error searching movies: " + err });

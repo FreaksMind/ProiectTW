@@ -1,6 +1,5 @@
 body {
   line-height: 1.2;
-  font-family: var(--rubik);
   overflow-x: hidden;
 }
 
@@ -32,10 +31,11 @@ body {
   }
 }
 
-.poster {
+.poster-wrapper {
   box-sizing: border-box;
   height: auto;
   display: flex;
+  gap: 20px;
   flex-direction: column;
 }
 
@@ -64,6 +64,7 @@ body {
 }
 
 .title-rating {
+  font-family: var(--rubik);
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -161,7 +162,7 @@ h1 {
 }
 
 .text-label {
-  font-family: var(--inter);
+  font-family: var(--rubik);
   align-items: center;
   justify-content: center;
   font-weight: bold;
@@ -238,7 +239,35 @@ h3 {
   border-radius: 10px;
 }
 
-.export {
-  padding: 1rem;
-  align-self: center;
+.list-modal {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
 }
+
+#movie-lists {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 500px;
+  overflow: scroll;
+}
+
+.movie-list {
+  padding: 10px;
+  border: 2px solid rgb(30, 30, 30);
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.1s ease;
+}
+
+.movie-list:hover {
+  border-color: var(--accent-color);
+}
+
+#list-cancel-btn {
+  margin-top: 10px;
+  align-self: flex-end;
+}
+

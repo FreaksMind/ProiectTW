@@ -1,4 +1,4 @@
-<!DOCTYPE html<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -11,10 +11,24 @@
   <body>
     <nav-bar></nav-bar>
 
+    <bee-modal id="list-modal">
+      <div class="list-modal">
+        <h2 style="margin-bottom: 10px">add to list</h2>
+        <div id="movie-lists"></div>
+        <button id="list-cancel-btn">cancel</button>
+      </div>
+    </bee-modal>
+
     <div class="content-container">
-      <div class="poster">
+      <div class="poster-wrapper">
         <img id="poster" alt="poster-img" class="poster-img" />
-        <bee-button text="Export data" class="export"></bee-button>
+        <bee-button id="export-btn">
+          <span>export data</span>
+        </bee-button>
+
+        <bee-button id="list-add-btn">
+          <span>add to list</span>
+        </bee-button>
       </div>
       <div class="content">
         <div class="header-container">

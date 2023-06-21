@@ -1,12 +1,7 @@
 import http from "http";
 import mongoose from "mongoose";
 
-import {
-  getRouteHandler,
-  getPathParams,
-  servePublicFiles,
-  serveStaticFile,
-} from "./utils.js";
+import { getRouteHandler, getPathParams, servePublicFiles, serveStaticFile } from "./utils.js";
 import apiRouter from "./api/router.js";
 
 import dotenv from "dotenv";
@@ -46,11 +41,14 @@ const server = http.createServer((req, res) => {
         body += chunk;
       });
       req.on("end", () => {
-        // TODO: handle parse errors
-        const data = JSON.parse(body);
-        req.body = data;
+        try {
+          const data = JSON.parse(body);
+          req.body = data;
 
-        routeHandler(req, res);
+          routeHandler(req, res);
+        } catch (err) {
+          console.log("error parsing post body", err);
+        }
       });
     } else {
       req.params = getPathParams(routes, req);

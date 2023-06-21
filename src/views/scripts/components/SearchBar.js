@@ -162,17 +162,6 @@ class SearchBar extends HTMLElement {
 
     const debouncedSearch = debounce(fetchSearchSuggestions, 500);
 
-    async function onSearchBarFocus() {
-      if (!this.trendingMovies) {
-        return;
-      }
-      searchSuggestionsEl.innerHTML = "";
-      searchSuggestionsEl.style.display = "flex";
-      for (const movie of this.trendingMovies) {
-        addSuggestion(movie);
-      }
-    }
-
     function onSearchBarLostFocus(event) {
       if (event.explicitOriginalTarget.parentElement.classList.contains("suggestion")) return;
       searchSuggestionsEl.style.display = "none";
@@ -188,7 +177,6 @@ class SearchBar extends HTMLElement {
     }
 
     searchBar.addEventListener("input", debouncedSearch);
-    searchBar.addEventListener("focus", onSearchBarFocus);
     searchBar.addEventListener("focusout", onSearchBarLostFocus);
     searchBar.addEventListener("keydown", (evt) => {
       if (evt.key == "Enter") {

@@ -48,11 +48,11 @@ export async function createNewList(name) {
 }
 
 export async function addMovieToList(listId, movieId) {
-  return api(`/api/lists/movie/add`, "POST", { listId, movieId });
+  return api(`/api/lists/add-movie`, "POST", { listId, movieId });
 }
 
 export async function deleteMovieFromList(listId, movieId) {
-  return api(`/api/lists/movie/delete`, "POST", { listId, movieId });
+  return api(`/api/lists/delete-movie`, "POST", { listId, movieId });
 }
 
 export async function deleteList(listId) {
@@ -65,4 +65,8 @@ export async function getUserLists() {
 
 export async function getList(id) {
   return api(`/api/lists/get/${id}`, "GET");
+}
+
+export async function getListPosterPreview(id) {
+  return api(`/api/lists/poster-preview/${id}`, "GET");
 }

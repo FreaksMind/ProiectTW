@@ -1,7 +1,9 @@
-import "./components/Spinner.js";
-import "./components/NavBar.js";
 import checkAuth from "./auth.js";
 import { getUserLists } from "./services.js";
+
+import "./components/Spinner.js";
+import "./components/NavBar.js";
+import "./components/MovieList.js";
 
 async function getProfile() {
   const spinner = document.createElement("my-spinner");
@@ -20,10 +22,12 @@ async function getProfile() {
   if (lists) {
     for (let i = 0; i < lists.length; i++) {
       const list = lists[i];
-      const listContainer = document.createElement("div");
-      listContainer.classList.add("list-container");
-      listContainer.textContent = list.name;
-      allLists.appendChild(listContainer);
+
+      const el = document.createElement("movie-list");
+      el.listName = list.name;
+      el.listId = list._id;
+
+      allLists.appendChild(el);
     }
   }
 }
