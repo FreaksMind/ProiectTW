@@ -1,6 +1,7 @@
 import { getMovieById } from "./services.js";
 
 import "./components/Spinner.js";
+import "./components/Button.js";
 import "./components/NavBar.js";
 
 const currentUrl = window.location.href;
@@ -153,5 +154,17 @@ async function updateMovieDetails() {
     }
   }
 }
+
+document.querySelector(".export").addEventListener("click", async () => {
+  //TODO: reuse data movie
+  let movieDetailsExport = await getMovieById(id);
+  let export_data = document.createElement("a");
+  export_data.style.display = "none";
+  export_data.href = `data:application/json,${encodeURIComponent(JSON.stringify(movieDetailsExport))}`;
+  export_data.download = `${movieDetailsExport.original_title}.json`;
+  document.body.appendChild(export_data);
+  export_data.click();
+  document.body.removeChild(export_data);
+});
 
 document.addEventListener("DOMContentLoaded", updateMovieDetails);

@@ -36,7 +36,7 @@ body {
   box-sizing: border-box;
   height: auto;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .poster img {
@@ -238,3 +238,7 @@ h3 {
   border-radius: 10px;
 }
 
+.export {
+  padding: 1rem;
+  align-self: center;
+}
