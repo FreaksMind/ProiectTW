@@ -1,4 +1,4 @@
-body{
+body {
   line-height: 1.2;
   font-family: var(--rubik);
   overflow-x: hidden;
@@ -18,16 +18,16 @@ body{
     flex-direction: column;
     padding: 30px;
   }
-  .poster{
-    justify-content:start ;
+  .poster {
+    justify-content: start;
   }
-  .body{
+  .body {
     overflow-x: hidden;
   }
-  .info-text{
+  .info-text {
     margin-bottom: 1rem;
   }
-  .text-label{
+  .text-label {
     align-items: initial !important;
   }
 }
@@ -69,7 +69,7 @@ body{
   justify-content: space-between;
 }
 
-.movie-info{
+.movie-info {
   display: flex;
   justify-content: flex-start;
 }
@@ -120,7 +120,7 @@ h1 {
   text-align: justify;
 }
 
-.related-movies{
+.related-movies {
   display: flex;
   flex-direction: column;
 }
@@ -134,10 +134,10 @@ h1 {
 }
 
 .related-movies-poster {
-  max-width: 200px;
+  max-height: 200px;
   padding: 1rem;
   padding-left: 0;
-  border-radius: 20px;
+  border-radius: 5px;
   cursor: pointer;
 }
 
@@ -148,59 +148,65 @@ h1 {
   flex-direction: row;
 }
 
-.short-details{
+.short-details {
   display: flex;
   flex-direction: column;
 }
 
-.info{
+.info {
   display: flex;
   flex-direction: row;
   padding-bottom: 1rem;
+  align-items: flex-start;
 }
 
-.text-label{
-  display: flex;
+.text-label {
+  font-family: var(--inter);
   align-items: center;
   justify-content: center;
+  font-weight: bold;
+  color: rgb(150, 150, 150);
+  min-width: 100px;
+  align-self: flex-start;
 }
 
 .boxes {
   display: flex;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
-.info-text{
+.info-text {
   background-color: rgb(26, 25, 25);
   color: rgb(124, 123, 123);
-  margin-left: 1rem;
+  font-size: 0.8rem;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  border-radius: 10px;
-  padding: 0.3rem;
+  border-radius: 20px;
+  padding: 5px 10px;
 }
 
-.trailer{
+.trailer {
   display: flex;
   flex-direction: column;
 }
 
-.trailer-container{
+.trailer-container {
   position: relative;
   width: 100%;
   height: 0;
   padding-bottom: 56.25%;
 }
 
-.trailer-frame{
+.trailer-frame {
   position: absolute;
   width: 100%;
   height: 100%;
 }
 
-h3{
+h3 {
   padding: 1rem;
   padding-left: 0;
 }
@@ -231,3 +237,4 @@ h3{
   background: #ffc107;
   border-radius: 10px;
 }
+

@@ -11,12 +11,13 @@ const id = params.get("id");
 async function updateMovieDetails() {
   const spinner = document.createElement("my-spinner");
 
-  document.querySelector(".content-container").appendChild(spinner);
-  document.getElementById("container").style.display = "none";
+  document.querySelector(".content-container").display = "none";
+  document.body.appendChild(spinner);
 
   const movieDetails = await getMovieById(id);
   spinner.remove();
-  document.getElementById("container").style.display = "block";
+
+  document.querySelector(".content-container").display = "block";
 
   spinner.remove();
 
@@ -68,9 +69,7 @@ async function updateMovieDetails() {
       });
     }
 
-    const director = movieDetails.credits.crew.find(
-      (crewMember) => crewMember.job == "Director"
-    );
+    const director = movieDetails.credits.crew.find((crewMember) => crewMember.job == "Director");
     const directorContainer = document.getElementById("director");
     if (director) {
       const directorDiv = document.createElement("div");
@@ -85,9 +84,7 @@ async function updateMovieDetails() {
     }
 
     const productionContainer = document.getElementById("production");
-    const productions = movieDetails.production_companies.map(
-      (production) => production.name
-    );
+    const productions = movieDetails.production_companies.map((production) => production.name);
     if (productions.length == 0) {
       const blankDiv = document.createElement("div");
       blankDiv.classList.add("info-text");
@@ -102,9 +99,7 @@ async function updateMovieDetails() {
       });
     }
 
-    const trailerVideo = movieDetails.videos.results.find(
-      (video) => video.name == "Official Trailer"
-    );
+    const trailerVideo = movieDetails.videos.results.find((video) => video.name == "Official Trailer");
     const trailerDiv = document.getElementById("trailer");
     if (trailerVideo) {
       const trailerKey = trailerVideo.key;

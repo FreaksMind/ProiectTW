@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -10,10 +10,29 @@
   </head>
   <body>
     <nav-bar></nav-bar>
+
     <div class="content-container">
-      <div id="container">
-        <div class="poster">
-          <img id="poster" alt="poster-img" class="poster-img" />
+      <div class="poster">
+        <img id="poster" alt="poster-img" class="poster-img" />
+      </div>
+      <div class="content">
+        <div class="header-container">
+          <div class="title-rating">
+            <h1 id="movie-name"></h1>
+            <div class="rating">
+              <b id="movie-rating" class="rating-text"></b
+              ><img src="./assets/honey.png" alt="star-icon" class="star-icon" />
+            </div>
+          </div>
+          <div class="movie-info">
+            <ul class="mini-stats">
+              <li id="movie-release"></li>
+              <li>|</li>
+              <li id="movie-runtime"></li>
+              <li>|</li>
+              <li id="movie-restriction"></li>
+            </ul>
+          </div>
         </div>
         <div id="overview" class="description"></div>
         <div id="details" class="short-details">
@@ -33,12 +52,7 @@
             <span class="text-label">Production</span>
             <div id="production" class="boxes"></div>
           </div>
-          <h3>Official Trailer</h3>
-          <div id="trailer-container" class="trailer-container"></div>
-          <h3>Related Movies</h3>
-          <div id="related-movies" class="related-movies"></div>
         </div>
-
         <div id="trailer" class="trailer"></div>
         <div id="related-movies" class="related-movies"></div>
       </div>
