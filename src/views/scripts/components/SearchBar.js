@@ -3,8 +3,8 @@ import { searchSuggestions, getTrendingMovies } from "../services.js";
 import "./Modal.js";
 
 let genre_filters = [];
-let type = '';
-let sortBy = '';
+let type = "";
+let sortBy = "";
 const template = document.createElement("template");
 template.innerHTML = `
 <style>
@@ -101,22 +101,32 @@ template.innerHTML = `
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    width: 38%;
     font-family: var(--rubik);
     cursor: pointer;
+    color: rgb(140, 140, 140);
+    transition: 0.1s ease all;
+    top: 50%;
+    right: 13px;
+    transform: translateY(-50%);
+    position: absolute;
   }
-  
+
+  #filters-wrapper:hover {
+    color: white;
+    text-decoration: underline;
+  }
+
   #filter-img {
     width: 15px;
     height: 15px;
   }
-  
+
   .filter-modal {
     padding: 10px;
     display: flex;
     flex-direction: column;
   }
-  
+
   #filter-lists {
     display: flex;
     flex-direction: row;
@@ -125,12 +135,12 @@ template.innerHTML = `
     max-height: 500px;
     padding: 10px;
   }
-  
+
   #filter-cancel-btn {
     margin-top: 10px;
     align-self: flex-end;
   }
-  
+
   .options {
     display: flex;
     flex-direction: column;
@@ -139,14 +149,14 @@ template.innerHTML = `
     width: 60px;
     height: auto;
   }
-  
+
   .filters-title{
     font-size: 1rem;
     font-weight: bold;
     font-family: var(--rubik);
     color: white;
   }
-  
+
   .filter-button {
     transition: background-color 200ms, color 200ms;
     background-color: transparent;
@@ -159,12 +169,12 @@ template.innerHTML = `
     font-size: 14px;
     white-space: nowrap;
   }
-  
+
   .filter-button:hover {
       border-color: var(--accent-color);
       background-color: rgb(20, 20, 20);
   }
-  
+
   .filter-button.active {
     background-color: rgb(30, 30, 30);
     border-color: #3d3d3d;
@@ -183,7 +193,7 @@ template.innerHTML = `
     transition: 0.1s ease;
     width: auto;
   }
-  
+
   button:hover {
     border-color: var(--accent-color);
     background-color: rgb(20, 20, 20);
@@ -220,10 +230,9 @@ template.innerHTML = `
 <div class="input-wrapper">
   <div class="search-wrapper">
     <input type="text" placeholder="find movie ..." id="search-bar" />
-  </div>
-  <div id="filters-wrapper">
-    Filters
-    <img src="./assets/filter.jpg" id="filter-img" />
+    <div id="filters-wrapper">
+      filters
+    </div>
   </div>
   <div id="search-suggestions" />
 </div>
@@ -303,17 +312,15 @@ class SearchBar extends HTMLElement {
         return;
       }
 
-      let extraFilters = '';
-      if(type)
-         extraFilters += `&type=${type}`;
+      let extraFilters = "";
+      if (type) extraFilters += `&type=${type}`;
 
-      if(genre_filters.length > 0){
+      if (genre_filters.length > 0) {
         extraFilters += `&genres=${genre_filters}`;
       }
 
-       if(sortBy)
-         extraFilters += `&sort=${sortBy}&order=asc`;
-      
+      if (sortBy) extraFilters += `&sort=${sortBy}&order=asc`;
+
       const route = `/results?query=${encodeURIComponent(title)}${extraFilters}`;
       window.location.href = route;
     }
@@ -326,112 +333,22 @@ class SearchBar extends HTMLElement {
       }
     });
 
-  // filters
-    
-  this.shadowRoot.getElementById("filters-wrapper").addEventListener("click", () => {
-    this.shadowRoot.getElementById("filter-modal").visible = true;
-  });
-  
-  this.shadowRoot.getElementById("filter-cancel-btn").addEventListener("click", () => {
-    this.shadowRoot.getElementById("filter-modal").visible = false;
-  });
-  
-  this.setupFilters();
-}
+    // filters
 
-setupFilters() {
-  let sortBy = ["popularity", "rating", "release"];
-  for(const sortType of sortBy) {
-    let button = document.createElement("button");
-    button.classList.add("filter-button");
-    button.classList.add("sort-button");
-    button.setAttribute("state", "inactive");
-    button.addEventListener("click", (e) => this.handleClick(e, "sort"));
-    button.innerHTML = sortType;
-    this.shadowRoot.getElementById("sortby").appendChild(button);
-  }
-  let genres = ["horror", "romance", "comedy", "action", "drama","adventure"];
-  for(const genre of genres) {
-    let button = document.createElement("button");
-    button.classList.add("filter-button");
-    button.setAttribute("state", "inactive");
-    button.addEventListener("click", (e) => this.handleClick(e, "genre"));
-    button.innerHTML = genre;
-    this.shadowRoot.getElementById("genre").appendChild(button);
-  }
-  let types = ["movie", "actor", "tv show"];
-  for(const type of types) {
-    let button = document.createElement("button");
-    button.classList.add("filter-button");
-    button.classList.add("type-button");
-    button.setAttribute("state", "inactive");
-    button.addEventListener("click", (e) => this.handleClick(e, "type"));
-    button.innerHTML = type;
-    this.shadowRoot.getElementById("type").appendChild(button);
-  }
-}
-
-handleClick(e, category){
-  console.log(genre_filters);
-  let button = e.target;
-  const buttonState = button.getAttribute('state');
-  
-  if (buttonState === 'inactive') {
-    if(category === 'genre')
-    genre_filters.push(button.innerHTML);
-    else if(category === 'sort'){
-      this.resetButtons('sortby');
-      sortBy = button.innerHTML;
-    }
-    else if(category === 'type'){
-      this.resetButtons('type');
-      type = button.innerHTML;
-    }
-    else return;
-    button.classList.add('active');
-    button.setAttribute('state', 'active');
-    
-  } else {
-    button.classList.remove('active');
-    button.setAttribute('state', 'inactive')
-    if(category === 'genre')
-      genre_filters = genre_filters.filter((item) => item !== button.innerHTML);
-    else if(category === 'sort')
-      sortBy = '';
-    else if(category === 'type')
-      type = '';
-    else return;
-  }
-}
-
-resetButtons(column){
-  let filterButtons;
-  if(column === 'sortby') {
-    filterButtons = this.shadowRoot.querySelectorAll('.sort-button');
-  } else if(column === 'type'){
-    filterButtons = this.shadowRoot.querySelectorAll('.type-button');
-  } else return;
-
-  [...filterButtons].map(button => {
-      button.classList.remove('active');
-      button.setAttribute('state', 'inactive')
-  })
-// filters
-    
     this.shadowRoot.getElementById("filters-wrapper").addEventListener("click", () => {
       this.shadowRoot.getElementById("filter-modal").visible = true;
     });
-    
+
     this.shadowRoot.getElementById("filter-cancel-btn").addEventListener("click", () => {
       this.shadowRoot.getElementById("filter-modal").visible = false;
     });
-    
-    
+
     this.setupFilters();
   }
+
   setupFilters() {
     let sortBy = ["popularity", "rating", "release"];
-    for(const sortType of sortBy) {
+    for (const sortType of sortBy) {
       let button = document.createElement("button");
       button.classList.add("filter-button");
       button.classList.add("sort-button");
@@ -440,8 +357,8 @@ resetButtons(column){
       button.innerHTML = sortType;
       this.shadowRoot.getElementById("sortby").appendChild(button);
     }
-    let genres = ["horror", "romance", "comedy", "action", "drama","adventure"];
-    for(const genre of genres) {
+    let genres = ["horror", "romance", "comedy", "action", "drama", "adventure"];
+    for (const genre of genres) {
       let button = document.createElement("button");
       button.classList.add("filter-button");
       button.setAttribute("state", "inactive");
@@ -450,7 +367,7 @@ resetButtons(column){
       this.shadowRoot.getElementById("genre").appendChild(button);
     }
     let types = ["movie", "actor", "tv show"];
-    for(const type of types) {
+    for (const type of types) {
       let button = document.createElement("button");
       button.classList.add("filter-button");
       button.classList.add("type-button");
@@ -461,53 +378,127 @@ resetButtons(column){
     }
   }
 
-  handleClick(e, category){
+  handleClick(e, category) {
     console.log(genre_filters);
     let button = e.target;
-    const buttonState = button.getAttribute('state');
-    
-    if (buttonState === 'inactive') {
-      if(category === 'genre')
-      genre_filters.push(button.innerHTML);
-      else if(category === 'sort'){
-        this.resetButtons('sortby');
+    const buttonState = button.getAttribute("state");
+
+    if (buttonState === "inactive") {
+      if (category === "genre") genre_filters.push(button.innerHTML);
+      else if (category === "sort") {
+        this.resetButtons("sortby");
         sortBy = button.innerHTML;
-      }
-      else if(category === 'type'){
-        this.resetButtons('type');
+      } else if (category === "type") {
+        this.resetButtons("type");
         type = button.innerHTML;
-      }
-      else return;
-      button.classList.add('active');
-      button.setAttribute('state', 'active');
-      
+      } else return;
+      button.classList.add("active");
+      button.setAttribute("state", "active");
     } else {
-      button.classList.remove('active');
-      button.setAttribute('state', 'inactive')
-      if(category === 'genre')
-        genre_filters = genre_filters.filter((item) => item !== button.innerHTML);
-      else if(category === 'sort')
-        sortBy = '';
-      else if(category === 'type')
-        type = '';
+      button.classList.remove("active");
+      button.setAttribute("state", "inactive");
+      if (category === "genre") genre_filters = genre_filters.filter((item) => item !== button.innerHTML);
+      else if (category === "sort") sortBy = "";
+      else if (category === "type") type = "";
       else return;
     }
   }
 
-  resetButtons(column){
+  resetButtons(column) {
     let filterButtons;
-    if(column === 'sortby') {
-      filterButtons = this.shadowRoot.querySelectorAll('.sort-button');
-    } else if(column === 'type'){
-      filterButtons = this.shadowRoot.querySelectorAll('.type-button');
+    if (column === "sortby") {
+      filterButtons = this.shadowRoot.querySelectorAll(".sort-button");
+    } else if (column === "type") {
+      filterButtons = this.shadowRoot.querySelectorAll(".type-button");
     } else return;
 
-    [...filterButtons].map(button => {
-        button.classList.remove('active');
-        button.setAttribute('state', 'inactive')
-    })
+    [...filterButtons].map((button) => {
+      button.classList.remove("active");
+      button.setAttribute("state", "inactive");
+    });
+    // filters
+
+    this.shadowRoot.getElementById("filters-wrapper").addEventListener("click", () => {
+      this.shadowRoot.getElementById("filter-modal").visible = true;
+    });
+
+    this.shadowRoot.getElementById("filter-cancel-btn").addEventListener("click", () => {
+      this.shadowRoot.getElementById("filter-modal").visible = false;
+    });
+
+    this.setupFilters();
+  }
+  setupFilters() {
+    let sortBy = ["popularity", "rating", "release"];
+    for (const sortType of sortBy) {
+      let button = document.createElement("button");
+      button.classList.add("filter-button");
+      button.classList.add("sort-button");
+      button.setAttribute("state", "inactive");
+      button.addEventListener("click", (e) => this.handleClick(e, "sort"));
+      button.innerHTML = sortType;
+      this.shadowRoot.getElementById("sortby").appendChild(button);
+    }
+    let genres = ["horror", "romance", "comedy", "action", "drama", "adventure"];
+    for (const genre of genres) {
+      let button = document.createElement("button");
+      button.classList.add("filter-button");
+      button.setAttribute("state", "inactive");
+      button.addEventListener("click", (e) => this.handleClick(e, "genre"));
+      button.innerHTML = genre;
+      this.shadowRoot.getElementById("genre").appendChild(button);
+    }
+    let types = ["movie", "actor", "tv show"];
+    for (const type of types) {
+      let button = document.createElement("button");
+      button.classList.add("filter-button");
+      button.classList.add("type-button");
+      button.setAttribute("state", "inactive");
+      button.addEventListener("click", (e) => this.handleClick(e, "type"));
+      button.innerHTML = type;
+      this.shadowRoot.getElementById("type").appendChild(button);
+    }
+  }
+
+  handleClick(e, category) {
+    console.log(genre_filters);
+    let button = e.target;
+    const buttonState = button.getAttribute("state");
+
+    if (buttonState === "inactive") {
+      if (category === "genre") genre_filters.push(button.innerHTML);
+      else if (category === "sort") {
+        this.resetButtons("sortby");
+        sortBy = button.innerHTML;
+      } else if (category === "type") {
+        this.resetButtons("type");
+        type = button.innerHTML;
+      } else return;
+      button.classList.add("active");
+      button.setAttribute("state", "active");
+    } else {
+      button.classList.remove("active");
+      button.setAttribute("state", "inactive");
+      if (category === "genre") genre_filters = genre_filters.filter((item) => item !== button.innerHTML);
+      else if (category === "sort") sortBy = "";
+      else if (category === "type") type = "";
+      else return;
+    }
+  }
+
+  resetButtons(column) {
+    let filterButtons;
+    if (column === "sortby") {
+      filterButtons = this.shadowRoot.querySelectorAll(".sort-button");
+    } else if (column === "type") {
+      filterButtons = this.shadowRoot.querySelectorAll(".type-button");
+    } else return;
+
+    [...filterButtons].map((button) => {
+      button.classList.remove("active");
+      button.setAttribute("state", "inactive");
+    });
   }
 }
-
 
 customElements.define("search-bar", SearchBar);

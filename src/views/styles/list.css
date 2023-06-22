@@ -29,10 +29,20 @@
   margin: 40px 0px;
 }
 
+.stat {
+  width: 100%;
+}
+
 .stat-title {
   width: 100%;
   margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.double-stat {
+  display: flex;
+  width: 100%;
+  gap: 20px;
 }

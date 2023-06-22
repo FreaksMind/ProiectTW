@@ -1,36 +1,32 @@
-body{
+body {
   overflow: auto;
 }
 
-.main-container{
+.main-container {
+  max-width: 1000px;
+  margin: 0px auto;
   display: flex;
   flex-direction: column;
   font-family: var(--rubik);
   color: aliceblue;
 }
 
-.username{
+.title {
+  margin: 40px 0px;
   display: flex;
-  padding-left: 1rem;
-  padding-top: 1rem;
-  font-size: 20px;
-}
-
-.title{
-  display: flex;
-  justify-content: center;
-  padding-top: 3rem;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .lists {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  padding: 2rem;
-  padding-top: 5rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 40px;
 }
 
-.list-container{
+.list-container {
   display: flex;
   justify-content: center;
 }
+

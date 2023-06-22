@@ -1,8 +1,11 @@
+import checkAuth from "./auth.js";
 import { getUserLists } from "./services.js";
 
 import "./components/Spinner.js";
 import "./components/NavBar.js";
 import "./components/MovieList.js";
+
+const { logout } = checkAuth();
 
 async function getProfile() {
   const spinner = document.createElement("my-spinner");
@@ -31,4 +34,5 @@ async function getProfile() {
   }
 }
 
+document.getElementById("logout-btn").addEventListener("click", logout);
 document.addEventListener("DOMContentLoaded", getProfile);
