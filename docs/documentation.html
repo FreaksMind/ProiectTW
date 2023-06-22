@@ -120,7 +120,7 @@
                 </p>
                 <h3 id="productScope"><span>2.4 </span> Scopul Produsului</h3>           
                 <p>
-                  Stabeestics este o aplicatie web care permite utilizatorilor sa caute si sa exploreze filme si emisiuni TV dupa diferite categorii, cum ar fi gen, an, rating etc. In plus, utilizatorii pot folosi cuvinte cheie an cautarea acestora.
+                  Stabeestics este o aplicatie web care permite utilizatorilor sa caute si sa exploreze filme si emisiuni TV dupa diferite categorii, cum ar fi gen, popularitate, rating etc. In plus, utilizatorii pot folosi cuvinte cheie in cautarea filmului dorit. Pe pagina filmului, utilizatorul poate vedea informatiile filmului, trailerul acestuia si alte filme similare. Pe langa aceasta, poate exporta datele filmului intr-un fisier CSV sau il poate adauga intr-un watchlist in care mai apoi va putea vedea statistici bazate pe filmele alese.
                 </p>
                 <h3 id="references"><span>2.5 </span> Referinte</h3> 
                     <ol>
@@ -129,6 +129,7 @@
                         <li><a href="https://w3c.github.io/scholarly-html/">Scholarly HTML<a></li>
                         <li><a href="https://www.freeformatter.com/html-validator.html">Validator HTML<a></li>
                         <li><a href="https://jigsaw.w3.org/css-validator/">Validator CSS<a></li>
+                        <li><a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwi6mKHjwtf_AhVuQvEDHfhRD98QFnoECAwQAQ&url=https%3A%2F%2Fmongoosejs.com%2F&usg=AOvVaw2QyUPy51gb2pQbhs-tgf-x&opi=89978449">Mongoose<a></li>
 
                     </ol>    
         </section>
@@ -141,51 +142,66 @@
               Stabeestics este o aplicatie web care preia statistici despre filme si emisiuni TV de la diferite servicii de streaming. Utilizatorii pot cauta si filtra cautarile pentru a gasi informatia dorita în functie de preferinte.
         
               Aplicatia poate fi accesata de pe mai multe platforme, cum ar fi desktop, tableta sau smartphone, asigurand astfel o experienta coerenta utilizatorilor pe orice dispozitiv.
+
+              Aplicatia permite utilizatorului sa creeze liste in care sa puna filmele dorite, iar mai apoi sa vizualizeze statistici pe baza filmelor adaugate in lista.
             </p> 
 
             <h3 id= "productFunctions"> <span>3.2 </span>Functionalitatile produsului</h3>
             <p>  
                Aplicatia permite utilizatorilor website-ului sa caute filme sau emisiuni TV, sa vizualize diferite informatii si statistici despre acestea sau sa se inregistreze/logheze. Pentru a putea folosi aplicatia utilizatorii trebuie s fie inregistrati. Statisticile generate vor fi exportate in formatele CSV, WebP si SVG.
-
-               <h4>Home Page</h4>
+               Alte functionalitati: informatiile filmelor pot fi exportate in format CSV, utilizatorul poate crea liste in care poate adauga filme, mai apoi generand statisticile accestora, administratorul poate adauga noi utilizatori, sau poate sterge utilizatori. 
+               <h4>Landing Page/Login Page</h4>
                <ul>
                     <li>Log in form: formular pentru autentificarea utilizatorilor, care mai apoi vor fi redirectionati catre pagina de cautare.</li>
+                    <li>Buton care redirectioneaza utilizatorul catre sign up page, in cazul in care acesta nu are deja un cont.</li>
                </ul>
                 <h4>Sign up page</h4>
                <ul>
                     <li>Create account: utilizatorul isi creeaza un cont nou folosind datele personale, fiind redirectionat catre pagina de cautare.</li>
-                    <li>Already registered: daca utilizatorul detine un cont, acesta va fi redirectionat catre pagina de log in.</li>
+                    <li>Buton care redirectioneaza utilizatorul catre login page, in cazul in care acesta are deja un cont.</li>
                </ul>
-                <h4>Log in page</h4>
-               <ul>
-                    <li>Log in form: formular pentru autentificarea utilizatorilor, care mai apoi vor fi redirectionati catre pagina de cautare.</li>
-                    <li>Create new account: utilizatorul este redirectionat catre pagina de Sign up a aplicatiei web.</li>
-                    <li>Forgot password: utilizatorul este redirectionat catre pagina in care isi poate reseta parola folosind email-ul asociat contului sau.</li>
-               </ul>
-                <h4>Forgot password page</h4>
+                <!-- <h4>Forgot password page</h4>
                <ul>
                     <li>Forgot password form: utilizatorul va introduce email-ul asociat contului personal pentru a putea recupera parolei</li>
                     
-               </ul>
+               </ul> -->
                <h4>Search page</h4>
                <ul>
-                    <li>Search movies: utilizatorul va introduce in bara de cautare filmul pe care intentioneaza sa il vizualizeze. Acesta poate filtra cautarea dupa gen, an si rating.</li>
+                    <li>Search movies: utilizatorul va introduce in bara de cautare filmul pe care intentioneaza sa il vizualizeze. Acesta poate filtra cautarea dupa gen, popularitate, rating, si altele. La final, va fi redirectionat catre results page.</li>
+                    <li>Trending movies: utilizatorul poate selecta un film din caruselul de filme care sunt in tendinte la momentul de fata, fiind redirectionat pe pagina filmului.</li>
+                    <li>Utilizatorul poate accesa profilul acestuia, une poate vizualiza listele create.</li>
                </ul>
                <h4>Results page</h4>
                <ul>
-                    <li>Search results: utilizatorul va beneficia de rezultatele cautarii in functie de filtrele alese.</li>
+                    <li>Search results: utilizatorul va beneficia de rezultatele cautarii in functie de filtrele alese, fiindu-i puse la dispozitie numeroase filme.</li>
+                    <li>Utilizatorul poate accesa profilul acestuia, une poate vizualiza listele create.</li>
+                    <li>De asemenea, utilizatorul poate face o alta cautare sau sa acceseze din nou search page-ul.</li>
                </ul>
-                <h4>Movie info page</h4>
+                <h4>Movie page</h4>
                <ul>
-                    <li>Movie details: utilizatorul va putea vizualiza detalii despre filmul sau emisiunea dorita.</li>
+                    <li>Movie details: utilizatorul va putea vizualiza detalii despre filmul dorit.</li>
+                    <li>Trailer: utilizatorul va putea vizualiza trailerul filmului.</li>
                     <li>Related movies: utilizatorul va primi sugestii de filme bazate pe genul celui cautat.</li>
+                    <li>Utilizatorul poate descarca un fisier de tip CSV cu informatiile filmului.</li>
+                    <li>Utilizatorul poate adauga filmul in lista dorita, in caz ca doreste sa vada statisticile acestuia, plus a altor filme.</li>
                </ul>
-                <h4>Statistics page:</h4>
+
+                <h4>Statistics(List) page</h4>
                <ul>
-                    <li>Most popular movies: utilizatorul va putea vedea care sunt cele mai vizualizate filme la momentul actual.</li>
-                    <li>Best rated movies: utilizatorul va putea vedea care sunt cele mai bine cotate filme la momentul actual.</li>
-                    <li>Most recent movies: utilizatorul va putea vedea care sunt cele mai recente filme la momentul actual.</li>
+                    <li>Utilizatorul va putea vedea statistici legate de popularitatea, bugetul, castigurile, ratingul filmelor din lista accesata, dar si alte statistici.</li>
                </ul>
+
+               <h4>Profile page</h4>
+               <ul>
+                <li>Utilizatorul poate vedea lsitele acestuia, le poate manipula sau le poate accesa.</li>
+                <li>De asemenea, acesta poate cauta un film folosind navigation bar-ul aflat in aproape toate paginile.</li>
+               </ul>
+
+               <h4>Admin page</h4>
+               <ul>
+                <li>Administratorul poate vizualiza toti utilizatorii ce au cont creat, poate crea noi conturi de utilizator sau poate sterge conturile unor utilizatori.</li>
+               </ul>
+
                <h4>Error page</h4>
                <ul>
                     <li>Error: utilizatorul este informat ca pagina cautata nu exista.</li>
@@ -219,20 +235,22 @@
 
             <h3 id="userInterface"><span>4.1</span> Interfata utilizator</h3>
 
-                <h4>Home page</h4>
-                <img src="images/home.png" alt="" width="1200" height="700">
+                <h4>Landing page</h4>
+                <img src="images/landing.png" alt="" width="1200" height="700">
                 <h4>Sign up page</h4>
                 <img src="images/signup.png" alt="" width="1200" height="700">
-                <h4>Log in page</h4>
-                <img src="images/login.png" alt="" width="1200" height="700">
-                <h4>Forgot password page</h4>
-                <img src="images/forgot.png" alt="" width="1200" height="700">
                 <h4>Search page</h4>
                 <img src="images/search.png" alt="" width="1200" height="700">
                 <h4>Results page</h4>
                 <img src="images/results.png" alt="" width="1200" height="700">
-                <h4>Movie info page</h4>
+                <h4>Movie page</h4>
                 <img src="images/movie.png" alt="" width="1200" height="700">
+                <h4>Statistics page</h4>
+                <img src="images/stats.png" alt="" width="1200" height="700">
+                <h4>Profile page</h4>
+                <img src="images/profile.png" alt="" width="1200" height="700">
+                <h4>Admin page</h4>
+                <img src="images/admin.png" alt="" width="1200" height="700">
                 <h4>Error page</h4>
                 <img src="images/404.png" alt="" width="1200" height="700">
 
