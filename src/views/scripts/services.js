@@ -70,3 +70,11 @@ export async function getList(id) {
 export async function getListPosterPreview(id) {
   return api(`/api/lists/poster-preview/${id}`, "GET");
 }
+
+export async function getUsers() {
+  return api("/api/admin/users", "GET");
+}
+
+export async function deleteUser(userId) {
+  return api("/api/admin/delete-user", "POST", { userId });
+}
