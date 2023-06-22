@@ -106,21 +106,24 @@
                 
                 <h3 id="purpose"><span>2.1 </span> Scopul documentului</h3>
                 <p>  
-                   Scopul acestui document este de a oferi o descriere detaliata a interfetei si a functionalitatii puse la dispozitie in aplicatia web numita Stabeestics, bazata pe cerintele proiectului MoX (Movies and TV Shows Explorer).
+                    Stabeestics este o aplicație web pentru proiectul MoX - Movies and TV Shows Explorer dezvoltat de trei studenți de la Facultatea de Informatică, Universitatea Alexandru Ioan Cuza. 
+                    Scopul acestui document este de a prezenta o descriere detaliată, caracteristicile, precum și de a specifica cerințele aplicației web. 
+                    Această aplicație oferă utilizatorilor un instrument util pentru a vizualiza detaliile despre filme și pentru a genera liste de filme conform preferințelor lor. 
+                    De asemenea, bazat pe acele liste, utilizatorul poate să vizualizeze diverse statistici. 
                 </p>
                 
                 <h3 id="conventions"><span>2.2 </span>Conventiile documentului</h3>
                 <p>
-                    Documentatia a fost creata utilizand informatiile din modelul IEEE System Requirement Specification Documents, cu ajutorul ScholarlyHTML.
+                    Documentația a fost creată utilizând informațiile din modelul IEEE System Requirement Specification Documents, cu ajutorul ScholarlyHTML.
                 </p>
 
                 <h3 id="audience"><span>2.3 </span> Audienta tinta si sugestii</h3>
                 <p>
-                  Orice persoana(persoane obisnuite, pasionatii de filme) care doreste sa exploreze și sa descopere informatii despre filme poate fi o audienta potentiala pentru un astfel de site. 
+                    Acest document este destinat oricărui utilizator, (profesori, studenți sau dezvoltatori) indiferent de cunoștiințele lor tehnologice, care se poate citi secțiunea "Interfețe utilizator" și "Caracteristicile de sistem" pentru a înțelege mai bine ce oferă aplicația.
                 </p>
                 <h3 id="productScope"><span>2.4 </span> Scopul Produsului</h3>           
                 <p>
-                  Stabeestics este o aplicatie web care permite utilizatorilor sa caute si sa exploreze filme si emisiuni TV dupa diferite categorii, cum ar fi gen, popularitate, rating etc. In plus, utilizatorii pot folosi cuvinte cheie in cautarea filmului dorit. Pe pagina filmului, utilizatorul poate vedea informatiile filmului, trailerul acestuia si alte filme similare. Pe langa aceasta, poate exporta datele filmului intr-un fisier CSV sau il poate adauga intr-un watchlist in care mai apoi va putea vedea statistici bazate pe filmele alese.
+                  Stabeestics este o aplicatie web care permite utilizatorilor sa caute si sa exploreze filme dupa diferite categorii, cum ar fi gen, popularitate, rating etc. In plus, utilizatorii pot adăuga filtre la căutarea filmului dorit. Pe pagina filmului, utilizatorul poate vedea informațiile filmului, trailerul acestuia si alte filme similare. Pe lângă aceasta, poate exporta datele filmului într-un fișier JSON sau îl poate adauga într-un watchlist în care mai apoi va putea vedea statistici bazate pe filmele alese.
                 </p>
                 <h3 id="references"><span>2.5 </span> Referinte</h3> 
                     <ol>
@@ -139,20 +142,20 @@
 
             <h3 id= "productPerspective"> <span>3.1 </span>Descrierea produsului</h3>
             <p>
-              Stabeestics este o aplicatie web care preia statistici despre filme si emisiuni TV de la diferite servicii de streaming. Utilizatorii pot cauta si filtra cautarile pentru a gasi informatia dorita în functie de preferinte.
+              Stabeestics este o aplicatie web care preia informații despre filme de la diferite servicii de streaming și oferă statistici bazate pe listele utilizatorului.
+               Pentru a căuta un film, un utilizator poate aplica diverse filtre pentru un rezultat mai precis.
         
-              Aplicatia poate fi accesata de pe mai multe platforme, cum ar fi desktop, tableta sau smartphone, asigurand astfel o experienta coerenta utilizatorilor pe orice dispozitiv.
-
-              Aplicatia permite utilizatorului sa creeze liste in care sa puna filmele dorite, iar mai apoi sa vizualizeze statistici pe baza filmelor adaugate in lista.
+              Aplicatia poate fi accesata de pe mai multe platforme, cum ar fi desktop, tableta sau smartphone, asigurand astfel o experienta placută utilizatorilor pe orice dispozitiv.
             </p> 
 
             <h3 id= "productFunctions"> <span>3.2 </span>Functionalitatile produsului</h3>
             <p>  
-               Aplicatia permite utilizatorilor website-ului sa caute filme sau emisiuni TV, sa vizualize diferite informatii si statistici despre acestea sau sa se inregistreze/logheze. Pentru a putea folosi aplicatia utilizatorii trebuie s fie inregistrati. Statisticile generate vor fi exportate in formatele CSV, WebP si SVG.
-               Alte functionalitati: informatiile filmelor pot fi exportate in format CSV, utilizatorul poate crea liste in care poate adauga filme, mai apoi generand statisticile accestora, administratorul poate adauga noi utilizatori, sau poate sterge utilizatori. 
+               Aplicatia permite utilizatorilor website-ului sa caute filme, sa vizualize diferite informatii si statistici despre acestea sau sa se inregistreze/logheze. 
+               Pentru a putea folosi aplicatia, utilizatorii trebuie să fie inregistrați. Statisticile generate vor fi exportate in formatele CSV, WebP si SVG.
+               Alte functionalitati: informatiile filmelor pot fi exportate in format JSON, utilizatorul poate crea liste in care poate adauga filme, mai apoi generand statisticile accestora, iar administratorul poate adauga noi utilizatori, sau poate sterge utilizatori. 
                <h4>Landing Page/Login Page</h4>
                <ul>
-                    <li>Log in form: formular pentru autentificarea utilizatorilor, care mai apoi vor fi redirectionati catre pagina de cautare.</li>
+                    <li>Login form: formular pentru autentificarea utilizatorilor, care mai apoi vor fi redirectionati catre pagina de cautare.</li>
                     <li>Buton care redirectioneaza utilizatorul catre sign up page, in cazul in care acesta nu are deja un cont.</li>
                </ul>
                 <h4>Sign up page</h4>
@@ -160,21 +163,17 @@
                     <li>Create account: utilizatorul isi creeaza un cont nou folosind datele personale, fiind redirectionat catre pagina de cautare.</li>
                     <li>Buton care redirectioneaza utilizatorul catre login page, in cazul in care acesta are deja un cont.</li>
                </ul>
-                <!-- <h4>Forgot password page</h4>
-               <ul>
-                    <li>Forgot password form: utilizatorul va introduce email-ul asociat contului personal pentru a putea recupera parolei</li>
-                    
-               </ul> -->
                <h4>Search page</h4>
                <ul>
-                    <li>Search movies: utilizatorul va introduce in bara de cautare filmul pe care intentioneaza sa il vizualizeze. Acesta poate filtra cautarea dupa gen, popularitate, rating, si altele. La final, va fi redirectionat catre results page.</li>
+                    <li>Search movies: utilizatorul va introduce in bara de cautare filmul pe care intentioneaza sa il vizualizeze. 
+                        Acesta poate filtra cautarea dupa gen, popularitate, rating si data de lansare. La final, va fi redirectionat catre results page.</li>
                     <li>Trending movies: utilizatorul poate selecta un film din caruselul de filme care sunt in tendinte la momentul de fata, fiind redirectionat pe pagina filmului.</li>
                     <li>Utilizatorul poate accesa profilul acestuia, une poate vizualiza listele create.</li>
                </ul>
                <h4>Results page</h4>
                <ul>
                     <li>Search results: utilizatorul va beneficia de rezultatele cautarii in functie de filtrele alese, fiindu-i puse la dispozitie numeroase filme.</li>
-                    <li>Utilizatorul poate accesa profilul acestuia, une poate vizualiza listele create.</li>
+                    <li>Utilizatorul poate accesa profilul acestuia, unde poate vizualiza listele create.</li>
                     <li>De asemenea, utilizatorul poate face o alta cautare sau sa acceseze din nou search page-ul.</li>
                </ul>
                 <h4>Movie page</h4>
@@ -182,7 +181,7 @@
                     <li>Movie details: utilizatorul va putea vizualiza detalii despre filmul dorit.</li>
                     <li>Trailer: utilizatorul va putea vizualiza trailerul filmului.</li>
                     <li>Related movies: utilizatorul va primi sugestii de filme bazate pe genul celui cautat.</li>
-                    <li>Utilizatorul poate descarca un fisier de tip CSV cu informatiile filmului.</li>
+                    <li>Utilizatorul poate descarca un fisier de tip JSON cu informatiile filmului.</li>
                     <li>Utilizatorul poate adauga filmul in lista dorita, in caz ca doreste sa vada statisticile acestuia, plus a altor filme.</li>
                </ul>
 
@@ -220,11 +219,11 @@
 
             <h3 id= "designConstraints"> <span>3.5</span> Design si constrangeri de implementare </h3>
             <p>      
-                Pentru implementare s-a apelat la tehnologii precum HTML, CSS, JavaScript si NodeJS, iar pentru baza de date s-a utilizat SQL.
+                Pentru implementare s-a apelat la tehnologii precum HTML, CSS, JavaScript si NodeJS, iar pentru baza de date s-a utilizat MongoDB.
             </p>
             <h3 id="dependencies"><span>3.6</span> Dependente</h3>
             <p>
-                Aplicatia este depedenta de datele furnizate de Disney+, Netflix si TMDB.
+                Aplicatia este depedenta de datele furnizate TMDB.
             </p>
             
         </section>
