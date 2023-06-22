@@ -6,7 +6,20 @@ import "./components/NavBar.js";
 import "./components/SearchBar.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
+
+  const genres_map = {
+    "27": "horror",
+    "10749": "romance",
+    "35": "comedy",
+    "28": "action",
+    "18": "drama",
+    "12": "adventure"
+  };
+
   const query = getUrlParams().get("query");
+  const genres = getUrlParams().get("genres");
+  const sortBy = getUrlParams().get("sortBy");
+  const order = getUrlParams().get("order");
 
   if (!query) {
     window.location.href = "/search";
@@ -23,7 +36,40 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   spinner.remove();
 
-  for (const { id, poster_path, original_title } of data) {
+  if(data.length === 0){
+    document.querySelector('#no-results').style.display = 'block';
+    return;
+  }
+
+  let filteredData = data;
+
+  if (genres) {
+    let filter_genres = genres.split(",");
+
+    filteredData = filteredData.filter(d => d.genre_ids.some(r => filter_genres.includes(genres_map[r.toString()])));
+  }
+
+    
+  if(filteredData.length === 0){
+    document.querySelector('#no-results').style.display = 'block';
+    return;
+  }
+
+  if (sortBy === 'popularity') {
+    filteredData.filter(d => d.popularity).sort((a, b) => b.popularity - a.popularity);
+  } else if (sortBy === 'rating') {
+    filteredData.filter(d => d.vote_average).sort((a, b) => b.vote_average - a.vote_average);
+  } else if (sortBy === 'release_date') {
+    filteredData.filter(d => d.release_date).sort((a, b) => {
+      const dateA = new Date(a.release_date);
+      const dateB = new Date(b.release_date);
+      return dateA - dateB;
+    });
+  }
+
+  filteredData = filteredData.length > 0 && order === 'asc' ? filteredData.reverse() : filteredData;
+
+  for (const { id, poster_path, original_title} of filteredData) {
     const el = document.createElement("div");
     el.classList.add("box");
     el.onclick = () => {
