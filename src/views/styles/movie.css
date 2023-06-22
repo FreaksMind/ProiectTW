@@ -39,13 +39,13 @@ body {
   flex-direction: column;
 }
 
-.poster img {
+.poster-wrapper img {
   margin-top: 10px;
   width: 100%;
   max-width: 300px;
   height: auto;
   max-height: 300px;
-  border-radius: 20px;
+  border-radius: 10px;
   object-fit: contain;
 }
 
@@ -250,9 +250,11 @@ h3 {
   padding: 10px;
   display: flex;
   flex-direction: column;
+  min-width: 430px;
 }
 
 #movie-lists {
+  padding-right: 15px;
   display: flex;
   flex-direction: column;
   gap: 10px;

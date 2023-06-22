@@ -5,12 +5,13 @@ const template = document.createElement("template");
 template.innerHTML = `
 <style>
   #search-bar {
+    display: block;
     box-sizing: border-box;
     background-position: 10px 10px;
     background-repeat: no-repeat;
     background-image: url("./assets/beesearch.png");
     font-size: 1em;
-    padding: 10px;
+    padding: 7px 0px 7px 36px;
     background-color: black;
     border: 2px solid #303030;
     border-radius: 14px;
@@ -19,6 +20,7 @@ template.innerHTML = `
     width: 100%;
     font-family: var(--inter);
     color: rgb(190, 190, 190);
+    background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='rgb(150, 150, 150)' class='bi bi-search' viewBox='0 0 50 50'%3E%3Cpath d='M 21 3 C 11.601563 3 4 10.601563 4 20 C 4 29.398438 11.601563 37 21 37 C 24.355469 37 27.460938 36.015625 30.09375 34.34375 L 42.375 46.625 L 46.625 42.375 L 34.5 30.28125 C 36.679688 27.421875 38 23.878906 38 20 C 38 10.601563 30.398438 3 21 3 Z M 21 7 C 28.199219 7 34 12.800781 34 20 C 34 27.199219 28.199219 33 21 33 C 13.800781 33 8 27.199219 8 20 C 8 12.800781 13.800781 7 21 7 Z'%3E%3C/path%3E%3C/svg%3E") no-repeat 10px center;
   }
 
   #search-bar::placeholder {
@@ -27,12 +29,14 @@ template.innerHTML = `
 
   #search-bar:focus {
     background-color: #101010;
-    color: #ffc107;
+    color: white;
   }
 
   .input-wrapper {
-    max-width: 95%;
-    width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 600px;
+    width: 100%;
   }
 
   .search-wrapper {
@@ -45,7 +49,7 @@ template.innerHTML = `
 
   .search-icon {
     margin-left: 5px;
-    width: 60px;
+    width: 50px;
     height: auto;
     transition: 0.3s ease all;
     cursor: pointer;
@@ -57,10 +61,11 @@ template.innerHTML = `
   }
 
   #search-suggestions {
+    margin-top: 10px;
     position: fixed;
     z-index: 12;
-    max-width: calc(95% - 60px);
-    width: 680px;
+    width: 100%;
+    max-width: 580px;
     padding: 10px 10px;
 
     color: rgb(190, 190, 190);
@@ -75,6 +80,7 @@ template.innerHTML = `
   }
 
   .suggestion {
+    max-width: 600px;
     padding: 5px;
     transition: 0.15s ease all;
     border-radius: 6px;
@@ -89,10 +95,7 @@ template.innerHTML = `
 
 <div class="input-wrapper">
   <div class="search-wrapper">
-    <input type="text" placeholder="fast and furious" id="search-bar" />
-    <div id="search-btn">
-      <img src="./assets/beesearch.png" alt="search-icon" class="search-icon" />
-    </div>
+    <input type="text" placeholder="find movie ..." id="search-bar" />
   </div>
 
   <div id="search-suggestions" />
@@ -180,11 +183,9 @@ class SearchBar extends HTMLElement {
     searchBar.addEventListener("focusout", onSearchBarLostFocus);
     searchBar.addEventListener("keydown", (evt) => {
       if (evt.key == "Enter") {
-        searchBtn.click();
+        submitSearch();
       }
     });
-
-    searchBtn.addEventListener("click", submitSearch);
   }
 }
 

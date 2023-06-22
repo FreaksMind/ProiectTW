@@ -15,7 +15,6 @@ body {
   color: white;
   font-size: 4em;
   font-family: var(--rubik);
-  margin-top: 150px;
 }
 .bee-text {
   color: #ffc107;
@@ -23,8 +22,8 @@ body {
 
 #trending-wrapper {
   width: 100%;
-  max-width: 900px;
-  height: 250px;
+  max-width: 600px;
+  height: 200px;
   display: flex;
   flex-direction: row;
   gap: 20px;
@@ -42,16 +41,15 @@ body {
 }
 
 .subtitle {
-  margin-top: 30px;
-  margin-bottom: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   font-size: 1.4rem;
   font-weight: bold;
   color: white;
   display: block;
   text-align: left;
   width: 100%;
-  max-width: 900px;
-  margin-left: 150px;
+  max-width: 600px;
 }
 
 :root {

@@ -14,9 +14,6 @@ async function getProfile() {
   document.querySelector(".main-container").display = "block";
   spinner.remove();
 
-  const user = checkAuth().user;
-  document.getElementById("username").textContent = `${user.username}`;
-
   const allLists = document.getElementById("lists");
   const lists = await getUserLists();
   if (lists) {

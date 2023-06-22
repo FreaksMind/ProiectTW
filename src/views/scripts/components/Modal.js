@@ -20,13 +20,10 @@ class Modal extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ["visible", "title"];
+    return ["visible"];
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    if (name === "title" && this.shadowRoot) {
-      this.shadowRoot.querySelector(".title").textContent = newValue;
-    }
     if (name === "visible" && this.shadowRoot) {
       if (newValue === null) {
         this.shadowRoot.querySelector(".wrapper").classList.remove("visible");
@@ -53,7 +50,7 @@ class Modal extends HTMLElement {
           visibility: hidden;
           transform: scale(1.1);
           transition: visibility 0s linear .25s,opacity .25s 0s,transform .25s;
-          z-index: 100;
+          z-index: 1000;
         }
         .visible {
           opacity: 1;
