@@ -6,10 +6,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="./styles/style.css" rel="stylesheet" />
     <link href="./styles/list.css" rel="stylesheet" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <title id="movie-title"></title>
   </head>
   <body>
     <nav-bar searchbar></nav-bar>
+
+    <div class="container">
+      <h2 id="list-title"></h2>
+      <p id="list-length"></p>
+
+      <div id="movies-container"></div>
+
+      <div id="stats-container">
+        <div>
+          <div class="stat-title">
+            <h2>Budget vs Revenue</h2>
+            <button>export</button>
+          </div>
+          <canvas id="budget-chart"></canvas>
+        </div>
+
+        <div>
+          <div class="stat-title">
+            <h2>Popularity</h2>
+            <button>export</button>
+          </div>
+          <canvas id="popularity-chart"></canvas>
+        </div>
+      </div>
+
+        <div>
+          <div class="stat-title">
+            <h2>Rating</h2>
+            <button>export</button>
+          </div>
+          <canvas id="rating-chart"></canvas>
+        </div>
+      </div>
+    </div>
+
     <script src="./scripts/list.js" type="module"></script>
   </body>
 </html>

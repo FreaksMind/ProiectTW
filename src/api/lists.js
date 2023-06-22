@@ -93,7 +93,7 @@ export const getListPosterPreview = route({ method: "get", auth: true }, async (
   const list = await List.findById(req.params.id);
 
   const posters = await Promise.all(
-    list.movies.slice(0, 5).map(async (movieId) => {
+    list.movies.slice(0, 10).map(async (movieId) => {
       const { poster_path } = await fetchTmdb(`/movie/${movieId}`);
       return `https://image.tmdb.org/t/p/w300${poster_path}`;
     })

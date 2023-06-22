@@ -1,4 +1,3 @@
-import checkAuth from "./auth.js";
 import { getUserLists } from "./services.js";
 
 import "./components/Spinner.js";
@@ -16,15 +15,19 @@ async function getProfile() {
 
   const allLists = document.getElementById("lists");
   const lists = await getUserLists();
-  if (lists) {
-    for (let i = 0; i < lists.length; i++) {
-      const list = lists[i];
 
-      const el = document.createElement("movie-list");
-      el.list = list;
+  if (!lists) {
+    return;
+  }
 
-      allLists.appendChild(el);
-    }
+  for (const list of lists) {
+    const el = document.createElement("movie-list");
+    el.list = list;
+    el.addEventListener("click", () => {
+      window.location.href = `/list?id=${list._id}`;
+    });
+
+    allLists.appendChild(el);
   }
 }
 
