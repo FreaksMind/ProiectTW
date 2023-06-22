@@ -154,8 +154,6 @@ class NavBar extends HTMLElement {
       window.location.href = "/";
     }
 
-    console.log(user)
-
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
 

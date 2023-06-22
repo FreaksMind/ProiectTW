@@ -43,7 +43,7 @@ export async function getMovieById(id) {
   return api(`/api/movies/${id}`, "GET");
 }
 
-export async function createNewList(name) {
+export async function createList(name) {
   return api(`/api/lists/new`, "POST", { name });
 }
 

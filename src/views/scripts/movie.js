@@ -1,4 +1,4 @@
-import { addMovieToList, getListPosterPreview, getMovieById, getUserLists } from "./services.js";
+import { addMovieToList, createList, getMovieById, getUserLists } from "./services.js";
 
 import "./components/Spinner.js";
 import "./components/BeeButton.js";
@@ -181,6 +181,8 @@ document.querySelector("#export-btn").addEventListener("click", async () => {
 async function setMovieLists() {
   const listsContainer = document.getElementById("movie-lists");
 
+  listsContainer.innerHTML = "";
+
   const spinner = document.createElement("my-spinner");
   listsContainer.appendChild(spinner);
 
@@ -190,24 +192,17 @@ async function setMovieLists() {
 
   for (const list of lists) {
     const el = document.createElement("movie-list");
-    el.listName = list.name;
-    el.listId = list._id;
+    el.list = list;
 
     el.addEventListener("click", async () => {
-      addMovieToList(list._id, movieId)
-        .then(() => {
-          document.getElementById("list-modal").visible = false;
-
-          // update list fetch
-        })
-        .catch((err) => {
-          // TODO: show error
-        });
+      await submitMovieToList(list._id, movieId);
     });
 
     listsContainer.appendChild(el);
   }
 }
+
+// TODO: show if movie is already in list
 
 document.getElementById("list-add-btn").addEventListener("click", () => {
   document.getElementById("list-modal").visible = true;
@@ -220,4 +215,24 @@ document.getElementById("list-cancel-btn").addEventListener("click", () => {
 document.addEventListener("DOMContentLoaded", () => {
   setMovieDetails();
   setMovieLists();
+});
+
+async function submitMovieToList(listId, movieId) {
+  addMovieToList(listId, movieId)
+    .then(() => {
+      document.getElementById("list-modal").visible = false;
+      document.getElementById("new-list-input").value = "";
+    })
+    .then(setMovieLists)
+    .catch((err) => {
+      // todo: show error
+    });
+}
+
+document.getElementById("new-list-btn").addEventListener("click", async () => {
+  const listname = document.getElementById("new-list-input").value;
+
+  const list = await createList(listname);
+
+  await submitMovieToList(list._id, movieId);
 });

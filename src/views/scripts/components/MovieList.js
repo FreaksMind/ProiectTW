@@ -31,10 +31,24 @@ template.innerHTML = `
   .poster:not(:first-child) {
      margin-left: -10px;
   }
+
+  .title-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #list-length {
+    color: rgb(140, 140, 140);
+  }
 </style>
 
 <div class="list">
-   <div class="title"></div>
+   <div class="title-container">
+      <span id="title"></span>
+      <span id="list-length"></span>
+   </div>
    <div class="poster-preview"></div>
 </div>
 `;
@@ -44,9 +58,10 @@ class MovieList extends HTMLElement {
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
 
-    this.shadowRoot.querySelector(".title").innerText = this.listName;
+    this.shadowRoot.querySelector("#title").innerText = this.list.name;
+    this.shadowRoot.querySelector("#list-length").innerText = this.list.movies.length + " movies";
 
-    getListPosterPreview(this.listId).then((posters) => {
+    getListPosterPreview(this.list._id).then((posters) => {
       this.shadowRoot.querySelector(".poster-preview").innerHTML += posters
         .map(
           (poster, index) =>

@@ -28,7 +28,7 @@ button {
   padding: 5px 15px;
   outline: none;
   border: 2px solid rgb(30, 30, 30);
-  color: white;
+  color: rgb(140, 140, 140);
   background-color: black;
   font-size: 1rem;
   cursor: pointer;
@@ -39,4 +39,39 @@ button {
 button:hover {
   border-color: var(--accent-color);
   background-color: rgb(20, 20, 20);
+}
+
+input {
+  box-sizing: border-box;
+  font-size: 1rem;
+  padding: 7px 10px;
+  background-color: black;
+  border: 2px solid #303030;
+  border-radius: 10px;
+  outline: none;
+  transition: 0.2s ease all;
+  width: 100%;
+  font-family: var(--inter);
+  color: rgb(190, 190, 190);
+}
+
+input::placeholder {
+  color: #999;
+}
+
+input:focus {
+  background-color: #101010;
+  color: white;
+}
+
+.flex {
+  display: flex;
+}
+
+.col {
+  flex-direction: col;
+}
+
+.row {
+  flex-direction: row;
 }

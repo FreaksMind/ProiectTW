@@ -21,8 +21,7 @@ async function getProfile() {
       const list = lists[i];
 
       const el = document.createElement("movie-list");
-      el.listName = list.name;
-      el.listId = list._id;
+      el.list = list;
 
       allLists.appendChild(el);
     }
