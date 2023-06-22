@@ -6,13 +6,18 @@ import { route } from "../utils.js";
 
 function generateJWT(payload) {
   return new Promise((resolve, reject) => {
-    jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 86400 }, (err, token) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(token);
+    jwt.sign(
+      payload,
+      process.env.JWT_SECRET,
+      { expiresIn: 86400 },
+      (err, token) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(token);
+        }
       }
-    });
+    );
   });
 }
 
@@ -55,6 +60,10 @@ export const register = route({ method: "post" }, async (req, res) => {
   const { username, password } = req.body;
 
   const usernameTaken = await User.findOne({ username });
+
+  if (!username || !password) {
+    return res.send(400, { message: "fill up all fields" });
+  }
 
   if (usernameTaken) {
     return res.send(400, { message: "username taken" });

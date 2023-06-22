@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./styles/style.css" rel="stylesheet" />
+    <link href="./styles/admin.css" rel="stylesheet" />
+    <title>Admin</title>
+  </head>
+  <body>
+    <nav-bar></nav-bar>
+    <bee-modal id="user-modal">
+      <div class="user-modal">
+        <h2 style="margin-bottom: 10px; text-align: center">add new user</h2>
+        <div id="signup-wrapper" class="signup-wrapper">
+          <input placeholder="username" id="username-input" />
+          <input type="password" placeholder="password" id="password-input" />
+          <input
+            type="password"
+            placeholder="confirm password"
+            id="confirm-password-input"
+          />
+          <button class="create-user-btn" id="create-user-btn">
+            create user <span></span><span></span><span></span><span></span>
+          </button>
+          <button id="cancel-add-btn">cancel</button>
+        </div>
+      </div>
+    </bee-modal>
+    <bee-modal id="delete-modal">
+      <div class="delete-modal">
+        <h2 style="margin-bottom: 10px; text-align: center">are you sure?</h2>
+        <button id="yes-button">yes</button>
+        <button id="no-button">no</button>
+      </div>
+    </bee-modal>
+    <div class="main-container">
+      <h1>Administrator</h1>
+      <div class="users-options">
+        <bee-button id="add-user-btn">
+          <span>add new user</span>
+        </bee-button>
+        <div id="users-list" class="users-list"></div>
+      </div>
+    </div>
+    <script src="./scripts/admin.js" type="module"></script>
+  </body>
+</html>

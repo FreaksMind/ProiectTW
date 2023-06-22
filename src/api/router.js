@@ -8,7 +8,13 @@ import {
   getList,
   getListPosterPreview,
 } from "./lists.js";
-import { getTrendingMovies, searchMovies, searchSuggestions, getMovieById } from "./movies.js";
+import {
+  getTrendingMovies,
+  searchMovies,
+  searchSuggestions,
+  getMovieById,
+} from "./movies.js";
+import { getUsers, deleteUser } from "./users.js";
 
 const router = {
   "/api/auth/login": login,
@@ -24,6 +30,8 @@ const router = {
   "/api/lists/poster-preview/:id": getListPosterPreview,
   "/api/lists/add-movie": addMovieToList,
   "/api/lists/delete-movie": deleteMovieFromList,
+  "/api/admin/users": getUsers,
+  "/api/admin/delete-user": deleteUser,
 };
 
 export default router;
