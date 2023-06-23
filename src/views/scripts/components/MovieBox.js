@@ -74,13 +74,24 @@ class MovieBox extends HTMLElement {
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
 
-    const { id, poster_path, original_title } = this.movie;
+    if(this.type === "actor") {
+      const { id, profile_path, name } = this.actor;
 
-    this.shadowRoot.querySelector(".bg-img").src = `https://image.tmdb.org/t/p/w300${poster_path}`;
-    this.shadowRoot.querySelector(".result-title").innerText = original_title;
-    this.addEventListener("click", () => {
-      window.location.href = `/movie?id=${id}`;
-    });
+      this.shadowRoot.querySelector(".bg-img").src = `https://image.tmdb.org/t/p/w300${profile_path}`;
+      this.shadowRoot.querySelector(".result-title").innerText = name;
+      this.addEventListener("click", () => {
+        window.location.href = `/actor?id=${id}`;
+      });
+    } else {
+      const { id, poster_path, original_title } = this.movie;
+      
+
+      this.shadowRoot.querySelector(".bg-img").src = `https://image.tmdb.org/t/p/w300${poster_path}`;
+      this.shadowRoot.querySelector(".result-title").innerText = original_title;
+      this.addEventListener("click", () => {
+        window.location.href = `/movie?id=${id}`;
+      });
+    }
   }
 }
 

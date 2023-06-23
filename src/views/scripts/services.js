@@ -43,6 +43,18 @@ export async function getMovieById(id) {
   return api(`/api/movies/${id}`, "GET");
 }
 
+export async function searchActors(name){
+  return api(`/api/actors/search/${name}`);
+}
+
+export async function getActorById(id){
+  return api(`/api/actors/${id}`, "GET");
+}
+
+export async function getMoviesByActorId(id){
+  return api(`/api/actors/movies/${id}`, "GET");
+}
+
 export async function createList(name) {
   return api(`/api/lists/new`, "POST", { name });
 }

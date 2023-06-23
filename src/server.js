@@ -25,6 +25,7 @@ const routes = {
   "/profile": serveHtml("profile.html"),
   "/list": serveHtml("list.html"),
   "/admin": serveHtml("admin.html"),
+  "/actor": serveHtml("actor.html"),
   ...apiRouter,
 };
 

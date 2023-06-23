@@ -448,7 +448,7 @@ class SearchBar extends HTMLElement {
       button.innerHTML = genre;
       this.shadowRoot.getElementById("genre").appendChild(button);
     }
-    let types = ["movie", "actor", "tv show"];
+    let types = ["movie", "actor"];
     for (const type of types) {
       let button = document.createElement("button");
       button.classList.add("filter-button");

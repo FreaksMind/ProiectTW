@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./styles/style.css" rel="stylesheet" />
+    <link href="./styles/actor.css" rel="stylesheet" />
+    <title id="movie-title"></title>
+  </head>
+  <body>
+    <nav-bar searchbar></nav-bar>
+
+    <div class="content-container">
+      <div class="poster-wrapper">
+        <img id="poster" alt="poster-img" class="poster-img" />
+        <bee-button id="export-btn">
+          <span>export data</span>
+        </bee-button>
+      </div>
+      <div class="content">
+        <div class="header-container">
+          <div class="title-rating">
+            <h1 id="movie-name"></h1>
+            <div class="rating">
+              <b id="movie-rating" class="rating-text"></b
+              ><img src="./assets/honey.png" alt="star-icon" class="star-icon" />
+            </div>
+          </div>
+          <div class="movie-info">
+            <ul class="mini-stats">
+              <li id="movie-release"></li>
+              <li id="movie-runtime"></li>
+              <li id="movie-restriction"></li>
+            </ul>
+          </div>
+        </div>
+        <div id="overview" class="description"></div>
+        <div class="container" id="movies"></div>
+      </div>
+    </div>
+    <script src="./scripts/actor.js" type="module"></script>
+  </body>
+</html>

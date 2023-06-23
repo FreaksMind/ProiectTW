@@ -14,6 +14,12 @@ import {
   searchSuggestions,
   getMovieById,
 } from "./movies.js";
+import {
+  searchActors,
+  getActorById,
+  getMoviesByActorId,
+} from "./actors.js";
+
 import { getUsers, deleteUser } from "./users.js";
 
 const router = {
@@ -32,6 +38,9 @@ const router = {
   "/api/lists/delete-movie": deleteMovieFromList,
   "/api/admin/users": getUsers,
   "/api/admin/delete-user": deleteUser,
+  "/api/actors/search/:name": searchActors,
+  "/api/actors/:id": getActorById,
+  "/api/actors/movies/:id": getMoviesByActorId,
 };
 
 export default router;
