@@ -8,45 +8,54 @@
     <link href="./styles/list.css" rel="stylesheet" />
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./lib/c2s.js"></script>
 
     <title id="movie-title"></title>
   </head>
   <body>
     <nav-bar searchbar></nav-bar>
 
+    <bee-modal id="delete-modal">
+      <div class="delete-modal-container">
+        <h2 class="modal-title">are you sure you want to delete <span class="list-title"></span></h2>
+        <p>this action cannot be reverted</p>
+        <div class="stat-title">
+          <button id="cancel-delete-btn">cancel</button>
+          <button id="confirm-delete-btn">yes</button>
+        </div>
+      </div>
+    </bee-modal>
+
+    <bee-modal id="export-modal">
+      <div class="export-modal-container">
+        <h2>choose export format</h2>
+        <div class="export-buttons">
+          <button id="cancel-export-btn">cancel</button>
+          <button id="export-csv-btn">csv</button>
+          <button id="export-svg-btn">svg</button>
+          <button id="export-webp-btn">webp</button>
+        </div>
+      </div>
+    </bee-modal>
+
     <div class="container">
-      <h2 id="list-title"></h2>
+      <div class="stat-title">
+        <h2 class="list-title"></h2>
+        <button id="delete-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16px" height="16px">
+            <path
+              fill="#999999"
+              d="M 10.806641 2 C 10.289641 2 9.7956875 2.2043125 9.4296875 2.5703125 L 9 3 L 4 3 A 1.0001 1.0001 0 1 0 4 5 L 20 5 A 1.0001 1.0001 0 1 0 20 3 L 15 3 L 14.570312 2.5703125 C 14.205312 2.2043125 13.710359 2 13.193359 2 L 10.806641 2 z M 4.3652344 7 L 5.8925781 20.263672 C 6.0245781 21.253672 6.877 22 7.875 22 L 16.123047 22 C 17.121047 22 17.974422 21.254859 18.107422 20.255859 L 19.634766 7 L 4.3652344 7 z"
+            />
+          </svg>
+          delete list
+        </button>
+      </div>
       <p id="list-length"></p>
 
       <div id="movies-container"></div>
 
-      <div id="stats-container">
-        <div class="stat">
-          <div class="stat-title">
-            <h2>Budget vs Revenue</h2>
-            <button>export</button>
-          </div>
-          <canvas id="budget-chart"></canvas>
-        </div>
-
-        <div class="double-stat">
-          <div class="stat">
-            <div class="stat-title">
-              <h2>Popularity</h2>
-              <button>export</button>
-            </div>
-            <canvas id="popularity-chart"></canvas>
-          </div>
-
-          <div class="stat">
-            <div class="stat-title">
-              <h2>Rating</h2>
-              <button>export</button>
-            </div>
-            <canvas id="rating-chart"></canvas>
-          </div>
-        </div>
-      </div>
+      <div id="stats-container"></div>
     </div>
 
     <script src="./scripts/list.js" type="module"></script>

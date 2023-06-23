@@ -132,10 +132,15 @@ h1 {
 
 .related-movies-gallery {
   display: flex;
+  gap: 10px;
   flex-direction: row;
-  position: relative;
-  overflow-x: auto;
+  overflow-x: scroll;
   overflow-y: hidden;
+}
+
+.related-movies-gallery > movie-box {
+  min-width: 120px;
+  font-size: 0.8rem !important;
 }
 
 .related-movies-poster {

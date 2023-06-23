@@ -46,3 +46,51 @@
   width: 100%;
   gap: 20px;
 }
+
+.double-stat .stat {
+  flex: 0.5;
+}
+
+#delete-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+#delete-btn:hover {
+  border-color: red;
+}
+
+.delete-modal-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  max-width: 350px;
+  text-align: center;
+}
+
+.delete-modal-container p {
+  margin: 20px 0px;
+}
+
+.export-modal-container {
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.export-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.export-buttons button {
+  width: 100%;
+}
+
+.export-buttons button:nth-child(1) {
+  margin-right: 20px;
+}

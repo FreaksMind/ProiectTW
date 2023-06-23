@@ -1,7 +1,7 @@
 import { addMovieToList, createList, getMovieById, getUserLists } from "./services.js";
 
 import "./components/Spinner.js";
-import "./components/BeeButton.js";
+import "./components/MovieBox.js";
 import "./components/NavBar.js";
 import "./components/Modal.js";
 import "./components/MovieList.js";
@@ -148,13 +148,11 @@ async function setMovieDetails() {
         const { id, poster_path } = movie;
 
         if (poster_path != null) {
-          const el = document.createElement("div");
-          el.classList.add("related-movie");
+          const el = document.createElement("movie-box");
+          el.movie = movie;
           el.onclick = () => {
             location.href = `movie?id=${id}`;
           };
-
-          el.innerHTML = `<img class="related-movies-poster" src="https://image.tmdb.org/t/p/w300${poster_path}"/>`;
 
           moviesContainer.appendChild(el);
         }

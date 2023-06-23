@@ -4,7 +4,7 @@ template.innerHTML = `
 
 .box {
   margin: 0px auto;
-  font-size: 1rem;
+  font-size: inherit;
   color: white;
 
   max-width: 100%;

@@ -10,17 +10,21 @@ const { logout } = checkAuth();
 async function getProfile() {
   const spinner = document.createElement("my-spinner");
 
-  document.querySelector(".main-container").display = "none";
   document.body.appendChild(spinner);
-
-  document.querySelector(".main-container").display = "block";
-  spinner.remove();
+  document.querySelector(".main-container").display = "none";
 
   const allLists = document.getElementById("lists");
   const lists = await getUserLists();
 
+  document.querySelector(".main-container").display = "block";
+  spinner.remove();
+
   if (!lists) {
     return;
+  }
+
+  if (lists.length > 0) {
+    document.getElementById("no-lists").remove();
   }
 
   for (const list of lists) {
