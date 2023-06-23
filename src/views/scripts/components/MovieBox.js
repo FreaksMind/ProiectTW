@@ -13,6 +13,7 @@ template.innerHTML = `
   position: relative;
   overflow: hidden;
   border-radius: 10px;
+  flex-basis: 300px;
 }
 
 .bg-img {
@@ -61,8 +62,11 @@ template.innerHTML = `
 
 </style>
 
+<div>
 <div class="box">
-  <img class="bg-img" alt="movie poster"/>
+  <object type="image/png" class="bg-img" alt="movie-poster">
+    <img class="bg-img" src="../../assets/no-poster.png" alt="movie poster"/>
+  </object>
   <div class="movie-desc" style="cursor: pointer;" class="box">
     <h3 class="result-title"></h3>
   </div>
@@ -74,24 +78,15 @@ class MovieBox extends HTMLElement {
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
 
-    if(this.type === "actor") {
-      const { id, profile_path, name } = this.actor;
+    const name = this.type == "actor" ? this.actor.name : this.movie.original_title;
+    const url = this.type == "actor" ? `/actor?id=${this.actor.id}` : `/movie?id=${this.movie.id}`;
+    const img = this.type == "actor" ? this.actor.profile_path : this.movie.poster_path;
 
-      this.shadowRoot.querySelector(".bg-img").src = `https://image.tmdb.org/t/p/w300${profile_path}`;
-      this.shadowRoot.querySelector(".result-title").innerText = name;
-      this.addEventListener("click", () => {
-        window.location.href = `/actor?id=${id}`;
-      });
-    } else {
-      const { id, poster_path, original_title } = this.movie;
-      
-
-      this.shadowRoot.querySelector(".bg-img").src = `https://image.tmdb.org/t/p/w300${poster_path}`;
-      this.shadowRoot.querySelector(".result-title").innerText = original_title;
-      this.addEventListener("click", () => {
-        window.location.href = `/movie?id=${id}`;
-      });
-    }
+    this.shadowRoot.querySelector(".bg-img").data = `https://image.tmdb.org/t/p/w300${img}`;
+    this.shadowRoot.querySelector(".result-title").innerText = name;
+    this.addEventListener("click", () => {
+      window.location.href = url;
+    });
   }
 }
 

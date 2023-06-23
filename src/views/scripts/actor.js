@@ -1,4 +1,11 @@
-import { addMovieToList, createList, getActorById, getMovieById, getUserLists, getMoviesByActorId} from "./services.js";
+import {
+  addMovieToList,
+  createList,
+  getActorById,
+  getMovieById,
+  getUserLists,
+  getMoviesByActorId,
+} from "./services.js";
 
 import "./components/Spinner.js";
 import "./components/BeeButton.js";
@@ -36,19 +43,18 @@ async function setMovieDetails() {
 
     document.getElementById("movie-rating").textContent = movieDetails.popularity.toFixed(1);
 
-    document.getElementById("movie-release").innerHTML = `<div class="info-text">${
-      movieDetails.birthday
+    document.getElementById("movie-release").innerHTML = `<div class="info-text">${movieDetails.birthday}</div>`;
+    document.getElementById("movie-runtime").innerHTML = `<div class="info-text">${
+      movieDetails.gender === 2 ? "male" : "female"
     }</div>`;
-    document.getElementById("movie-runtime").innerHTML = `<div class="info-text">${movieDetails.gender === 2 ? "male" : "female"}</div>`;
 
     document.getElementById("overview").textContent = movieDetails.biography;
 
     const relatedMovies = document.getElementById("movies");
-    console.log(data.cast);
     if (data.cast) {
-       const h3 = document.createElement("h3");
-       h3.textContent = "Plays in:";
-      data.cast.slice(0,8).forEach((movie) => {
+      const h3 = document.createElement("h3");
+      h3.textContent = "Plays in:";
+      data.cast.forEach((movie) => {
         const { id, poster_path } = movie;
         if (poster_path != null) {
           const el = document.createElement("movie-box");
@@ -60,7 +66,7 @@ async function setMovieDetails() {
     } else {
       relatedMovies.style.display = "none";
     }
-  } 
+  }
 }
 
 document.querySelector("#export-btn").addEventListener("click", async () => {
@@ -76,4 +82,3 @@ document.querySelector("#export-btn").addEventListener("click", async () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => setMovieDetails());
-
