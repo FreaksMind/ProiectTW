@@ -1,4 +1,4 @@
-import { login, register } from "./auth.js";
+import { login, register, checkToken } from "./auth.js";
 import {
   addMovieToList,
   createNewList,
@@ -8,23 +8,15 @@ import {
   getList,
   getListPosterPreview,
 } from "./lists.js";
-import {
-  getTrendingMovies,
-  searchMovies,
-  searchSuggestions,
-  getMovieById,
-} from "./movies.js";
-import {
-  searchActors,
-  getActorById,
-  getMoviesByActorId,
-} from "./actors.js";
+import { getTrendingMovies, searchMovies, searchSuggestions, getMovieById } from "./movies.js";
+import { searchActors, getActorById, getMoviesByActorId } from "./actors.js";
 
 import { getUsers, deleteUser } from "./users.js";
 
 const router = {
   "/api/auth/login": login,
   "/api/auth/register": register,
+  "/api/auth/check-token": checkToken,
   "/api/movies/trending": getTrendingMovies,
   "/api/movies/search/:title": searchMovies,
   "/api/movies/suggestions/:title": searchSuggestions,

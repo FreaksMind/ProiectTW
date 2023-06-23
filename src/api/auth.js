@@ -6,18 +6,13 @@ import { route } from "../utils.js";
 
 function generateJWT(payload) {
   return new Promise((resolve, reject) => {
-    jwt.sign(
-      payload,
-      process.env.JWT_SECRET,
-      { expiresIn: 86400 },
-      (err, token) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(token);
-        }
+    jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 86400 }, (err, token) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(token);
       }
-    );
+    });
   });
 }
 
@@ -99,6 +94,10 @@ export const register = route({ method: "post" }, async (req, res) => {
     .catch((err) => {
       return res.send(400, { message: "error generating jwt " + err });
     });
+});
+
+export const checkToken = route({ method: "get", auth: true }, async (req, res) => {
+  res.send(200);
 });
 
 function verifyJWT(req) {

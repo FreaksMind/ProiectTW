@@ -27,6 +27,10 @@ export async function register(data) {
   return api("/api/auth/register", "POST", data);
 }
 
+export async function checkToken() {
+  return api("/api/auth/check-token", "GET");
+}
+
 export async function getTrendingMovies() {
   return api("/api/movies/trending");
 }
@@ -43,15 +47,15 @@ export async function getMovieById(id) {
   return api(`/api/movies/${id}`, "GET");
 }
 
-export async function searchActors(name){
+export async function searchActors(name) {
   return api(`/api/actors/search/${name}`);
 }
 
-export async function getActorById(id){
+export async function getActorById(id) {
   return api(`/api/actors/${id}`, "GET");
 }
 
-export async function getMoviesByActorId(id){
+export async function getMoviesByActorId(id) {
   return api(`/api/actors/movies/${id}`, "GET");
 }
 

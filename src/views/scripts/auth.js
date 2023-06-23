@@ -1,4 +1,5 @@
 import jwt_decode from "../lib/jwt.js";
+import { checkToken } from "./services.js";
 
 // TODO: maybe there's a way to fix the page redirect delay
 
@@ -7,14 +8,12 @@ function isTokenExpired(token) {
   return token.exp < currentTime;
 }
 
-export default function checkAuth() {
+export default async function checkAuth() {
   const localToken = localStorage.getItem("token");
 
   if (!localToken) {
     return false;
   }
-
-  // TODO: validate token
 
   const logout = () => {
     window.location.href = "/";
@@ -24,6 +23,12 @@ export default function checkAuth() {
   const decoded = jwt_decode(localToken);
 
   if (isTokenExpired(decoded)) {
+    return false;
+  }
+
+  try {
+    await checkToken();
+  } catch (err) {
     return false;
   }
 

@@ -148,8 +148,8 @@ class NavBar extends HTMLElement {
     }
   }
 
-  connectedCallback() {
-    const { user } = checkAuth();
+  async connectedCallback() {
+    const { user } = await checkAuth();
 
     if (!user) {
       window.location.href = "/";
