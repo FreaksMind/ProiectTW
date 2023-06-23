@@ -199,6 +199,10 @@ h1 {
   padding: 5px 10px;
 }
 
+.actor-div{
+  cursor: pointer;
+}
+
 .trailer {
   display: flex;
   flex-direction: column;

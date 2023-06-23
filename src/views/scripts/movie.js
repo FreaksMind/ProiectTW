@@ -65,7 +65,7 @@ async function setMovieDetails() {
     const actors = movieDetails.credits.cast
       .sort((a, b) => b.popularity - a.popularity)
       .slice(0, 5)
-      .map((actor) => actor.name);
+      .map((actor) => ({ id: actor.id, name: actor.name}) );
     const actorsContainer = document.getElementById("actors");
     if (actors.length == 0) {
       const blankDiv = document.createElement("div");
@@ -75,8 +75,11 @@ async function setMovieDetails() {
     } else {
       actors.forEach((actor) => {
         const actorDiv = document.createElement("div");
-        actorDiv.classList.add("info-text");
-        actorDiv.textContent = actor;
+        actorDiv.classList.add("info-text","actor-div");
+        actorDiv.textContent = actor.name;
+        actorDiv.addEventListener("click", ()=>{
+          location.href=`actor?id=${actor.id}`;
+        });
         actorsContainer.appendChild(actorDiv);
       });
     }
@@ -137,21 +140,22 @@ async function setMovieDetails() {
     }
 
     const relatedMovies = document.getElementById("related-movies");
-    if (movieDetails.similar.results) {
+    const moviesInfo = movieDetails.similar.results.map((movie) => ({ id: movie.id, poster_path: movie.poster_path }));
+    if (moviesInfo[0].poster_path) {
       const h3 = document.createElement("h3");
       h3.textContent = "Related Movies";
       relatedMovies.appendChild(h3);
 
       const moviesContainer = document.createElement("div");
       moviesContainer.classList.add("related-movies-gallery");
-      movieDetails.similar.results.forEach((movie) => {
+      moviesInfo.forEach((movie) => {
         const { id, poster_path } = movie;
 
-        if (poster_path != null) {
+        if (movie.poster_path != null) {
           const el = document.createElement("movie-box");
           el.movie = movie;
           el.onclick = () => {
-            location.href = `movie?id=${id}`;
+            location.href = `movie?id=${movie.id}`;
           };
 
           moviesContainer.appendChild(el);
