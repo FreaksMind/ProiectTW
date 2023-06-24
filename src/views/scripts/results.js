@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   let filteredData = data;
 
-  if(type === "movie") {
+  if(type != "movie") {
 
     if (genres) {
       let filter_genres = genres.split(",");
