@@ -1,4 +1,9 @@
-import { addMovieToList, createList, getMovieById, getUserLists } from "./services.js";
+import {
+  addMovieToList,
+  createList,
+  getMovieById,
+  getUserLists,
+} from "./services.js";
 
 import "./components/Spinner.js";
 import "./components/MovieBox.js";
@@ -27,19 +32,32 @@ async function setMovieDetails() {
   if (!movieDetails) {
     console.log("Movie not found or error occurred.");
   } else {
-    document.getElementById("movie-title").textContent = movieDetails.original_title;
-    document.getElementById("poster").src = `https://image.tmdb.org/t/p/w185${movieDetails.poster_path}`;
-    document.getElementById("movie-name").textContent = movieDetails.original_title;
+    document.getElementById("movie-title").textContent =
+      movieDetails.original_title;
+    document.getElementById(
+      "poster"
+    ).src = `https://image.tmdb.org/t/p/w185${movieDetails.poster_path}`;
+    document.getElementById("movie-name").textContent =
+      movieDetails.original_title;
 
-    document.getElementById("movie-rating").textContent = movieDetails.vote_average.toFixed(1);
-    document.getElementById("movie-runtime").textContent = `${movieDetails.runtime} mins`;
+    document.getElementById("movie-rating").textContent =
+      movieDetails.vote_average.toFixed(1);
+    document.getElementById(
+      "movie-runtime"
+    ).textContent = `${movieDetails.runtime} mins`;
 
-    document.getElementById("movie-release").innerHTML = `<div class="info-text">${
+    document.getElementById(
+      "movie-release"
+    ).innerHTML = `<div class="info-text">${
       movieDetails.release_date.split("-")[0]
     }</div>`;
-    document.getElementById("movie-runtime").innerHTML = `<div class="info-text">${movieDetails.runtime} minutes</div>`;
+    document.getElementById(
+      "movie-runtime"
+    ).innerHTML = `<div class="info-text">${movieDetails.runtime} minutes</div>`;
 
-    document.getElementById("movie-restriction").innerHTML = `<div class="info-text">${
+    document.getElementById(
+      "movie-restriction"
+    ).innerHTML = `<div class="info-text">${
       movieDetails.adult ? "16+" : "8+"
     }</div>`;
 
@@ -65,7 +83,7 @@ async function setMovieDetails() {
     const actors = movieDetails.credits.cast
       .sort((a, b) => b.popularity - a.popularity)
       .slice(0, 5)
-      .map((actor) => ({ id: actor.id, name: actor.name}) );
+      .map((actor) => ({ id: actor.id, name: actor.name }));
     const actorsContainer = document.getElementById("actors");
     if (actors.length == 0) {
       const blankDiv = document.createElement("div");
@@ -75,16 +93,18 @@ async function setMovieDetails() {
     } else {
       actors.forEach((actor) => {
         const actorDiv = document.createElement("div");
-        actorDiv.classList.add("info-text","actor-div");
+        actorDiv.classList.add("info-text", "actor-div");
         actorDiv.textContent = actor.name;
-        actorDiv.addEventListener("click", ()=>{
-          location.href=`actor?id=${actor.id}`;
+        actorDiv.addEventListener("click", () => {
+          location.href = `actor?id=${actor.id}`;
         });
         actorsContainer.appendChild(actorDiv);
       });
     }
 
-    const director = movieDetails.credits.crew.find((crewMember) => crewMember.job == "Director");
+    const director = movieDetails.credits.crew.find(
+      (crewMember) => crewMember.job == "Director"
+    );
     const directorContainer = document.getElementById("director");
     if (director) {
       const directorDiv = document.createElement("div");
@@ -99,7 +119,9 @@ async function setMovieDetails() {
     }
 
     const productionContainer = document.getElementById("production");
-    const productions = movieDetails.production_companies.map((production) => production.name);
+    const productions = movieDetails.production_companies.map(
+      (production) => production.name
+    );
     if (productions.length == 0) {
       const blankDiv = document.createElement("div");
       blankDiv.classList.add("info-text");
@@ -114,7 +136,9 @@ async function setMovieDetails() {
       });
     }
 
-    const trailerVideo = movieDetails.videos.results.find((video) => video.name == "Official Trailer");
+    const trailerVideo = movieDetails.videos.results.find(
+      (video) => video.name == "Official Trailer"
+    );
     const trailerDiv = document.getElementById("trailer");
     if (trailerVideo) {
       const trailerKey = trailerVideo.key;
@@ -140,7 +164,11 @@ async function setMovieDetails() {
     }
 
     const relatedMovies = document.getElementById("related-movies");
-    const moviesInfo = movieDetails.similar.results.map((movie) => ({ id: movie.id, poster_path: movie.poster_path }));
+    const moviesInfo = movieDetails.similar.results.map((movie) => ({
+      id: movie.id,
+      original_title: movie.original_title,
+      poster_path: movie.poster_path,
+    }));
     if (moviesInfo[0].poster_path) {
       const h3 = document.createElement("h3");
       h3.textContent = "Related Movies";
@@ -149,8 +177,6 @@ async function setMovieDetails() {
       const moviesContainer = document.createElement("div");
       moviesContainer.classList.add("related-movies-gallery");
       moviesInfo.forEach((movie) => {
-        const { id, poster_path } = movie;
-
         if (movie.poster_path != null) {
           const el = document.createElement("movie-box");
           el.movie = movie;
@@ -173,7 +199,9 @@ document.querySelector("#export-btn").addEventListener("click", async () => {
   let movieDetailsExport = await getMovieById(movieId);
   let export_data = document.createElement("a");
   export_data.style.display = "none";
-  export_data.href = `data:application/json,${encodeURIComponent(JSON.stringify(movieDetailsExport))}`;
+  export_data.href = `data:application/json,${encodeURIComponent(
+    JSON.stringify(movieDetailsExport)
+  )}`;
   export_data.download = `${movieDetailsExport.original_title}.json`;
   document.body.appendChild(export_data);
   export_data.click();

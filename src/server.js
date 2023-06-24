@@ -1,7 +1,12 @@
 import http from "http";
 import mongoose from "mongoose";
 
-import { getRouteHandler, getPathParams, servePublicFiles, serveStaticFile } from "./utils.js";
+import {
+  getRouteHandler,
+  getPathParams,
+  servePublicFiles,
+  serveStaticFile,
+} from "./utils.js";
 import apiRouter from "./api/router.js";
 
 import dotenv from "dotenv";
@@ -26,6 +31,7 @@ const routes = {
   "/list": serveHtml("list.html"),
   "/admin": serveHtml("admin.html"),
   "/actor": serveHtml("actor.html"),
+  "/stats": serveHtml("stats.html"),
   ...apiRouter,
 };
 
